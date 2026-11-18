@@ -1,0 +1,322 @@
+{
+  "schema": 1,
+  "repository": "AtlasA1-linux",
+  "generated_from": "workspace/mainline",
+  "files": [
+    {
+      "path": ".gitignore",
+      "kind": "generated",
+      "source": "generated/AtlasA1-linux/.gitignore",
+      "size": 136,
+      "sha256": "16b916bff69d1742a8f19b8f59d34a917cc523458e278e2dc859aa2ef70ebd29"
+    },
+    {
+      "path": "README.md",
+      "kind": "generated",
+      "source": "generated/AtlasA1-linux/README.md",
+      "size": 344,
+      "sha256": "048f0ac8e7030c2ff0e7b4942adb5db3071fcc26f96406301b97bdb16d861423"
+    },
+    {
+      "path": "patches/linux/0002-t736-main-pio-layout.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0002-t736-main-pio-layout.patch",
+      "size": 4665,
+      "sha256": "bf891a0283341fd2ba9cc3f6a883d651f9146d3d0e231d48e3ea792a11fff580"
+    },
+    {
+      "path": "patches/linux/0003-sunxi-first-populated-irq-bank.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0003-sunxi-first-populated-irq-bank.patch",
+      "size": 834,
+      "sha256": "c8812d2a832ad65c9b6fdbbedcd1f3704545e1f81a423a8f152cc69be181960a"
+    },
+    {
+      "path": "patches/linux/0004-t736-gmac0-candidate.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0004-t736-gmac0-candidate.patch",
+      "size": 15057,
+      "sha256": "26bb4074c7d2aa536715a8590d1cd9c75242900ee195762f8109a5de5138bdc9"
+    },
+    {
+      "path": "patches/linux/0005-t736-mdio-reset-before-discovery.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0005-t736-mdio-reset-before-discovery.patch",
+      "size": 927,
+      "sha256": "8671a487ce551b5106760e87bd50f2d544bac3de9b5d8a6da3b71418e8fdced9"
+    },
+    {
+      "path": "patches/linux/0006-t736-gmac-reset-domains.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0006-t736-gmac-reset-domains.patch",
+      "size": 3483,
+      "sha256": "20593135265e1612b0402cd59983c83c419999ec442985b71df32504792865ba"
+    },
+    {
+      "path": "patches/linux/0007-t736-external-phy-select.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0007-t736-external-phy-select.patch",
+      "size": 876,
+      "sha256": "1e298b73a67fb7d3d0fa3c299ffd71215ac0e6acc53dfe56e8d5ecb3196bb9dc"
+    },
+    {
+      "path": "patches/linux/0008-t736-rgmii-pad-configuration.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0008-t736-rgmii-pad-configuration.patch",
+      "size": 658,
+      "sha256": "44777130b0cff3604c99ac5fd152bfe0b3c4a36e2e4f9b3637648d3d6b668e6b"
+    },
+    {
+      "path": "patches/linux/0009-t736-phy-rx-delay.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/0009-t736-phy-rx-delay.patch",
+      "size": 2113,
+      "sha256": "e84ffc21ca63d6d5463fc2f73becc0f74748812a67c679254cae67c2f1d7b720"
+    },
+    {
+      "path": "patches/linux/media-v17-iommu-api.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v17-iommu-api.patch",
+      "size": 8470,
+      "sha256": "f9761e9a8d0ddcab344f608235f46d3b89df98dce6c8c9a5cdba582a623c4393"
+    },
+    {
+      "path": "patches/linux/media-v17-pte-address.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v17-pte-address.patch",
+      "size": 776,
+      "sha256": "695d08b7726f46c9f840ce5c01bc3aca34e2d12dd7b0f00d2c2dddd68d45b255"
+    },
+    {
+      "path": "patches/pvr-bxm-24.2-linux-6.18-fop-unsigned-offset.patch",
+      "kind": "source",
+      "source": "mainline/patches/pvr-bxm-24.2-linux-6.18-fop-unsigned-offset.patch",
+      "size": 401,
+      "sha256": "6994a4461c3b20dfcb2781092d34a864db6760eaf189ff45f86e9b2c1aace4f1"
+    },
+    {
+      "path": "patches/pvr-bxm-24.2-linux-6.18-t736-fixed400.patch",
+      "kind": "source",
+      "source": "mainline/patches/pvr-bxm-24.2-linux-6.18-t736-fixed400.patch",
+      "size": 50812,
+      "sha256": "6a265db9189e10db8b79ca56b00129f414b5765c085f8e2907f5561d62253be4"
+    },
+    {
+      "path": "patches/pvr-bxm-linux-6.18-dmabuf-resv-followup.patch",
+      "kind": "source",
+      "source": "mainline/patches/pvr-bxm-linux-6.18-dmabuf-resv-followup.patch",
+      "size": 1780,
+      "sha256": "58ae5f01766ad76cf6f6564a3c8f7d4a524097f90a7954626496a4bc3295a9e2"
+    },
+    {
+      "path": "patches/pvr-bxm-v15-diag1-checkpoints.patch",
+      "kind": "source",
+      "source": "mainline/patches/pvr-bxm-v15-diag1-checkpoints.patch",
+      "size": 6250,
+      "sha256": "03d2fb454dd80f88d633a8e840c463961a5a52c99cbac908a6e0d39f8f66030e"
+    },
+    {
+      "path": "patches/pvr-bxm-v15-diag2-early-secure.patch",
+      "kind": "source",
+      "source": "mainline/patches/pvr-bxm-v15-diag2-early-secure.patch",
+      "size": 1865,
+      "sha256": "fea94ea7a431a15aacf277e6b0cc3ebf30d4fbeddbc825be98c8a384aa932cb4"
+    },
+    {
+      "path": "tools/build_armbian_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_armbian_kernel.sh",
+      "size": 6442,
+      "sha256": "cb6bb8726185539e01ca6c5c977259e1e46d1cc1bf59100f69150e70f1fd2d2f"
+    },
+    {
+      "path": "tools/build_cached_bounce_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_cached_bounce_storage_kernel.sh",
+      "size": 7509,
+      "sha256": "c71d8e08693701fde68aeecb5ceb1cec2303dce5b69bf6eeddbe31abfc14f084"
+    },
+    {
+      "path": "tools/build_cedar_wc_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_cedar_wc_kernel.sh",
+      "size": 2583,
+      "sha256": "dabc86a5edf900372d178c1df798b618d3e8d0bfb9b5692a1f9b19cbd010cbd7"
+    },
+    {
+      "path": "tools/build_display_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_display_kernel.sh",
+      "size": 2868,
+      "sha256": "5ab5d5936cd8ec5bbb2d721ee57e6e78e8bcdebe17be0eac395ac17b88945bb8"
+    },
+    {
+      "path": "tools/build_dma_event_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_dma_event_kernel.sh",
+      "size": 4231,
+      "sha256": "ccb25add38d4974bae52a59ddcdc99d85de28873ff250125d2a2094e143f6b28"
+    },
+    {
+      "path": "tools/build_dma_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_dma_storage_kernel.sh",
+      "size": 4531,
+      "sha256": "faa6c0e681862881e99f218de56ca46ecf12f1ebb0b4257d2bfea307ce517a47"
+    },
+    {
+      "path": "tools/build_ethernet_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_ethernet_kernel.sh",
+      "size": 992,
+      "sha256": "7f041e0c2bfb4e287254c1395064476cc590c3d24e7d621d887026aae9276777"
+    },
+    {
+      "path": "tools/build_gpu_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_gpu_kernel.sh",
+      "size": 2990,
+      "sha256": "b4f198509553513d90e0b0d80e5c2978c0e815f2a8c500c1259e84e261f2dda7"
+    },
+    {
+      "path": "tools/build_gpu_module.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_gpu_module.sh",
+      "size": 1372,
+      "sha256": "ec8799f294b37b1d07ebb82e27afd42905a9567dd362876f82e8349e86947525"
+    },
+    {
+      "path": "tools/build_hrtimer_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_hrtimer_kernel.sh",
+      "size": 4998,
+      "sha256": "ce4df0aac48eb61184579c6954cda177787c504ae09d17a396a6957c462be389"
+    },
+    {
+      "path": "tools/build_hs200_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_hs200_storage_kernel.sh",
+      "size": 4984,
+      "sha256": "6ec654f78588284815a11534b254a03bf693a9dffff005f1ff8ff3fb67054835"
+    },
+    {
+      "path": "tools/build_hs200_v23_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_hs200_v23_storage_kernel.sh",
+      "size": 5349,
+      "sha256": "7c25105b78ea67b2743141ff6ae6b82edfba19bc067ff415fa22adf643d4805d"
+    },
+    {
+      "path": "tools/build_hs400_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_hs400_storage_kernel.sh",
+      "size": 6176,
+      "sha256": "b957dc470d07c44af348c953294336212de19a563ac0eb7ce653432b15b96f05"
+    },
+    {
+      "path": "tools/build_hs_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_hs_storage_kernel.sh",
+      "size": 5440,
+      "sha256": "86e0e9f49fe0b68bf7d00c1d7b2383b74d6a18e54680da3d0a769fa3eaffb096"
+    },
+    {
+      "path": "tools/build_minimal_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_minimal_kernel.sh",
+      "size": 1728,
+      "sha256": "5cc65354caaa67483767467f2a7a22b03a51efd8dd9f1c6044c0eab04a13f19a"
+    },
+    {
+      "path": "tools/build_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_storage_kernel.sh",
+      "size": 3482,
+      "sha256": "868ad86d746672c843e7aa37925b241a48dca920621e90a45a75ab25caa04b13"
+    },
+    {
+      "path": "tools/build_timing_storage_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_timing_storage_kernel.sh",
+      "size": 6639,
+      "sha256": "92676b1af05ab5ec75ce1aac37fd0e28bc5bd29a5ffa2dee744aeda484c67be7"
+    },
+    {
+      "path": "tools/check_ethernet_patch_series.py",
+      "kind": "source",
+      "source": "mainline/tools/check_ethernet_patch_series.py",
+      "size": 1511,
+      "sha256": "277831460787547b66e06692061de1f6678669e4ee615aa24e3e47bd4c6ebad6"
+    },
+    {
+      "path": "tools/check_kernel_config.py",
+      "kind": "source",
+      "source": "mainline/tools/check_kernel_config.py",
+      "size": 2042,
+      "sha256": "9ec76edef1011cc97deb2ef34d5f9eee6fc7012473995bd816966d8c5e02d07c"
+    },
+    {
+      "path": "tools/prepare_linux.sh",
+      "kind": "source",
+      "source": "mainline/tools/prepare_linux.sh",
+      "size": 990,
+      "sha256": "99e6a8b78a17d3c425f5e7594fe2939cf4232762dd703cdea27945961e6080bb"
+    },
+    {
+      "path": "userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
+      "kind": "source",
+      "source": "mainline/userpatches/kernel/t736-mainline-6.18/0001-t736-minimal-board.patch",
+      "size": 30650,
+      "sha256": "86aec2dd2ea99fd73a1a91bab8c28a8aaf72c8b5b1016e804873877e9c34945f"
+    },
+    {
+      "path": "userpatches/kernel/t736-mainline-6.18/0002-t736-main-pio-layout.patch",
+      "kind": "source",
+      "source": "mainline/userpatches/kernel/t736-mainline-6.18/0002-t736-main-pio-layout.patch",
+      "size": 4665,
+      "sha256": "bf891a0283341fd2ba9cc3f6a883d651f9146d3d0e231d48e3ea792a11fff580"
+    },
+    {
+      "path": "userpatches/kernel/t736-mainline-6.18/0003-sunxi-first-populated-irq-bank.patch",
+      "kind": "source",
+      "source": "mainline/userpatches/kernel/t736-mainline-6.18/0003-sunxi-first-populated-irq-bank.patch",
+      "size": 834,
+      "sha256": "c8812d2a832ad65c9b6fdbbedcd1f3704545e1f81a423a8f152cc69be181960a"
+    },
+    {
+      "path": "userpatches/linux-t736-gpu-v15.config",
+      "kind": "source",
+      "source": "mainline/userpatches/linux-t736-gpu-v15.config",
+      "size": 102776,
+      "sha256": "f9cd373b1607053a75d659b1931b1dd6fe6ca5f36c4963299665e750d65b88ae"
+    },
+    {
+      "path": "userpatches/linux-t736-hdmi-v12.config",
+      "kind": "source",
+      "source": "mainline/userpatches/linux-t736-hdmi-v12.config",
+      "size": 102645,
+      "sha256": "574170fcfa66464ad5cfa56fb5496e12a43d2681397748db0ee0c7e2b819bded"
+    },
+    {
+      "path": "userpatches/linux-t736-hdmi-v13.config",
+      "kind": "source",
+      "source": "mainline/userpatches/linux-t736-hdmi-v13.config",
+      "size": 102777,
+      "sha256": "c5c5dd137ca0c716da0d911245033d3f12e1c006addb65d1211d0d09fcf3d66a"
+    },
+    {
+      "path": "userpatches/linux-t736-hdmi-v14.config",
+      "kind": "source",
+      "source": "mainline/userpatches/linux-t736-hdmi-v14.config",
+      "size": 102777,
+      "sha256": "57ec3cce7602012c172cdc298c7983604e8230b10184d626986e0548ed1b3d92"
+    },
+    {
+      "path": "userpatches/linux-t736-mainline-current.config",
+      "kind": "source",
+      "source": "mainline/userpatches/linux-t736-mainline-current.config",
+      "size": 80119,
+      "sha256": "b46e5934a6d9c4ac6c930cfb1a4ff282cc16938201c6f218e8dae731215ae8f9"
+    }
+  ]
+}
