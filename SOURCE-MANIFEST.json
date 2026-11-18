@@ -25,6 +25,13 @@
       "sha256": "203076c6a94c523bc07af91fe3ea3269707a6279970ae1c43cef44480f3be1fd"
     },
     {
+      "path": "evidence/atlas-ubuntu26-board-rebuild-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlas-ubuntu26-board-rebuild-20261118.json",
+      "size": 3896,
+      "sha256": "0e2d2d8b15c7075bf313978d27008381a437916a3daac47a5ddfabd61f9e35e7"
+    },
+    {
       "path": "evidence/atlasa1-clean-source-replay-20261118.json",
       "kind": "source",
       "source": "mainline/evidence/atlasa1-clean-source-replay-20261118.json",
@@ -212,6 +219,13 @@
       "source": "mainline/tools/build_armbian_kernel.sh",
       "size": 6442,
       "sha256": "cb6bb8726185539e01ca6c5c977259e1e46d1cc1bf59100f69150e70f1fd2d2f"
+    },
+    {
+      "path": "tools/build_atlasa1_release_kernel.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_atlasa1_release_kernel.sh",
+      "size": 2503,
+      "sha256": "5a059959dc13a33c0e10a13312401bba8941b6befdf63997a203452860910b64"
     },
     {
       "path": "tools/build_cached_bounce_storage_kernel.sh",
