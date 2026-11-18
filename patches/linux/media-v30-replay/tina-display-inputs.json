@@ -1,0 +1,1322 @@
+[
+  {
+    "source": "bsp/drivers/drm/Kconfig",
+    "destination": "drivers/gpu/drm/t736-bsp/Kconfig",
+    "sha256": "4e70fd7ea2a66290c28a425b8bbd482df41cf12fa3b6a20865bac4f9d407bd35"
+  },
+  {
+    "source": "bsp/drivers/drm/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/Makefile",
+    "sha256": "b3e036cdaa5f2d704bd376414c0257f2b518e9cf6daca94afc6863170a345aac"
+  },
+  {
+    "source": "bsp/drivers/drm/bridge/gm7123.c",
+    "destination": "drivers/gpu/drm/t736-bsp/bridge/gm7123.c",
+    "sha256": "a8730adec8e9a5ac387a22e26c96c2c9c345fd869a2983a8ab025e23d389a942"
+  },
+  {
+    "source": "bsp/drivers/drm/bridge/include.h",
+    "destination": "drivers/gpu/drm/t736-bsp/bridge/include.h",
+    "sha256": "833197b165754e04896b7e78c2df46328a78272ed8cb29c6620fdaee79e80342"
+  },
+  {
+    "source": "bsp/drivers/drm/bridge/lt8711.c",
+    "destination": "drivers/gpu/drm/t736-bsp/bridge/lt8711.c",
+    "sha256": "2184bd38ae638c31adc92d9c4b6cc475a9ec25998b95ddc9b01d0d41d28ff070"
+  },
+  {
+    "source": "bsp/drivers/drm/bridge/sunxi_bridge.c",
+    "destination": "drivers/gpu/drm/t736-bsp/bridge/sunxi_bridge.c",
+    "sha256": "ba73437f654c3913481411120b55c7126654f311621f934917ed5755df9a918f"
+  },
+  {
+    "source": "bsp/drivers/drm/bridge/sunxi_simple_drm_bridge.c",
+    "destination": "drivers/gpu/drm/t736-bsp/bridge/sunxi_simple_drm_bridge.c",
+    "sha256": "34215bdcda9b62a45008315441556e6e2554920ab9f5a79749c8187cd8853f51"
+  },
+  {
+    "source": "bsp/drivers/drm/error_img.h",
+    "destination": "drivers/gpu/drm/t736-bsp/error_img.h",
+    "sha256": "b4dab89bb6b9cc693d7701a07615aacb53e247ccdcfe6b7b4f03e0918070ad79"
+  },
+  {
+    "source": "bsp/drivers/drm/fonts.h",
+    "destination": "drivers/gpu/drm/t736-bsp/fonts.h",
+    "sha256": "9dd55a2cc7e6f5cfbea509f3a02028738f0f646ad3fcbcccc8c4a6c373c1aa73"
+  },
+  {
+    "source": "bsp/include/errcode/sunxi-err-audio.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/errcode/sunxi-err-audio.h",
+    "sha256": "8e1ea6c50e281b1f32b57d1ddebd1537f6aab10d6c40ffce9c629d8fea05eace"
+  },
+  {
+    "source": "bsp/include/errcode/sunxi-err-pmic.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/errcode/sunxi-err-pmic.h",
+    "sha256": "dec091e296363b8face34c579dbf3a89fb070bc4821ff5b086e12bae7465d9c0"
+  },
+  {
+    "source": "bsp/include/errcode/sunxi-err-uart-ng.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/errcode/sunxi-err-uart-ng.h",
+    "sha256": "70bc32bc2ab18787d5348e5d613214a3a38c7b48da7d8b6e926885c354df3865"
+  },
+  {
+    "source": "bsp/include/errcode/sunxi-err.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/errcode/sunxi-err.h",
+    "sha256": "53d16df0223f6765491a4e0bb86e5e3ebead59931190d8abd2950c2ad6f58f35"
+  },
+  {
+    "source": "bsp/include/sunxi-gpio.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/sunxi-gpio.h",
+    "sha256": "09edc955ce42920c256e22ea6fafe90d943f31bc5777c413cbf00bac4c601e93"
+  },
+  {
+    "source": "bsp/include/sunxi-iommu.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/sunxi-iommu.h",
+    "sha256": "1fa3cf8addfe1838ec395d2e36209ebcaa2873f99c5b3721b5420ee0aac946ea"
+  },
+  {
+    "source": "bsp/include/sunxi-log.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/sunxi-log.h",
+    "sha256": "04bf56aa526d059193111dad51c8746277e58907de839f8f77ddd301e81a43f2"
+  },
+  {
+    "source": "bsp/include/sunxi-sid.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/sunxi-sid.h",
+    "sha256": "5c46a704a00f9533c57ea9487d5a624e3859aa3a426bd675e8436d96936181fe"
+  },
+  {
+    "source": "bsp/include/video/drv_hdmi.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/video/drv_hdmi.h",
+    "sha256": "09cb17095ff371861f0eb25efbed93cabbfd1069ee60ac3f16d5d2b45dd963bf"
+  },
+  {
+    "source": "bsp/include/video/sunxi_drm.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/video/sunxi_drm.h",
+    "sha256": "d919ef1a40e4feff735096125da97c2f608c677d1bdac4387c78bb5614797686"
+  },
+  {
+    "source": "bsp/include/video/sunxi_drm_notify.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/video/sunxi_drm_notify.h",
+    "sha256": "2208db55a45c70273917638d12b704a0ec5f2deced73446867b8bfd709cfc52b"
+  },
+  {
+    "source": "bsp/include/video/sunxi_metadata.h",
+    "destination": "drivers/gpu/drm/t736-bsp/include/video/sunxi_metadata.h",
+    "sha256": "c1d84895a8254ca4168d5d8a2b64589f070b89ef55c0c8f40b84a4cc211aa47d"
+  },
+  {
+    "source": "bsp/drivers/drm/kernel_panic_printf.c",
+    "destination": "drivers/gpu/drm/t736-bsp/kernel_panic_printf.c",
+    "sha256": "7b7a0ba9ddfd2817162d3659516906a81894828ba2fe15db5b277217af03adda"
+  },
+  {
+    "source": "bsp/drivers/drm/lib/inc/sha1.h",
+    "destination": "drivers/gpu/drm/t736-bsp/lib/inc/sha1.h",
+    "sha256": "a9ea3d15a1513a220b60dbfb408e1f92d98349d1efd62691165cd34ed7e676d4"
+  },
+  {
+    "source": "bsp/drivers/drm/lib/inc/sha256.h",
+    "destination": "drivers/gpu/drm/t736-bsp/lib/inc/sha256.h",
+    "sha256": "658a20c2f6224cb516b94ca42195508e501a1a1253abc78f0889e919618a8c10"
+  },
+  {
+    "source": "bsp/drivers/drm/lib/src/sha1.c",
+    "destination": "drivers/gpu/drm/t736-bsp/lib/src/sha1.c",
+    "sha256": "41e61a308511db84d78b6fa08dabc3ffa6608a64302fbb70a95dcbc607b0f1b2"
+  },
+  {
+    "source": "bsp/drivers/drm/lib/src/sha256.c",
+    "destination": "drivers/gpu/drm/t736-bsp/lib/src/sha256.c",
+    "sha256": "a2b339263f19e22f1eb20090f5035c30c32e499346d4c8987594e171b03ed972"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/Kconfig",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/Kconfig",
+    "sha256": "ce73a5bfbee719e65982d6ef3658624c5e5acb2b4016f348923a52a00da40eff"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/Makefile",
+    "sha256": "4324ddefef7ed898b906f71339dc1adcabe9c092903e21dc185664e880607d56"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/edp_general_panel.c",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/edp_general_panel.c",
+    "sha256": "8f7a7b585891a973af80117daf65a43fd27234f773935d9494ba9c2d8f1e1682"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-dsi.c",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-dsi.c",
+    "sha256": "3e7f2ca5e9ed8f809fcf446dba5cfc96bebb6ef2abe7b8c66753f49769a38275"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-dsi.h",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-dsi.h",
+    "sha256": "c80818e80d837bb1bc97e4d677946dc5eee60f191f4856d05d5447dbc2359cbc"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-edp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-edp.h",
+    "sha256": "e8163a77386cd4172f513ff43600e6659829b7c87139ba46c39853d2b5390352"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-lvds.c",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-lvds.c",
+    "sha256": "1da65207559e8d947dd445ff9a7fd43f581619728f1846542b6a8ae49b123a96"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-lvds.h",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-lvds.h",
+    "sha256": "c833a3550e102cf70cf6109850a805ee9ed1c80bbf9c4736e4d7ebf71103822b"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-rgb.c",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-rgb.c",
+    "sha256": "93d1ce37c208d03dc430f2db0df8447cb8905463c4b698f3eb8407a37fe0c7de"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/panel-rgb.h",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/panel-rgb.h",
+    "sha256": "999b0c16dd34ccdeba7bed1cbad52a7034aaab308d822ae545a7898a1537296a"
+  },
+  {
+    "source": "bsp/drivers/drm/panel/sunxi-panel-simple.c",
+    "destination": "drivers/gpu/drm/t736-bsp/panel/sunxi-panel-simple.c",
+    "sha256": "02730ada4eabcf59d5b3c619066e3ca01243bd01029ef3e57a0c1f585ee331c3"
+  },
+  {
+    "source": "bsp/drivers/drm/phy/Kconfig",
+    "destination": "drivers/gpu/drm/t736-bsp/phy/Kconfig",
+    "sha256": "edadad648d68374591ce14e6140aa50c35e1ab6807990bcc07eb0c0dd1118522"
+  },
+  {
+    "source": "bsp/drivers/drm/phy/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/phy/Makefile",
+    "sha256": "177c901ab5d6199a728b4b2706b31bf0f46e7d06656e2996f44e9ad352552092"
+  },
+  {
+    "source": "bsp/drivers/drm/phy/sunxi_dsi_combophy.c",
+    "destination": "drivers/gpu/drm/t736-bsp/phy/sunxi_dsi_combophy.c",
+    "sha256": "2e9a21ad8a02cc8f045c42b3a5fa0ecd014d41cb4ac3f6cf0a1b2fe168843de8"
+  },
+  {
+    "source": "bsp/drivers/drm/phy/sunxi_dsi_combophy_reg.c",
+    "destination": "drivers/gpu/drm/t736-bsp/phy/sunxi_dsi_combophy_reg.c",
+    "sha256": "3353bde71c31a43258cae12e5049ee41eed89047092c5606d3801cb13799e7b0"
+  },
+  {
+    "source": "bsp/drivers/drm/phy/sunxi_dsi_combophy_reg.h",
+    "destination": "drivers/gpu/drm/t736-bsp/phy/sunxi_dsi_combophy_reg.h",
+    "sha256": "a4ccdf0efdf9f79ef555edd000b49665062ed6b881220c3c8099bc632e277350"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/include.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/include.h",
+    "sha256": "6760964a4cad699c00b2283d610bab0c62bf220a093ca70e3d86da09eddf0210"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/Makefile",
+    "sha256": "ea9f32c94de8669466c0c76730c192387f28c99d89f78983b99c1cfae895740d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.c",
+    "sha256": "18984661fe61eb200458c0f00cf67c594c688220857651a024f2dfbf878baa2c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw.h",
+    "sha256": "c0427dca24ee29d147c0d01f008747aaf8ec98cabbb2006c6ca79e9780a48f4a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/afbd/de_fbd_atw_type.h",
+    "sha256": "2f21f09c7dd01cc81d99e6cd88330dc033c874539c918c383d2575d694041096"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/bld/de_bld.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld.c",
+    "sha256": "629e50040c58c0a1afe237fe35743715a3a2576b8790a25a4c2d66719ffb42e5"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/bld/de_bld.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld.h",
+    "sha256": "5ef09ddd63fd7af1d11ec42edf340012ebd3b42a4314610d113e667c56cee18b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/bld/de_bld_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld_platform.c",
+    "sha256": "d388c83f8712377e0f7fcadef95fac19da2df691bb444b2fd0fa3578ae12cad7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/bld/de_bld_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld_platform.h",
+    "sha256": "a013c711e4b0ea1c72a53e2eeca3eb58f4880a9418944be81dde56387ac2c3a7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/bld/de_bld_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/bld/de_bld_type.h",
+    "sha256": "570a532afe31c787f5fa56d0ca30b9d49d6856212c1fa86ef3e5742a83eda6d0"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc.c",
+    "sha256": "e5681a1f4191faf7b32bc3d4a28f12863800b1559445c7f71ab0721db021c42b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc.h",
+    "sha256": "601bf7568b5503594568247b796baf43aaedbacccad74fde7e76d0d1c23fb8b8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_platform.c",
+    "sha256": "5dc968d431813732b05d0127147b255b32760e8610d8e1d1a7ad24e52d85ded7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_platform.h",
+    "sha256": "0a808f5ec69dfd809a84a7083f5d49e04e4137822ab192a3efb2a2d6ac4a6649"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_table.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_table.c",
+    "sha256": "dca5c8e02fb2f9613f529330d51c827c9a1c67ded2cbfb2097da7a98981dbb1e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_table.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_table.h",
+    "sha256": "30801a8d3dea397d207f2089262e64ea24c448ef5ae5939d3b397aebf6e424f2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/cdc/de_cdc_type.h",
+    "sha256": "f344f0b1e88b6d873e53a27dd63879b481d757bc557e7c7a05a3dcb888ce9653"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/crc/de_crc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc.c",
+    "sha256": "11688c6767b47e0b9b0cd042b4e90231e16b60b946984ca6c3a6bd440f9e509d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/crc/de_crc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc.h",
+    "sha256": "2c66e65ec7618680c4dd8436857827784e4fbc13cd88590f40ec9294d3ea4abf"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/crc/de_crc_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc_platform.c",
+    "sha256": "e859aaebe471bca1dce456f1424c993c228caf20b67cc36a33d385f69f16b134"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/crc/de_crc_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc_platform.h",
+    "sha256": "715200a0b30ab1b659193d858b75cc581c4f0e71b17246d10223ec8aae82fe83"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/crc/de_crc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/crc/de_crc_type.h",
+    "sha256": "703587ae13cf5baf55b3b01ec236f91d61d29c86e7d0c2ff4a09ae9e24fb586f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.c",
+    "sha256": "43852dc3ce323cf5e9b89c880932164d41c56d0f9d5b0a767347b3c152dd434f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc.h",
+    "sha256": "f228578bad857934071cf9f197cdebfabdd58b1822719f783bba59c16d8aff39"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_platform.c",
+    "sha256": "9fcc9be3056127477f4a35854c2a8040bb9f17fc251e33114fdaae344ff7e2f4"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_platform.h",
+    "sha256": "207c265f76aeb60025b08417a2fa2b8976c9982a3e96f1c6f68c764fc9130fcd"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc_table.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_table.c",
+    "sha256": "d481e88e6219212bd90f8bb27568a05b93c9741928b169482e1db82b30d76422"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc_table.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_table.h",
+    "sha256": "606523b2f1a71ee47883c7138350941383a33067816e7d2965a456a63fc24918"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_csc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_csc_type.h",
+    "sha256": "77d1563b3ccb4e5859a2832c6e8e67a76c2e03a8eaa92e0ce8a39dbd8dbd5a19"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_dcsc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_dcsc.h",
+    "sha256": "21f1a611ffb3aa7c90d826c3cdaf9e6616d01b3992f99cbcf320c5b645634dd2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/csc/de_dcsc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/csc/de_dcsc_type.h",
+    "sha256": "dec3b56f21c8ed2c7bd18288c01bc1df6c4c44179bf075ad786a908fb984a6cb"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dci/de_dci.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.c",
+    "sha256": "39e990d5c889ee8627e4f2cab6f47523e838da82049e017d7126de6089e4e78e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dci/de_dci.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci.h",
+    "sha256": "40f5815fd7f187a59a58ebed836831a534f2fff4b4df291cdc35845133f217e7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dci/de_dci_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci_platform.c",
+    "sha256": "77a3a687cfde07fef624041a9cbcfcb2da98295a316778f1e7ffa9293eff9165"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dci/de_dci_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci_platform.h",
+    "sha256": "45de18b2fdaaed17e5731bdad4d22df2c32ca0a28e872ae190633fa0847120a9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dci/de_dci_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dci/de_dci_type.h",
+    "sha256": "d5d3eca98629f75eaabe89e6cd259e45ec9af140c4ac8d8520884039e9891bf1"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_backend.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_backend.c",
+    "sha256": "925d6c0290b8a89f7722deaceb1660d4adfe0afd6d2355d8face509b6f22c4af"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_backend.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_backend.h",
+    "sha256": "bb350767dc4dadf8d620c484d70ac897acde63da4881a762bbdc81de6f451688"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_base.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_base.h",
+    "sha256": "7379f0913edc2f5704d714a67c7e46923000476d5b30ceead0c54dddd733e85b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_channel.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.c",
+    "sha256": "7b5f9f2b0db3bf9632d0d1bf9456b5a0ffb65cbd81b32bddb6264b6244ab0636"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_channel.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_channel.h",
+    "sha256": "9aaf1df124c1944ed0f3e7404d6154d8009e0f6df17b6e1efc8eed74f054d27a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_frontend.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_frontend.c",
+    "sha256": "2fa1cbc80fb383bde92e73b7867e9c11af5843cc20014cc0dea33bff3ee0a5c9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_frontend.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_frontend.h",
+    "sha256": "5f778785ef90417ad71cca67fbe118659277513c0b1e1a60bd0c0db452ff6f1e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_top.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.c",
+    "sha256": "19aacddfaa41e73127977580103244da76539e82d0fe4b949b9c859d622b895d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/de_top.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/de_top.h",
+    "sha256": "b2649f97c524db7533a33766d60cbb3a51f74df20b49ffcb2bd49dcf9cd8080c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/deband/de_deband.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband.c",
+    "sha256": "d055d84fa249c2da273e3695d65ff98e3b8615e263133c8aabad7687fdfd2c61"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/deband/de_deband.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband.h",
+    "sha256": "f0a0ccea4d6f9360aad7ae625d07fc9f37b03fbfa249e8ab37206b46d68f989b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/deband/de_deband_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband_platform.c",
+    "sha256": "ff00357f20e3dda1ed49157059a00175ed87822c8e8ad2a73f95bc3779d09bd4"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/deband/de_deband_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband_platform.h",
+    "sha256": "dbda945217818e772e1226aed8ed8ff395a3141233ca1a1bf49df736107a829d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/deband/de_deband_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/deband/de_deband_type.h",
+    "sha256": "e61340cfdd49f26a0cc69efb690dec074a1bb4404a04e9ef7feaf42b85811a49"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dither/de_dither.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither.c",
+    "sha256": "98dfe587dafcb7aa05b26a7d1875fede6f2d37bac0eb11acb972370357d14de7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dither/de_dither.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither.h",
+    "sha256": "6bed023be9362425df13ce985ec629f4ab41ae102f432e74ecf1c2c95489e1ff"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dither/de_dither_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither_platform.c",
+    "sha256": "2a660219aa5ae1c629b381e2d165220e1cca5e5f1eca658c28a3ba6c7ebc2781"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dither/de_dither_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither_platform.h",
+    "sha256": "7ecf9e5692c2547dc3b47c3a1dfb58d573207f0ccfd53cd7b2b96d61b6c12fb9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dither/de_dither_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dither/de_dither_type.h",
+    "sha256": "98320b44825b4c7ab3938aabca4268d37df647c3c80a924163c02ec0fc34ef88"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dlc/de_dlc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc.c",
+    "sha256": "3d567b8115eac102609f796928b16134f1cadf67b9fe4d7cffdf63b3f8cf58a2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dlc/de_dlc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc.h",
+    "sha256": "78bac592147d3a2409692a749230df296ecad611c2c6c67bad0700517377fef1"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_platform.c",
+    "sha256": "e0b0682450f6a892aba6049fe80c63e1e77b1b1d44f6172cedc1dae2276539c6"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_platform.h",
+    "sha256": "ec0f39d66c502cb5f1bfa89c9c2e59501436d63968be2ba8ce8a1a50783b6a77"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/dlc/de_dlc_type.h",
+    "sha256": "c25136f764b01f0f7ee360ed21d7dcbbd9ad4d108faff71b14d6cdc8352819d9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.c",
+    "sha256": "31515baa4cbe72b241ea4b5c33212ce6b8fcec5cec819dff99b2c3e1af76641e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm.h",
+    "sha256": "42c113720fee3d0f4327530b7720b09d1d267ee4d476b33a5b5b07dba629693b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_platform.c",
+    "sha256": "21bd978273354fcb0b2385a594d3db66a59bc822e95d468080c1c292ec74dd80"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_platform.h",
+    "sha256": "fefbe97687ebdd30c593047ae5f7633fd544bb7aa726a3db56eddc59dbfa8cf1"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fcm/de_fcm_type.h",
+    "sha256": "8ba6f2c081b2b4e380ca5a485c02edc30f3f3de88684ec846ecf7cd878eefa49"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fmt/de_fmt.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt.c",
+    "sha256": "bb893bdc2cbe103f6b08d399e665a423e2d774018e58ed77e934742cd022c703"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fmt/de_fmt.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt.h",
+    "sha256": "7c2db84ed1a0c97191037ba3583b096b7f22477325b427a31715777545511da8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_platform.c",
+    "sha256": "c64de0b1e50faa12de265f84ad2f5161dd7d26906b538d5ce9feae180e618f48"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_platform.h",
+    "sha256": "938d02d67e78802d8aabdef066342313d0b086cee6b86ab72afea4ac00569b47"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/fmt/de_fmt_type.h",
+    "sha256": "824898b29773007a87e1c297d87225d226f8f1de090caa68c857440aa71ff41d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/gamma/de_gamma.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma.c",
+    "sha256": "e830a4d026cab4bb1903233ec5b8e796d2db4fe268f173a79b80fb008ec46c75"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/gamma/de_gamma.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma.h",
+    "sha256": "2676c42718df8a906f093253b391331c55dc4aa497cfb757a2b7f1343d67fd1d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_platform.c",
+    "sha256": "9794393fb92d048fecb76fe870f7e569228d4ecc0b02892b930dada143534045"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_platform.h",
+    "sha256": "ea844392bc51d050bb32c52bc2161c97bb5f0ae17559a3c64b90b582975e4be8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/gamma/de_gamma_type.h",
+    "sha256": "0ce6f69a33a1f539e87e8efeffdd1a61ed4206918d0fa52ecd8959e0a5087008"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.c",
+    "sha256": "2241dda24c6824442178a7536ea79ea47dfa24bf52dad645483c293ed0cf17a4"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl.h",
+    "sha256": "96ff543f9b328aa6915f2016eb85c8e9742cb6daf98969a15b704dc4988df8f6"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_platform.c",
+    "sha256": "56b91d7038e63fa7108e042097b72bf67166688de1d2c4c005b63f006bbc3d0b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_platform.h",
+    "sha256": "f8a0f0f2b8ab2eee90866d4e4928dd8d129fb92f7833a367b16cace91814fd75"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/ovl/de_ovl_type.h",
+    "sha256": "2f14b553d3280e3fd83d87e4d57c3880449d76832168547a0c7ba724933c0fe3"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler.c",
+    "sha256": "0194efea5796a8445ea6ad7463626959d64812ef3134109328eddc1853122ac0"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler.h",
+    "sha256": "5b3c420caf6b1f2a2cc5c665186cb76f57d04b9aaa3d9662f900b8583e414211"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_platform.c",
+    "sha256": "1855f2fe555810be4089c9a27a1f2518c843e79157a2e61104acf55edb902b1e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_platform.h",
+    "sha256": "3520ecbabe59553c3eab2b71d3c291ff354be04f6a03b700969db5b4d3a5bc87"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_table.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_table.c",
+    "sha256": "c6bdd0bedd35508501c314157c39d696add55460fafeda05fc20b84e5c35994d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_table.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_table.h",
+    "sha256": "bd9a46c7a28ecf18d4fe0d8156a305648f09ae7906be64a72da7186fa69a480a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/scaler/de_scaler_type.h",
+    "sha256": "c7158644c966a359c215af4522bdc0d70a6da54318a0474e6b45357048834b08"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.c",
+    "sha256": "4432b799a1572054a90f03da2edc153a240c6fdd1335c45995656dc85acfeefb"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp.h",
+    "sha256": "7ba217a7cd17696a269eb1445c045c5774cd77cadae2e48ab663b897fae74366"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_platform.c",
+    "sha256": "5d395140da7b8e34cd4cdb4cce43881ea3f27ef18abc8e1fd57322d775e9d716"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_platform.h",
+    "sha256": "f8453d83fc3d66bd60a84a81de4cae7ac279243c1e3caaea7c61f3ff243a1530"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sharp/de_sharp_type.h",
+    "sha256": "1b3eed4f1e7cb2ee134868fdb75efcf9b84659b398c98ab67cc9f76403c9b16a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.c",
+    "sha256": "c2ded4b78dbc01bd7a414dabf2b55f27e4cd798e7896a16dbe4f2b9bbadf998c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl.h",
+    "sha256": "f15f34c391e0c1d47f8f77131a618def0a3418a371a39ddaed0d9b8ba1e8fa8b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_platform.c",
+    "sha256": "b63b97e91aa769fd0d9bd91bed0f93b7ea5a3374d6750050964c887c07c6295e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_platform.h",
+    "sha256": "2881e6e1de45460dd80599389be235758ac4c163e4f4ce42aa83159b63a06e38"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_tab.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_tab.h",
+    "sha256": "be4385bfe365e577bcfa0907101531e5ed6f0f3381035b634ca5dd99b247c730"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/smbl/de_smbl_type.h",
+    "sha256": "a75a6edc849b53d54dd60eb1f5950ff2b01a1692c0bd905c4924dc71de60cda2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/snr/de_snr.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr.c",
+    "sha256": "5e8af740289ea9a3a536d80ca34da9ee30a83664796eef9cabbc1f45a6f4b1fb"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/snr/de_snr.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr.h",
+    "sha256": "fcae1429f0ffd8d8a47d94415a74989d65e508532101b5de858a4a3ccde4eb63"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/snr/de_snr_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr_platform.c",
+    "sha256": "999e7c1d2193bb414efdef9c9904efd7ec16ff0101f0cf2898df16abb6260e5c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/snr/de_snr_platform.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr_platform.h",
+    "sha256": "4d7fb6fbb2b3865dced221d9c86bc83e79f9c9064b6e2ecdec454b6b9da65a1c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/snr/de_snr_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/snr/de_snr_type.h",
+    "sha256": "d698fb56c32da978a6318fc5a49c7cf017ab849d74fea1b254ee26816c09869f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sunxi_de.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c",
+    "sha256": "06053a177b4de847910678f080a11fa996971bdc2ac67b259a68f217a6195c04"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/sunxi_de.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.h",
+    "sha256": "24dc31058db034dbbb5162ddb124184099ceab98297eceb609f64387254ce855"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.c",
+    "sha256": "329ab3fa516f202863f013ea4e43ac985c211dbc33a6339b26a9a742c23d69ec"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd.h",
+    "sha256": "73883299b2a3fa8e8594a8f4e455f4ae3102842e6ff671b4825e71f83272402b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/de_tfbd_type.h",
+    "sha256": "21b3dfa2ab18c7858dce3dd8491d0948363ab8dd34ab00dd634dc70a4539aa78"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/tfbd/img_drm_fourcc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/tfbd/img_drm_fourcc.h",
+    "sha256": "1b49413d8c7aef968cd311f57687c5ac1026d7834fa26be5e5a39333ab87f6da"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/wb/de_wb.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/wb/de_wb.c",
+    "sha256": "2b569dc7e5e223ae3426e709f2bae40acfc87e97815b6c3b3c0622597eb242fd"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/wb/de_wb.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/wb/de_wb.h",
+    "sha256": "62a63f97d50c8f7de13504e45a86ab45c110755866e1aed03a7cadbdd988d9d9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_de/wb/de_wb_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/wb/de_wb_type.h",
+    "sha256": "ef16274b288d929174d0d6e387f1cccf7b1ba9121f99170a6c553fa27f7f3864"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_edp/inno_edp13/inno_edp13.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_edp/inno_edp13/inno_edp13.c",
+    "sha256": "4667ebbcbf8e1e81e6798f2651081921edfae2400bb92456e49a162c44458179"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_edp/inno_edp13/inno_edp13.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_edp/inno_edp13/inno_edp13.h",
+    "sha256": "a04f6132cc418e00783cd89c034cd59cbbe080cb03a9392277310449850d3c27"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_edp/trilinear_dp14/trilinear_dp14.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_edp/trilinear_dp14/trilinear_dp14.c",
+    "sha256": "7d88cf6c7c6bf6dacd9024eeb14a755bc4580fcb6724f875aab17b0e787ca209"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_edp/trilinear_dp14/trilinear_dp14.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_edp/trilinear_dp14/trilinear_dp14.h",
+    "sha256": "50607845a6db0a7b76b1dfb4f0dfcff560fb9b6854a5748a9880cf35dd84e902"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/Makefile",
+    "sha256": "770f56d07ed3f9dc2460ce2e61513ccb7b4484329ffa34dacbda3ef8b8664722"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.c",
+    "sha256": "62c12e90a66013fa8e1710a6efde29a0e5cb9aefc71c2721fb761185504018e3"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_avp.h",
+    "sha256": "6367140519f61fc3c9d23e1eeb6f9a03c27b9f1fe3b05871def1d5efc4e2ca46"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.c",
+    "sha256": "44124e3105f235aac55cf384e90213987630d45fdd8b1a8c7784023b9de33a6c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_cec.h",
+    "sha256": "295d7fde3146f1bc80f21e21e4779b663e28a9862b3da26135f65c6047a6652d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_dev.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_dev.c",
+    "sha256": "2cfdf0d96de53bac6ac880fea6d8760511dcffe5505bcd142f392b497b3f09c2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_dev.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_dev.h",
+    "sha256": "8cfeb968b551fc2582da80890f5bf6dbaa8ac3f65729f9b890aeefb65c209634"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.c",
+    "sha256": "879d153a015d2669f32d107b37366e3332f69dbe790e7e459114f36e42879807"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_edid.h",
+    "sha256": "7d764b483a9c6663cddf52c42ce17a6500576cb7cebf3bfb4d487cae1de66a2a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.c",
+    "sha256": "e308b3d38fb00d70908ef4fbaf01ab82454c6b232623820a411bb8183edaab32"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_fc.h",
+    "sha256": "f2434bd6367d36cc88579f560fd8ec6dc52a18dc995047f7e482f41088e68cd2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.c",
+    "sha256": "16978d7bb4531261e699ff1de931df90d8f27f682fb3e7ee6e96f3caacd69349"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp.h",
+    "sha256": "d0bcf48e3f0049f05b1f1124a199ae41ff6f72c10e95f13e12a1914662176aa8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.c",
+    "sha256": "fbf51278eebf6bd20d4098edfa500386055e5c72258109430cc5443592abb38a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_hdcp22.h",
+    "sha256": "3f6ecf692b06b0fb8f04a78b6bb02097c1f7bb14de97e447a763d43d5c48d465"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.c",
+    "sha256": "a8d9e844e64fa40bbee6ed52ff43e0bbc3e7d1e291c8febea47e36745c074ac2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_i2cm.h",
+    "sha256": "d5eb421c44c8c5fcb6cafe6165ec408204cff7c7e3b6175bbae9bf06c70da1f3"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.c",
+    "sha256": "649d924d88a39f7173d7464645e1574cdbb3ee326cd92d4d680b8729cd598aeb"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_mc.h",
+    "sha256": "60453c6bba554ee245e112f97cf6807ca65d35099b7eac1f87163101198cf24d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.c",
+    "sha256": "034ede3b7da5c9ce61526c35d04294ff78a532838dec352a8a86f5f285ce236d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/dw_phy.h",
+    "sha256": "491c8580300d7e9809a735c9cb21ff7ca93d5c490e5355f1017e20c0a809eec8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_auth.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_auth.c",
+    "sha256": "13166bdc1cdf119a5a3edd6d0b5a0ea768728e57ff7370ae1b1efd59186ec31e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_code.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_code.c",
+    "sha256": "66c06e4e445d2d711d4e84c0a46c9ed22ce892e7aad5adaf044688da0e382b08"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_exceptions.c",
+    "sha256": "37216583656e9bd96c53b0e2d755f9f61f127e521c1a1f26433f41531cca2a11"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_init.c",
+    "sha256": "e151b139d73810e85d7f8cdfe30dabde0439d726c70b6462fa8ff22b66a41ded"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_log.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_log.c",
+    "sha256": "ffcbb6f076fe5bf2f0ce6f571487204b91e2d71a18b677292abe51ffa7201874"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_mailbox.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_mailbox.c",
+    "sha256": "9631a2e0f81b83ab09a6218bb1067474ad92600efbc2a17f38b0d9a4bd639f0c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/esm_host_lib_status.c",
+    "sha256": "38a0af0a8915b0a364c44320be80a47f48f536d5fc4004ccecc159f17ef13ea0"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMError.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMError.h",
+    "sha256": "23fa08ad267cba2c195bf02729f670ee41c5bea9662c1e38a831c867cf8f7c5f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHost.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHost.h",
+    "sha256": "12c299c8abb0ebbfe64520a95406d3e15c6edf0708c6e6e12207914f7a0a10ab"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHostLibDriverErrors.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHostLibDriverErrors.h",
+    "sha256": "105b18cf473ad84128a7822f34624ff61b9b91a6e45ebecd59b21d2be33b7f08"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHostTypes.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/ESMHostTypes.h",
+    "sha256": "6f357051bd7ec9f812fc3af9bfedda15d3cb343a3b2512899c8b896db864a7b7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/elliptic_system_types.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/elliptic_system_types.h",
+    "sha256": "023cdb1d69b4285c194f5f40df622072fa985187214ba65449341dc64cabf33e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_cmd.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_cmd.h",
+    "sha256": "cbb781317e38c994a9a1350df21d9a0b3998d381c4bae0c07ab3878fb6396c5b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_config.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_config.h",
+    "sha256": "42bbd21acdac2a90bf1d5b448e16f5dec56afb140f57f3eef2b6bc0444eaaa43"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_errors.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_errors.h",
+    "sha256": "9794494234cdde88834a120f806c7de1290ecb605cec99702fc24392c9f7b3fa"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_exceptions.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_exceptions.h",
+    "sha256": "3132ccc391a48ef42cff0ede3afe3adf1ce8f11abc0ef0ae0d48e9dc1b44d5ac"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_common.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_common.h",
+    "sha256": "5c8013d547bf57792add4b67456c1476e37f89511a35b3f1422ebf1a92e389df"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_config.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_config.h",
+    "sha256": "3c94d500b0affdc0424e8bd1ef1631f6a4ff30f461ffdca75341b3c76221c129"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_id.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_id.h",
+    "sha256": "37dd7bef5a5b712718b79622962d6e8b97fa057d71857b1253a5e1879587561f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_image_common.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_image_common.h",
+    "sha256": "de536404c4587e0238d8dfff2e0d0961ceabb541e4fd41ec1d2e7a499698f7c5"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_image_read.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_image_read.h",
+    "sha256": "701bf4d4d3f241ad2498f107ee7e1c041b69b5232a48fb5c629ff8293a770c50"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_tx_cmd.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_tx_cmd.h",
+    "sha256": "50279bd088b0649427dc79256080ac13c0cbdb9e3c5041b1e8534de3c66dfb9b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_tx_exceptions.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_hdcp_hdmi_tx_exceptions.h",
+    "sha256": "b861259348c37cf014b8f2a62084b2b97d92b53fe5c7b912dc52127102a807bd"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_host_lib_internal.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_host_lib_internal.h",
+    "sha256": "b492f501cc0b01ded29bcbc1f6a64b508b6a47d9f18c898c25272f333ab9dcc7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_register_map.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_register_map.h",
+    "sha256": "11b7ca871c46638df75a9efcb7582263395cabe2d48f99a81e050b4843db5e7a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_system.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/esm_lib/include/esm_system.h",
+    "sha256": "47c9f947d50b6e048b29dcdd0caceb5699699503c8e12252f7aa82f1415ff382"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.c",
+    "sha256": "e0972c64d0684c936978c335ff39058da3fad735eba60ffd3c761607f6689718"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_aw.h",
+    "sha256": "561fb2b476d31d8a80cb3d77e337cd0e0a1f1f9cc9e880a3ca78c1a3cb8f2e72"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.c",
+    "sha256": "38b0b47dda14c9893133eb6498bbd51e0bfcf0144076c2c7ced6a813f35382c5"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_inno.h",
+    "sha256": "40716ddb005227f80a1cf28af3f1a395a1bb0b3092c2235642fc8988d46d7024"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.c",
+    "sha256": "f9469bbcbc31556062d44595d421ab12ba176f1332a560ea64213f97290cbdae"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_snps.h",
+    "sha256": "e4a883b317361fce6589c8ffa3b0157a6549ad5ae6e30b7a1703ad53e5c63888"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_top.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.c",
+    "sha256": "a91fe21d04dfcca0c46683b7fdbd14b3dad9565313faa3fca3743a78ca1e7b85"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_hdmi20/phy_top.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_hdmi20/phy_top.h",
+    "sha256": "ad136a3c1e17db8991f1bcaa1e4d9aa17047cba973b979b9726c3d4b0b8764a2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/dsc_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/dsc_type.h",
+    "sha256": "11e4cea8992f984fead4367a1df93e11b3808a25d9786332730989301928d5b8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/dsi_v1.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/dsi_v1.c",
+    "sha256": "d00bd765f6c9a97f120ecae9610f53a531d4d7dfe99b07b9bf453bf48ab08880"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/dsi_v1.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/dsi_v1.h",
+    "sha256": "1a51d36b0cb3f9b49b930771ebe3ac29873930f5a1d3216d25960ea8a154c972"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/dsi_v1_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/dsi_v1_type.h",
+    "sha256": "bf93642dddd434ca152467bb21a5e9e9e92f47512f04ab5d22c5bc90851c3159"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.c",
+    "sha256": "299eebcaf1f90ae08470569c41a5ed5a6151042c54a6aee8b36ed688a67e6f9e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd.h",
+    "sha256": "bb1ab5c77f35f98b1598609f4b8fbfbd1cdd52ac789e9ac2c793b6dc2ea82de6"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_lcd/tcon_lcd_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_lcd/tcon_lcd_type.h",
+    "sha256": "f7fb71db0c0962e5c054d79d0e1cc8adbe9afdd68eba4803237470c39606b763"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/Makefile",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/Makefile",
+    "sha256": "b55d78fd474559a7b724264bc058d3ecee3e6901e8e180814a38a6dddb943cac"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_top.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_top.c",
+    "sha256": "53144710599550158839bd0c779c4b5582b0d1443dfe834517dae06b8b98c502"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_top.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_top.h",
+    "sha256": "eb6270f6d9ea76ed874fa8f4a1b3c389bb17d907832cc524dc9297ebbd31fadd"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_top_type.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_top_type.h",
+    "sha256": "d6cf833f14f7830af3d6ef5ff2369c5cf98c813638333b63057b5825bcc08810"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_tv.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv.h",
+    "sha256": "576174ed8c754aabe81b8293becd3008dbea4cd98c154992801800a50f3f475e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.c",
+    "sha256": "8cb08c7cf5d162a20158ee75b459a4402d4f4ce2a987072d5812a786b5799c47"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_tcon/tcon_tv_reg.h",
+    "sha256": "c517868e9447868d566115a815e9a7276c8bd9ac31c3de7d97899f3746ab7401"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp.c",
+    "sha256": "bc8d9a8610f4967d18bae25ab3e8c894503afe082182fd9d6183ea60b18b96c9"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp.h",
+    "sha256": "7e0d4bfde1cad6902df343886ca53f95cb33bda207aa21810bc2938db96491a0"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp2x_crypt.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp2x_crypt.c",
+    "sha256": "513c6a3e153f28b32ba31d1505c00396a08e35d524b41d870944013d18e96599"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp2x_crypt.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp2x_crypt.h",
+    "sha256": "c78449304b10557bef9d404d40b4edfcafb2bb1d54f8fc7966348981a753cc61"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp_bigdigits.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp_bigdigits.c",
+    "sha256": "86cd657b8a54da08990051029837a63244b210bc607143ffd3ca8fa4a748b95e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp_bigdigits.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/hdcp/dptx/sunxi_dptx_hdcp_bigdigits.h",
+    "sha256": "c515fe2fe17eb87cd2e910143e392687f4b8194d046c2ced5a5fa413b34adf7b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_edp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_edp.c",
+    "sha256": "ad3afaa0d5afed2f687a919c83532cb91b8d04f80b88d0d8dcf1e8a17cfa1b53"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_edp.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_edp.h",
+    "sha256": "3f7ddcac2d86426dd37cacc63a76a79aeea6b0686119b6e693d66d53c5adcf6f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_edp_hdcp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_edp_hdcp.c",
+    "sha256": "0a9635fcce0b0d60507ecbe719ea5589780e8510fa3521a257af9ef49ec9e1e5"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_hdmi.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.c",
+    "sha256": "6e5084ba7a83f328d064c65553715d6e57a17cf004b6aad0f6da21de9aaa8ed7"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_hdmi.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_hdmi.h",
+    "sha256": "c6f9c4831ceca983920514795efaaa31a8332eaa2b5a4d9d759bec52833b806e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_tcon.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.c",
+    "sha256": "436c0232891f0fdc9381dfc833031beda6ffaf9b4dba8bbc16e07591733f6f6b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_tcon.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon.h",
+    "sha256": "c4d90c0fe4aec6aa4a5fd4a4ce047ae0d55db63f41793c81fab82a35a95d3919"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_tcon_top.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon_top.c",
+    "sha256": "4eb8f798a0d5afb813c90d384301d93181265904a89a4ab5e13370c4b488e178"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_device/sunxi_tcon_top.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_device/sunxi_tcon_top.h",
+    "sha256": "f3a1a321c27dd9b7efc663f3e3c60d661ff8c1b78003903989d39411adb38dec"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_crtc.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c",
+    "sha256": "f3c4cb2491922081fd3699d76cc36716da06b16026bd7f41335f91556502b416"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_crtc.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.h",
+    "sha256": "37994d590d3803679666c36fa2883ef338dfafbcb4aecde81167cfe98fd8925c"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_debug.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_debug.c",
+    "sha256": "23fc62b35a356e22d3306bcdba44c17972bcbb3ee2e23d06580fb9848b110da2"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_debug.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_debug.h",
+    "sha256": "c73a7726d655814222a1f481a6981dde8b323f694c9b80b8b4bc84bcd7c3f322"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_drv.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c",
+    "sha256": "f551e22343299d67e51679dc1877aa1e14fba799b5f9b584198ea344dfa417d8"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_drv.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_drv.h",
+    "sha256": "ec981f5ae17480a9852ef348c10a2d0a56076e01235ebec70a088d967477cd7d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_dsi.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_dsi.c",
+    "sha256": "35dd0abfebb24f4c8bc53e4a109954e23b54c257d1a3a5dc4aa6d5ad639c342e"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_edp.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_edp.c",
+    "sha256": "9d0373c1135534d19dbd419331c6abd567a4768d90f9173f2f71f417e2e0fe4b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_gem.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_gem.c",
+    "sha256": "c40d7063f0b961f164f7f5dd543312f46d611709036719fd6e714fbcf029befe"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_gem.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_gem.h",
+    "sha256": "14a2bbf2d3f7b9144ea72303ddf448ef893845311061ddab27f49ce21030a1a4"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_hdmi.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_hdmi.c",
+    "sha256": "427c7c7dd1214ee863fd4ac04f6ab8c39a18598be5d8449b30d2387d9ecab276"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_intf.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_intf.c",
+    "sha256": "75d69f43af3e0b1d2275f080b97f3364248d7ff3281c7f813bf42b681d5c3417"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_intf.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_intf.h",
+    "sha256": "71c2072e722c62cee510a8b15627c2140f393c25c4a1ccbadd25e7821504ac7a"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_lvds.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_lvds.c",
+    "sha256": "c95f5ddf86a81f9073468544c610ce28a6b5c145a98aa36fbadb3862b9718b21"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_notify.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_notify.c",
+    "sha256": "963400072d080144bfa444713c1be8840d42db5baa034df1406f8f6b1acfbd4f"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_rgb.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_rgb.c",
+    "sha256": "4ba1bc490162369cdeb30641c93bc1b74eac1d288dfc7994d5d356376914f494"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_trace.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_trace.c",
+    "sha256": "3707bac6149b0e597a7a6e70199ddbf5c0ab26994b7a1a2f26c559b4951c4b6d"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drm_trace.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drm_trace.h",
+    "sha256": "7b8dd3a88d40091f277b43828778f18a24ff8cff107c3ea3bf7a465f26522bbc"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_drmfb_core.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_drmfb_core.c",
+    "sha256": "adc50fc03d24c8004f5740eab51450f2a4c4f8f71e1c3ca7c82b85db6971aea5"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_fbdev.h",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_fbdev.h",
+    "sha256": "2f6050896816cae8943b77634f46e2080b9a998f57ea9b8c1ffa0f84646b00df"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_fbdev_core.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_fbdev_core.c",
+    "sha256": "c152ad1abc5bf171f9f5bc981b5cea7af008c3ee7dbca48dc2330d6233a40a7b"
+  },
+  {
+    "source": "bsp/drivers/drm/sunxi_fbdev_platform.c",
+    "destination": "drivers/gpu/drm/t736-bsp/sunxi_fbdev_platform.c",
+    "sha256": "1c8483ee61b6fdc4ad37249bf8b6ab7ba606964e0190c816c0e6bbf2721c3120"
+  }
+]

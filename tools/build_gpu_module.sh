@@ -5,7 +5,7 @@ root=${T736_ROOT:-/home/ubuntu/t736-mainline}
 kernel=${1:-$root/build/linux-gpu-v15}
 out=${2:-$root/build/pvr-bxm-v15}
 if (($# >= 2)); then shift 2; elif (($# == 1)); then shift; fi
-src=$root/sources/work/pvr-bxm-24.2
+src=${T736_PVR_SOURCE:-$root/sources/work/pvr-bxm-24.2}
 test -f "$kernel/include/config/kernel.release"
 test -f "$kernel/Module.symvers"
 test -f "$src/include/pvrversion.h"

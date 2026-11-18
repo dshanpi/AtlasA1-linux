@@ -14,8 +14,8 @@
       "path": "README.md",
       "kind": "generated",
       "source": "generated/AtlasA1-linux/README.md",
-      "size": 846,
-      "sha256": "48b3f083bbf0d5e7f9ec10a407bf94953b52acc132137ce5aec91453ccd20fad"
+      "size": 1122,
+      "sha256": "897db2e582b057a4f8dd62bea860e6909e656ee0b94b1cde50e075628f442433"
     },
     {
       "path": "config/sources.lock.json",
@@ -23,6 +23,13 @@
       "source": "mainline/config/sources.lock.json",
       "size": 1677,
       "sha256": "203076c6a94c523bc07af91fe3ea3269707a6279970ae1c43cef44480f3be1fd"
+    },
+    {
+      "path": "evidence/atlasa1-clean-source-replay-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-clean-source-replay-20261118.json",
+      "size": 2663,
+      "sha256": "4712a36cd25346a09b322b19cf7954ab61de3aa636495727eb2b7f95473789e2"
     },
     {
       "path": "evidence/media-v30-4k-browser-hardware-20261118.json",
@@ -114,6 +121,55 @@
       "source": "mainline/patches/linux/media-v30-cedar-heap-quota.patch",
       "size": 2426,
       "sha256": "81d272ad12e93583cac6e53abf4639c74b17be31d8680f4349c029e9259c4549"
+    },
+    {
+      "path": "patches/linux/media-v30-pvr-replay/board.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-pvr-replay/board.patch",
+      "size": 55883,
+      "sha256": "143cae075d6607816fb818f2fb5c3956654e62f18a661172cbc60310ccd5a9f6"
+    },
+    {
+      "path": "patches/linux/media-v30-pvr-replay/source-hashes.json",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-pvr-replay/source-hashes.json",
+      "size": 3787,
+      "sha256": "b1a4138d432ad4d38f6186769755b067996310210ee03ebb721f368d1b3356e6"
+    },
+    {
+      "path": "patches/linux/media-v30-replay/README.md",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-replay/README.md",
+      "size": 2040,
+      "sha256": "91299f572507b16a479467c9720729ae4e954699d381cd97a67b2831c21f50c6"
+    },
+    {
+      "path": "patches/linux/media-v30-replay/board.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-replay/board.patch",
+      "size": 280508,
+      "sha256": "2bcee920f3a6989d94812d94b088abf7e61906b8197fdaa6a5b4bbd461980198"
+    },
+    {
+      "path": "patches/linux/media-v30-replay/kernel.config",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-replay/kernel.config",
+      "size": 99201,
+      "sha256": "1ac4ebd1a1eb188db8b8b093c89c2bb766cf3f1079838cdf86da9b2d3879fa70"
+    },
+    {
+      "path": "patches/linux/media-v30-replay/source-hashes.json",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-replay/source-hashes.json",
+      "size": 46344,
+      "sha256": "9931ecb99bd61a0f7908991ef2bd4017bc4e025ce3e01130ca0629ea82908082"
+    },
+    {
+      "path": "patches/linux/media-v30-replay/tina-display-inputs.json",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-replay/tina-display-inputs.json",
+      "size": 68303,
+      "sha256": "bf48030b50e4cf92d52c204f887ba97835f27d051fce8029a7c0b2cb0c4174e1"
     },
     {
       "path": "patches/pvr-bxm-24.2-linux-6.18-fop-unsigned-offset.patch",
@@ -210,8 +266,8 @@
       "path": "tools/build_gpu_module.sh",
       "kind": "source",
       "source": "mainline/tools/build_gpu_module.sh",
-      "size": 1372,
-      "sha256": "ec8799f294b37b1d07ebb82e27afd42905a9567dd362876f82e8349e86947525"
+      "size": 1392,
+      "sha256": "7d964d7b27d089c4c83fc9b64ff3537c9672abdf7116054c6176db4681258456"
     },
     {
       "path": "tools/build_hrtimer_kernel.sh",
@@ -289,6 +345,13 @@
       "source": "mainline/tools/check_kernel_config.py",
       "size": 2042,
       "sha256": "9ec76edef1011cc97deb2ef34d5f9eee6fc7012473995bd816966d8c5e02d07c"
+    },
+    {
+      "path": "tools/prepare_atlas_release_sources.py",
+      "kind": "source",
+      "source": "mainline/tools/prepare_atlas_release_sources.py",
+      "size": 4814,
+      "sha256": "36ef9581527839895fe0eca642f9027380024bf1b020e8e957828243b0b57c97"
     },
     {
       "path": "tools/prepare_linux.sh",
