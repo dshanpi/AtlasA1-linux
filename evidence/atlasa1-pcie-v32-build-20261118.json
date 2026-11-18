@@ -1,0 +1,50 @@
+{
+  "scope": "offline kernel, DTB and module build; hardware results are recorded separately",
+  "kernel_release": "6.18.63-t736-hw-v32",
+  "source_baseline": "AtlasA1 release replay Linux 6.18.63 / v30, plus v31 wireless and v32 PCIe",
+  "patches": {
+    "atlasa1-pcie-v32.patch": "458cee9b369fa0cedb91ac37ff0720f84252ba828f94e09405343e3c32af2ad0",
+    "atlasa1-wireless-v31.patch": "6b62ff8fbfa00de59af6fa7318436bda8f6f3e8f1ef1a57b2d38371cc7dd70be",
+    "wireless.config": "cdd6be901424f6e812f4456cd0049664c2f79e350b435e68723952c8df57fba0",
+    "pcie.config": "bcd7b9e53fc8b91c98599e3c34f42e06476078d3340d98e7eeb241a8bc7754ef"
+  },
+  "checks": {
+    "clean_v30_accepts_pcie_patch": true,
+    "wireless_v31_accepts_pcie_patch": true,
+    "t736_pcie_probe_symbol": "t736_pcie_probe",
+    "dt_compatible": {
+      "/pcie@6000000": "allwinner,t736-pcie",
+      "/power-controller@7067000": "allwinner,t736-pcie-power",
+      "/mmc@4021000": "allwinner,t736-sdio",
+      "/serial@2501000": "snps,dw-apb-uart"
+    },
+    "perst_gpio": "14 8 a 1",
+    "power_vr_vermagic": "6.18.63-t736-hw-v32 SMP mod_unload aarch64",
+    "kernel_options": [
+      "CONFIG_BT=m",
+      "CONFIG_PCI=y",
+      "CONFIG_PCI_MSI=y",
+      "CONFIG_PCIE_DW_HOST=y",
+      "CONFIG_PCIE_T736=y",
+      "CONFIG_BLK_DEV_NVME=y",
+      "CONFIG_CLK_T736_WIRELESS=y"
+    ]
+  },
+  "artifacts": {
+    "boot/Image-6.18.63-t736-hw-v32": "b2ec8925f99bc6f7f3c7e4405da32e1a2bfd137fedda3eea234dcc1723800bdc",
+    "boot/config-6.18.63-t736-hw-v32": "8177ccffae075a8852bd37d8af601ed172d825efa58795a0756dcc494a8f4d67",
+    "boot/t736-pcie-v32.dtb": "234ab95f57d9f980b8cc204b5ab628791ac2908e9b70cdb32c3fd5ea2b4d9dc2",
+    "lib/modules/6.18.63-t736-hw-v32/extra/pvrsrvkm.ko": "db5b4a6e3c21755c4d16b06b8da983c8f7d1bfb9da9b65ce4c7cc56c0f8c51a2"
+  },
+  "candidate_bundle": {
+    "name": "atlas-pcie-wireless-v32.tar.gz",
+    "sha256": "3d4f0990712df2e6d6981e4f11a9599ba9b243f3638a5236e40f583317d0a383"
+  },
+  "references": {
+    "tina/bsp/drivers/phy/sunxi-cadence-combophy.c": "84b5471d3b7bbb2ae247b75459135dff0a1d40eef9a2bb994df14eb799b5c082",
+    "tina/bsp/drivers/pci/controller/dwc/pcie-dw-sunxi.c": "cff6add87d1a7a9deda841315dd01f88d9252448bcebae7b8213bc737c12589e",
+    "tina/bsp/drivers/pci/controller/dwc/pcie-dw-sunxi.h": "a9155c6eb10d11392963baf928d946b55076a6a87508dda842eef9160fa6f2d9",
+    "tina/bsp/drivers/pm_domain/pck600_domains.c": "2d9c2b60b3b264d1732538815d12570e45386d30b280a1d0b4f5b9780bdc49ee",
+    "tina/bsp/drivers/clk/sunxi-ng/ccu-sun60iw2.c": "1d32bb8555f8ff205d35210f638f9d42cc28aa9295c46963aa1c810d47b06d77"
+  }
+}

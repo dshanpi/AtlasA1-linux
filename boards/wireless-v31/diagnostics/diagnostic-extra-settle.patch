@@ -1,0 +1,13 @@
+diff --git a/atlasa1-sdio-diag.c b/atlasa1-sdio-diag.c
+index 9a4f54f..af3c90d 100644
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -880,6 +880,8 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
+ 
+ 	/* And we just enabled our clock back */
+ 	mmc->actual_clock = rate;
++	if (rate == 400000)
++		msleep(1000);
+ 
+ 	return 0;
+ }

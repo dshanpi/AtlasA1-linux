@@ -7,3 +7,5 @@ The v30 candidate adds the boot parameter `t736_cedar_wc.heap_limit_mib` to the 
 Armbian integration and pinned upstream revisions are available in [AtlasA1-build](https://github.com/dshanpi/AtlasA1-build).
 
 The release replay recipe starts from the pinned upstream Git tree. It imports the board's Tina display sources by SHA-256, applies the complete board delta and checks the resulting 317 board files. [Clean-source build instructions](patches/linux/media-v30-replay/README.md)
+
+The kernel-only build option `--pcie-v34` includes the J58 PCIe host, the four-bit COMBO1 PIPE route and the SDIO/UART transports. After a cold boot the built-in driver registered the root port at `0000:00:00.0`, and an empty-slot rescan completed. PCIe endpoint I/O requires a card in J58. [Build and test](boards/pcie-v32/README.md) · [Clean build](evidence/atlasa1-hw-v34-kernel-replay-20261118.json) · [Board measurement](evidence/atlasa1-pcie-v34-coldboot-20261118.json)

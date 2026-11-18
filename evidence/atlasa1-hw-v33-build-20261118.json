@@ -1,0 +1,37 @@
+{
+  "scope": "offline build with v32 PCIe/SDIO/UART, DLDO5, SDIO reset pulse and COMBO1 reset sequencing / timeout readback",
+  "kernel_release": "6.18.63-t736-hw-v33",
+  "patches": {
+    "atlasa1-wireless-v31.patch": "6b62ff8fbfa00de59af6fa7318436bda8f6f3e8f1ef1a57b2d38371cc7dd70be",
+    "atlasa1-pcie-v32.patch": "458cee9b369fa0cedb91ac37ff0720f84252ba828f94e09405343e3c32af2ad0",
+    "atlasa1-wireless-dldo5-v33.patch": "3d7c75490c0a1c803ba48e80a65a88a4f12d16743d0e499092d1bc4e2541307b",
+    "atlasa1-wireless-reset-v33.patch": "f334845969f7f348c7d96d822e485e4180ad8d14e40f68fb937a136cf9f1499e",
+    "atlasa1-pcie-combo1-v33.patch": "8b564fced65fd89b2ba5df5cd8b8b5a60477f977afe63e1578058470acfdbcdd"
+  },
+  "kernel_options_changes_from_v32": [
+    "CONFIG_LOCALVERSION=\"-t736-hw-v33\""
+  ],
+  "board_dtb": {
+    "pcie": "allwinner,t736-pcie",
+    "sdio": "allwinner,t736-sdio",
+    "uart": "snps,dw-apb-uart",
+    "regulator": "axp8191-wireless-io",
+    "rail_uv": 1800000,
+    "rail_phandle_hex": "2a",
+    "consumer_phandles_hex": {
+      "/pinctrl@2000000": "2a",
+      "/pinctrl@7025000": "2a",
+      "/mmc@4021000": "2a"
+    }
+  },
+  "pvr_vermagic": "6.18.63-t736-hw-v33 SMP mod_unload aarch64",
+  "files": {
+    "boot/Image-6.18.63-t736-hw-v33": "fa314eab6f00bff657625bcb075af46cbda0238f114d34e1d381a89cf92dde52",
+    "boot/config-6.18.63-t736-hw-v33": "c1dc11c3e8aff0fe0a5ac1ab174afe515436c4a2f43290ad4ba0532808017450",
+    "boot/t736-pcie-v33.dtb": "6e49ad1bf17f01621114f90766b14994992706d37b3ca593a5de1c6a2c329d9f",
+    "lib/modules/6.18.63-t736-hw-v33/extra/pvrsrvkm.ko": "fab5aa8fff5c3ee97c3016bf05208f077ecc3ebc0bb0c0972ded43a5a03d5354"
+  },
+  "archives": {
+    "atlas-pcie-wireless-v33.tar.gz": "d75aeded4e458170cdd1286d7cfa30ac1c76bc32a6626fd703b94efc13ebadb7"
+  }
+}

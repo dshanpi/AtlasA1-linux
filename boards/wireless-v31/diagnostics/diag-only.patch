@@ -1,0 +1,78 @@
+diff --git a/atlasa1-sdio-diag.c b/atlasa1-sdio-diag.c
+index d7d2f82..9a4f54f 100644
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -269,6 +269,7 @@ struct sunxi_mmc_cfg {
+ };
+ 
+ struct sunxi_mmc_host {
++	void __iomem *pg, *pm, *rtc;
+ 	struct device *dev;
+ 	struct mmc_host	*mmc;
+ 	struct reset_control *reset;
+@@ -520,6 +521,8 @@ static irqreturn_t sunxi_mmc_finalize_request(struct sunxi_mmc_host *host)
+ 	mmc_writel(host, REG_IDIE, 0);
+ 
+ 	if (host->int_sum & SDXC_INTERRUPT_ERROR_BIT) {
++		dev_info(host->dev, "probe CMD%u failed IRQ=%08x resp0=%08x\n",
++			 mrq->cmd->opcode, host->int_sum, mmc_readl(host, REG_RESP0));
+ 		sunxi_mmc_dump_errinfo(host);
+ 		mrq->cmd->error = -ETIMEDOUT;
+ 
+@@ -1111,6 +1114,12 @@ static void sunxi_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+ 	host->mrq = mrq;
+ 	host->wait_dma = wait_dma;
+ 	mmc_writel(host, REG_IMASK, host->sdio_imask | imask);
++	if (cmd->opcode == 5 || cmd->opcode == 52)
++		dev_info(host->dev, "probe CMD%u arg=%08x clk=%u clkcr=%08x ntsr=%08x pgmux=%08x pgdata=%08x pmmux=%08x pmdata=%08x rtc32out=%08x\n",
++			 cmd->opcode, cmd->arg, host->mmc->actual_clock,
++			 mmc_readl(host, REG_CLKCR), mmc_readl(host, REG_SD_NTSR),
++			 readl(host->pg), readl(host->pg + 0x10), readl(host->pm),
++			 readl(host->pm + 0x10), readl(host->rtc));
+ 	mmc_writel(host, REG_CARG, cmd->arg);
+ 	mmc_writel(host, REG_CMDR, cmd_val);
+ 
+@@ -1232,19 +1241,7 @@ static const struct sunxi_mmc_cfg t736_sdio_cfg = {
+ };
+ 
+ static const struct of_device_id sunxi_mmc_of_match[] = {
+-	{ .compatible = "allwinner,t736-sdio", .data = &t736_sdio_cfg },
+-	{ .compatible = "allwinner,sun4i-a10-mmc", .data = &sun4i_a10_cfg },
+-	{ .compatible = "allwinner,sun5i-a13-mmc", .data = &sun5i_a13_cfg },
+-	{ .compatible = "allwinner,sun7i-a20-mmc", .data = &sun7i_a20_cfg },
+-	{ .compatible = "allwinner,sun8i-a83t-emmc", .data = &sun8i_a83t_emmc_cfg },
+-	{ .compatible = "allwinner,sun9i-a80-mmc", .data = &sun9i_a80_cfg },
+-	{ .compatible = "allwinner,sun20i-d1-mmc", .data = &sun20i_d1_cfg },
+-	{ .compatible = "allwinner,sun50i-a64-mmc", .data = &sun50i_a64_cfg },
+-	{ .compatible = "allwinner,sun50i-a64-emmc", .data = &sun50i_a64_emmc_cfg },
+-	{ .compatible = "allwinner,sun50i-a100-mmc", .data = &sun20i_d1_cfg },
+-	{ .compatible = "allwinner,sun50i-a100-emmc", .data = &sun50i_a100_emmc_cfg },
+-	{ .compatible = "allwinner,sun50i-h616-mmc", .data = &sun50i_h616_cfg },
+-	{ /* sentinel */ }
++	{ .compatible = "allwinner,t736-sdio", .data = &t736_sdio_cfg }, { }
+ };
+ MODULE_DEVICE_TABLE(of, sunxi_mmc_of_match);
+ 
+@@ -1403,6 +1400,11 @@ static int sunxi_mmc_probe(struct platform_device *pdev)
+ 	host = mmc_priv(mmc);
+ 	host->dev = &pdev->dev;
+ 	host->mmc = mmc;
++	host->pg = devm_ioremap(&pdev->dev, 0x02000380, 0x34);
++	host->pm = devm_ioremap(&pdev->dev, 0x07025030, 0x28);
++	host->rtc = devm_ioremap(&pdev->dev, 0x07090060, 4);
++	if (!host->pg || !host->pm || !host->rtc)
++		return -ENOMEM;
+ 	spin_lock_init(&host->lock);
+ 
+ 	ret = sunxi_mmc_resource_request(host, pdev);
+@@ -1562,8 +1564,8 @@ static const struct dev_pm_ops sunxi_mmc_pm_ops = {
+ 
+ static struct platform_driver sunxi_mmc_driver = {
+ 	.driver = {
+-		.name	= "sunxi-mmc",
+-		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
++		.name	= "atlasa1-sdio-diag",
++		.probe_type = PROBE_FORCE_SYNCHRONOUS,
+ 		.of_match_table = sunxi_mmc_of_match,
+ 		.pm = pm_ptr(&sunxi_mmc_pm_ops),
+ 	},

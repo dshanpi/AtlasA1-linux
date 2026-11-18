@@ -1,0 +1,30 @@
+{
+  "kernel_release": "6.18.63-t736-hw-v34",
+  "build_entry": "tools/build_atlasa1_release_kernel.sh --pcie-v34 (after the three positional arguments)",
+  "base_kernel_archive": "Linux 6.18.63",
+  "base_archive_sha256": "c41bdd52b610c75613effe80c6abf236efce706b3304fe2f023bf912413f9f6e",
+  "patch_and_config_inputs": "boards/pcie-v32/hw-v34-inputs.sha256",
+  "clean_replay": {
+    "work_directory_initially_absent": true,
+    "architecture": "arm64",
+    "cross_compile": "aarch64-linux-gnu-",
+    "source_inputs_checked": true,
+    "debian_package": "linux-image-6.18.63-t736-hw-v34_6.18.63-34_arm64.deb",
+    "debian_package_sha256": "53d4179b7b328c1e03d010ecf0f51ee9e9ff30a34619e44b525e0f4a7a389e69",
+    "package_contains_kernel_and_board_dtb": true,
+    "board_dtb_in_deb": "/usr/lib/linux-image-6.18.63-t736-hw-v34/allwinner/t736-pcie-v32.dtb",
+    "image_sha256": "bdefb45b6dd710eaf4d38b78c2bb4277d1330566c98538fd2156c9988c5b2d9a",
+    "dtb_sha256": "6e49ad1bf17f01621114f90766b14994992706d37b3ca593a5de1c6a2c329d9f",
+    "config_sha256": "c0d3c09ac7385625fe8d58914efd5b589f0ec6f4a1ddc1dcec6092d4b287811d",
+    "pvr_module_sha256": "84ff6985082625d8118ed3534263ae5eea8d4fa1ef8abf67a6852a1fe5358664",
+    "pvr_vermagic": "6.18.63-t736-hw-v34 SMP mod_unload aarch64",
+    "all_generated_SHA256SUMS_passed": true
+  },
+  "second_build_comparison": {
+    "image_dtb_config_byte_identical": true,
+    "unstripped_pvr_module_byte_identical": false,
+    "alternate_pvr_module_sha256": "f57a95d459a5cc1ad1b77faf96d20f73a4724af7f08c572540834eb80d9b09ec",
+    "pvr_text_section_byte_identical": true,
+    "pvr_text_section_sha256": "7cff51aa44dcd5a93b9ba0c68317cd55761c7e115d9a329680b8b7494597bf3a"
+  }
+}

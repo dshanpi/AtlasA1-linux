@@ -1,0 +1,618 @@
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -67,3 +67,5 @@
+ dtb-y += t736-hdmi-candidate.dtb
+ 
+ dtb-y += t736-gpu-candidate.dtb
++
++dtb-$(CONFIG_ARCH_SUNXI) += t736-pcie-v32.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/t736-pcie-v32.dts b/arch/arm64/boot/dts/allwinner/t736-pcie-v32.dts
+new file mode 100644
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/t736-pcie-v32.dts
+@@ -0,0 +1,65 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include "t736-gpu-candidate.dts"
++
++&{/pinctrl@2000000} {
++	/* SWOUT1 feeds PH (RP447) and PI (RP337) on the AtlasA1 core. */
++	vcc-pi-supply = <&{/regulator-ph-firmware}>;
++};
++
++/ {
++	pcie_power: power-controller@7067000 {
++		compatible = "allwinner,t736-pcie-power";
++		reg = <0 0x07067000 0 0x1000>;
++		clocks = <&{/clock-controller@2002a00} 11>;
++		#power-domain-cells = <1>;
++	};
++
++	pcie@6000000 {
++		compatible = "allwinner,t736-pcie";
++		device_type = "pci";
++		#address-cells = <3>;
++		#size-cells = <2>;
++		reg = <0 0x06000000 0 0x100000>, <0 0x06100000 0 0x40000>,
++		      <0 0x06300000 0 0x80000>, <0 0x06380000 0 0x80000>,
++		      <0 0x06400000 0 0x80000>, <0 0x20000000 0 0x1000000>,
++		      <0 0x06c02000 0 0xa00>, <0 0x06ca0000 0 0x20000>,
++		      <0 0x0200338c 0 4>, <0 0x02002574 0 4>,
++		      <0 0x02003380 0 4>, <0 0x02003384 0 4>,
++		      <0 0x020033c0 0 4>, <0 0x0709016c 0 4>,
++		      <0 0x020033c4 0 4>, <0 0x06c00004 0 4>,
++		      <0 0x06c000f0 0 4>, <0 0x06c06c44 0 4>;
++		reg-names = "dbi", "dbi2", "atu", "dma", "app", "config",
++			    "combo", "pma", "pcie-reset", "its", "aux", "axi",
++			    "serdes-cfg", "serdes-dcxo", "serdes-reset",
++			    "serdes-gates", "serdes-debug", "pipe-mode";
++		power-domains = <&pcie_power 0>;
++		clocks = <&{/clock-controller@2002b20} 2>;
++		clock-names = "peri400";
++		reset-gpios = <&{/pinctrl@2000000} 8 10 1>;
++		bus-range = <0 255>;
++		linux,pci-domain = <0>;
++		num-lanes = <1>;
++		max-link-speed = <1>;
++		ranges = <0x01000000 0 0x21000000 0 0x21000000 0 0x01000000>,
++			 <0x02000000 0 0x22000000 0 0x22000000 0 0x06000000>,
++			 <0x43000000 4 0x40000000 4 0x40000000 1 0>;
++		interrupt-parent = <&{/interrupt-controller@3400000}>;
++		interrupts = <0 152 4>, <0 153 4>,
++			     <0 136 4>, <0 137 4>, <0 138 4>, <0 139 4>,
++			     <0 140 4>, <0 141 4>, <0 142 4>, <0 143 4>;
++		interrupt-names = "sii", "msi", "dma0", "dma1", "dma2", "dma3",
++				  "dma4", "dma5", "dma6", "dma7";
++		#interrupt-cells = <1>;
++		interrupt-map-mask = <0 0 0 7>;
++		interrupt-map = <0 0 0 1 &pcie_intx 0>, <0 0 0 2 &pcie_intx 1>,
++				<0 0 0 3 &pcie_intx 2>, <0 0 0 4 &pcie_intx 3>;
++
++		pcie_intx: legacy-interrupt-controller {
++			interrupt-controller;
++			#address-cells = <0>;
++			#interrupt-cells = <1>;
++			interrupt-parent = <&{/interrupt-controller@3400000}>;
++			interrupts = <0 152 4>;
++		};
++	};
++};
+diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+--- a/drivers/pci/controller/dwc/Kconfig
++++ b/drivers/pci/controller/dwc/Kconfig
+@@ -25,6 +25,14 @@
+ config PCIE_DW_EP
+ 	bool
+ 	select PCIE_DW
++
++config PCIE_T736
++	bool "Allwinner T736 AtlasA1 PCIe host"
++	depends on ARCH_SUNXI && OF && PCI_MSI
++	select PCIE_DW_HOST
++	help
++	  Enable the AtlasA1 DWC root port and the COMBO1 PCIe PHY.
++	  Its board-specific device tree routes the shared lane to J58.
+ 
+ config PCIE_AL
+ 	bool "Amazon Annapurna Labs PCIe controller"
+diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+--- a/drivers/pci/controller/dwc/Makefile
++++ b/drivers/pci/controller/dwc/Makefile
+@@ -44,6 +44,7 @@
+ # ARM64 and use internal ifdefs to only build the pieces we need
+ # depending on whether ACPI, the DT driver, or both are enabled.
+ 
++obj-$(CONFIG_PCIE_T736) += pcie-t736.o
+ obj-$(CONFIG_PCIE_AL) += pcie-al.o
+ obj-$(CONFIG_PCI_HISI) += pcie-hisi.o
+ 
+diff --git a/drivers/pci/controller/dwc/pcie-t736.c b/drivers/pci/controller/dwc/pcie-t736.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/pci/controller/dwc/pcie-t736.c
+@@ -0,0 +1,285 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * AtlasA1 PCIe host, using the T736 COMBO1 lane and internal 100 MHz REFCLK.
++ * Register definitions and initialization adapted from the Allwinner BSP:
++ * Copyright (C) 2026 Allwinner Co., Ltd.
++ */
++#include <linux/bitfield.h>
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/iopoll.h>
++#include <linux/irqchip/chained_irq.h>
++#include <linux/irqdomain.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++#include "pcie-designware.h"
++#include "pcie-t736-combo1.h"
++
++#define APP_LTSSM	0xc00
++#define APP_IRQ_ENABLE	0xe00
++#define APP_IRQ_STATUS	0xe08
++#define APP_LINK_STATUS	0xe0c
++#define INTX_MASK	GENMASK(8, 5)
++#define LINK_UP		GENMASK(1, 0)
++
++/* The DT reserves the named registers exclusively for this PCIe lane. */
++static const struct {
++	const char *name;
++	u32 mask;
++	u32 value;
++} setup[] = {
++	{ "pcie-reset", GENMASK(17, 16), GENMASK(17, 16) },
++	{ "its", BIT(16) | BIT(1), BIT(16) | BIT(1) },
++	{ "aux", BIT(31) | BIT(24) | GENMASK(4, 0), BIT(31) },
++	{ "axi", BIT(31) | GENMASK(26, 24) | GENMASK(4, 0), BIT(31) | (2 << 24) },
++	{ "serdes-cfg", BIT(31) | GENMASK(26, 24) | GENMASK(4, 0), BIT(31) | BIT(24) | 5 },
++	{ "serdes-dcxo", BIT(5), BIT(5) },
++	{ "serdes-reset", BIT(16), BIT(16) },
++	{ "serdes-gates", GENMASK(18, 16), GENMASK(18, 16) },
++	{ "serdes-debug", BIT(29), BIT(29) },
++	{ "pipe-mode", GENMASK(1, 0), 1 },
++};
++
++struct t736_pcie {
++	struct dw_pcie pci;
++	void __iomem *app;
++	void __iomem *combo;
++	void __iomem *pma;
++	void __iomem *reg[ARRAY_SIZE(setup)];
++	u32 saved[ARRAY_SIZE(setup)];
++	struct gpio_desc *perst;
++	struct irq_domain *intx;
++	int sii;
++};
++
++static struct t736_pcie *from_pci(struct dw_pcie *pci)
++{
++	return container_of(pci, struct t736_pcie, pci);
++}
++
++static void update_bits(void __iomem *addr, u32 mask, u32 value)
++{
++	writel((readl(addr) & ~mask) | (value & mask), addr);
++	readl(addr);
++}
++
++static bool t736_link_up(struct dw_pcie *pci)
++{
++	return (readl(from_pci(pci)->app + APP_LINK_STATUS) & LINK_UP) == LINK_UP;
++}
++
++static int t736_start_link(struct dw_pcie *pci)
++{
++	struct t736_pcie *host = from_pci(pci);
++
++	/* REFCLK and slot power must settle before releasing PERST#. */
++	msleep(100);
++	gpiod_set_value_cansleep(host->perst, 0);
++	update_bits(host->app + APP_LTSSM, BIT(0), BIT(0));
++	return 0;
++}
++
++static void t736_stop_link(struct dw_pcie *pci)
++{
++	struct t736_pcie *host = from_pci(pci);
++
++	update_bits(host->app + APP_LTSSM, BIT(0), 0);
++	gpiod_set_value_cansleep(host->perst, 1);
++}
++
++static void t736_irq_enable(struct irq_data *d, bool enable)
++{
++	struct t736_pcie *host = irq_data_get_irq_chip_data(d);
++	u32 bit = BIT(5 + irqd_to_hwirq(d));
++	unsigned long flags;
++
++	raw_spin_lock_irqsave(&host->pci.pp.lock, flags);
++	update_bits(host->app + APP_IRQ_ENABLE, bit, enable ? bit : 0);
++	raw_spin_unlock_irqrestore(&host->pci.pp.lock, flags);
++}
++
++static void t736_mask(struct irq_data *d) { t736_irq_enable(d, false); }
++static void t736_unmask(struct irq_data *d) { t736_irq_enable(d, true); }
++
++static struct irq_chip t736_chip = {
++	.name = "t736-pcie-intx",
++	.irq_mask = t736_mask,
++	.irq_unmask = t736_unmask,
++};
++
++static int t736_intx_map(struct irq_domain *domain, unsigned int irq,
++			 irq_hw_number_t hwirq)
++{
++	irq_set_chip_data(irq, domain->host_data);
++	irq_set_chip_and_handler(irq, &t736_chip, handle_simple_irq);
++	return 0;
++}
++
++static const struct irq_domain_ops t736_irq_ops = {
++	.map = t736_intx_map,
++	.xlate = irq_domain_xlate_onecell,
++};
++
++static void t736_intx_handler(struct irq_desc *desc)
++{
++	struct t736_pcie *host = irq_desc_get_handler_data(desc);
++	struct irq_chip *chip = irq_desc_get_chip(desc);
++	unsigned long pending;
++	unsigned int bit;
++
++	chained_irq_enter(chip, desc);
++	pending = readl(host->app + APP_IRQ_ENABLE) &
++		  readl(host->app + APP_IRQ_STATUS) & INTX_MASK;
++	for_each_set_bit(bit, &pending, 9) {
++		writel(BIT(bit), host->app + APP_IRQ_STATUS);
++		generic_handle_domain_irq(host->intx, bit - 5);
++	}
++	chained_irq_exit(chip, desc);
++}
++
++static int t736_host_init(struct dw_pcie_rp *pp)
++{
++	struct t736_pcie *host = from_pci(to_dw_pcie_from_pp(pp));
++	struct device_node *np;
++
++	update_bits(host->app + APP_IRQ_ENABLE, INTX_MASK, 0);
++	writel(INTX_MASK, host->app + APP_IRQ_STATUS);
++	np = of_get_child_by_name(host->pci.dev->of_node, "legacy-interrupt-controller");
++	if (!np)
++		return -ENODEV;
++	host->intx = irq_domain_create_linear(of_fwnode_handle(np), PCI_NUM_INTX,
++					      &t736_irq_ops, host);
++	of_node_put(np);
++	if (!host->intx)
++		return -ENOMEM;
++	irq_set_chained_handler_and_data(host->sii, t736_intx_handler, host);
++	return 0;
++}
++
++static void t736_host_deinit(struct dw_pcie_rp *pp)
++{
++	struct t736_pcie *host = from_pci(to_dw_pcie_from_pp(pp));
++
++	update_bits(host->app + APP_IRQ_ENABLE, INTX_MASK, 0);
++	irq_set_chained_handler_and_data(host->sii, NULL, NULL);
++	synchronize_irq(host->sii);
++	irq_domain_remove(host->intx);
++}
++
++static const struct dw_pcie_ops t736_pcie_ops = {
++	.link_up = t736_link_up,
++	.start_link = t736_start_link,
++	.stop_link = t736_stop_link,
++};
++
++static const struct dw_pcie_host_ops t736_host_ops = {
++	.init = t736_host_init,
++	.deinit = t736_host_deinit,
++};
++
++static void t736_restore(struct t736_pcie *host)
++{
++	int i;
++
++	/* Stop REFCLK output, hold COMBO1 in reset, then release CCU ownership. */
++	update_bits(host->combo + 4, BIT(28), 0);
++	update_bits(host->combo + 0x100, BIT(0), 0);
++	update_bits(host->combo, BIT(0), 0);
++	for (i = ARRAY_SIZE(setup) - 1; i >= 0; i--)
++		update_bits(host->reg[i], setup[i].mask, host->saved[i]);
++}
++
++static int t736_pcie_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct t736_pcie *host;
++	struct clk *peri400;
++	int i, ret;
++
++	host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
++	if (!host)
++		return -ENOMEM;
++	host->pci.dev = dev;
++	host->pci.ops = &t736_pcie_ops;
++	host->pci.pp.ops = &t736_host_ops;
++	/* PERI0_2X/3 = 400 MHz also validates the /2 parent of SERDES_CFG. */
++	peri400 = devm_clk_get(dev, "peri400");
++	if (IS_ERR(peri400))
++		return dev_err_probe(dev, PTR_ERR(peri400), "PERI0 parent\n");
++	if (clk_get_rate(peri400) != 400000000)
++		return dev_err_probe(dev, -ERANGE, "unexpected PERI0 parent rate\n");
++	host->app = devm_platform_ioremap_resource_byname(pdev, "app");
++	if (IS_ERR(host->app))
++		return PTR_ERR(host->app);
++	host->combo = devm_platform_ioremap_resource_byname(pdev, "combo");
++	if (IS_ERR(host->combo))
++		return PTR_ERR(host->combo);
++	host->pma = devm_platform_ioremap_resource_byname(pdev, "pma");
++	if (IS_ERR(host->pma))
++		return PTR_ERR(host->pma);
++	for (i = 0; i < ARRAY_SIZE(setup); i++) {
++		host->reg[i] = devm_platform_ioremap_resource_byname(pdev, setup[i].name);
++		if (IS_ERR(host->reg[i]))
++			return PTR_ERR(host->reg[i]);
++	}
++	host->perst = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(host->perst))
++		return dev_err_probe(dev, PTR_ERR(host->perst), "PERST#\n");
++	host->sii = platform_get_irq_byname(pdev, "sii");
++	if (host->sii < 0)
++		return host->sii;
++	platform_set_drvdata(pdev, host);
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++	ret = pm_runtime_resume_and_get(dev);
++	if (ret < 0)
++		return ret;
++	for (i = 0; i < ARRAY_SIZE(setup); i++) {
++		host->saved[i] = readl(host->reg[i]);
++		update_bits(host->reg[i], setup[i].mask, setup[i].value);
++	}
++	ret = t736_combo1_internal_refclk(host->combo, host->pma);
++	if (ret)
++		dev_err(dev, "COMBO1 internal REFCLK lock timed out (%d)\n", ret);
++	else {
++		dev_info(dev, "COMBO1 internal REFCLK locked\n");
++		update_bits(host->app + APP_LTSSM, BIT(0), 0);
++		ret = dw_pcie_host_init(&host->pci.pp);
++	}
++	if (ret) {
++		gpiod_set_value_cansleep(host->perst, 1);
++		t736_restore(host);
++		pm_runtime_put_sync(dev);
++	}
++	return ret;
++}
++
++static void t736_pcie_remove(struct platform_device *pdev)
++{
++	struct t736_pcie *host = platform_get_drvdata(pdev);
++
++	dw_pcie_host_deinit(&host->pci.pp);
++	t736_restore(host);
++	pm_runtime_put_sync(&pdev->dev);
++}
++
++static const struct of_device_id t736_match[] = {
++	{ .compatible = "allwinner,t736-pcie" },
++	{ }
++};
++
++static struct platform_driver t736_pcie_driver = {
++	.probe = t736_pcie_probe,
++	.remove = t736_pcie_remove,
++	.driver = {
++		.name = "t736-pcie",
++		.of_match_table = t736_match,
++		.suppress_bind_attrs = true,
++	},
++};
++builtin_platform_driver(t736_pcie_driver);
+diff --git a/drivers/pci/controller/dwc/pcie-t736-combo1.h b/drivers/pci/controller/dwc/pcie-t736-combo1.h
+new file mode 100644
+--- /dev/null
++++ b/drivers/pci/controller/dwc/pcie-t736-combo1.h
+@@ -0,0 +1,160 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef PCIE_T736_COMBO1_H
++#define PCIE_T736_COMBO1_H
++/*
++ * T736 PCIe internal 100 MHz reference clock from sunxi-cadence-combophy.c.
++ * Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd.
++ * Copyright (C) 2024 Allwinner Electronics Co., Ltd.
++ */
++static int t736_combo1_internal_refclk(void __iomem *top, void __iomem *pma)
++{
++	u32 val;
++
++	writel(0x01100001, top + 0x4);
++
++	writew(0x1a, pma + 0x44);
++
++	writew(0x34, pma + 0x54);
++	writew(0xda, pma + 0x58);
++
++	writew(0x34, pma + 0x64);
++	writew(0xda, pma + 0x68);
++
++	writew(0x82, pma + 0xc8);
++	writew(0x82, pma + 0xca);
++
++	writew(0x1a, pma + 0xe8);
++
++	writew(0x20, pma + 0x208);
++	writew(0x7, pma + 0x20a);
++	writew(0x20, pma + 0x218);
++	writew(0x7, pma + 0x21a);
++	writew(0x30c, pma + 0x228);
++	writew(0x7, pma + 0x22a);
++
++	writew(0x7, pma + 0x248);
++	writew(0x3, pma + 0x24a);
++	writew(0xf, pma + 0x24c);
++	writew(0x132, pma + 0x250);
++
++	writew(0x208, pma + 0x8180);
++	writew(0x9c, pma + 0x8184);
++
++	writew(0x1a, pma + 0x10088);
++	writew(0x82, pma + 0x1008a);
++	writew(0x1a, pma + 0x10098);
++	writew(0x82, pma + 0x1009a);
++
++	writew(0xa28, pma + 0x8246);
++
++	val = readl(top + 0x100);
++	val &= ~0x30;
++	writel(val, top + 0x100);
++
++	writew(0x4, pma + 0x128);
++	writew(0x4, pma + 0x148);
++	writew(0x4, pma + 0x1a8);
++
++	writew(0x509, pma + 0x348);
++	writew(0x509, pma + 0x368);
++	writew(0x509, pma + 0x388);
++	writew(0xf00, pma + 0x34a);
++	writew(0xf00, pma + 0x36a);
++	writew(0xf00, pma + 0x38a);
++	writew(0xf08, pma + 0x34c);
++	writew(0xf08, pma + 0x36c);
++	writew(0xf08, pma + 0x38c);
++
++	writew(0x180, pma + 0x120);
++	writew(0x133, pma + 0x140);
++	writew(0x133, pma + 0x1a0);
++	writew(0x9d8a, pma + 0x122);
++	writew(0xb13b, pma + 0x142);
++	writew(0xb13b, pma + 0x1a2);
++	writew(0x2, pma + 0x124);
++	writew(0x2, pma + 0x144);
++	writew(0x2, pma + 0x1a4);
++	writew(0x102, pma + 0x126);
++	writew(0xce, pma + 0x146);
++	writew(0xce, pma + 0x1a6);
++
++	writew(0x22, pma + 0x340);
++	writew(0x22, pma + 0x360);
++	writew(0x22, pma + 0x380);
++
++	writew(0x1, pma + 0x130);
++	writew(0x1, pma + 0x150);
++	writew(0x1, pma + 0x1b0);
++	writew(0x45f, pma + 0x132);
++	writew(0x2f0, pma + 0x152);
++	writew(0x399, pma + 0x1b2);
++	writew(0x6b, pma + 0x134);
++	writew(0x68, pma + 0x154);
++	writew(0x68, pma + 0x1b4);
++	writew(0x4, pma + 0x136);
++	writew(0x4, pma + 0x156);
++	writew(0x4, pma + 0x1b6);
++
++	writew(0x104, pma + 0x108);
++	writew(0x104, pma + 0x188);
++	writew(0x5, pma + 0x10a);
++	writew(0x5, pma + 0x18a);
++	writew(0x337, pma + 0x10c);
++	writew(0x337, pma + 0x18c);
++	writew(0x3dbe, pma + 0x110);
++	writew(0x3dbe, pma + 0x190);
++	writew(0x3, pma + 0x104);
++	writew(0x3, pma + 0x184);
++
++	writew(0x14, pma + 0x138);
++	writew(0x14, pma + 0x1b8);
++	writew(0x192, pma + 0x13c);
++	writew(0x192, pma + 0x1bc);
++	writew(0x6, pma + 0x13e);
++	writew(0x6, pma + 0x1be);
++
++	writew(0x0, pma + 0x103c0);
++	writew(0x19, pma + 0x102e2);
++	writew(0x19, pma + 0x102e4);
++
++	writew(0x1, pma + 0x103fe);
++
++	val = readl(pma + 0x98);
++	val &= ~0x3;
++	val |= 0x2;
++	writel(val, pma + 0x98);
++
++	val = readl(pma + 0xa8);
++	val &= ~0x3;
++	val |= 0x2;
++	writel(val, pma + 0xa8);
++
++	val = readl(pma + 0xd8);
++	val &= ~0x3;
++	val |= 0x2;
++	writel(val, pma + 0xd8);
++
++	val = readl(top);
++	writel(val | 0x1, top);
++	val = readl(top + 0x100);
++	writel(val | 0x1, top + 0x100);
++
++	if (readl_poll_timeout(top + 0x900, val, val & BIT(0), 100, 200000))
++		return -ETIMEDOUT;
++
++	writew(0x270, pma + 0xa0);
++
++	val = readw(pma + 0x98);
++	val |= BIT(4);
++	writew(val, pma + 0x98);
++
++	val = readw(pma + 0x18000);
++	val |= BIT(0);
++	writew(val, pma + 0x18000);
++
++	val = readl(top + 0x4);
++	val |= BIT(28);
++	writel(val, top + 0x4);
++	return 0;
++}
++#endif
+diff --git a/drivers/pmdomain/sunxi/t736-display-power.c b/drivers/pmdomain/sunxi/t736-display-power.c
+--- a/drivers/pmdomain/sunxi/t736-display-power.c
++++ b/drivers/pmdomain/sunxi/t736-display-power.c
+@@ -1,5 +1,5 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+-/* T736 DE_SYS and VO1 PCK600 only. Delay values: Tina pck600_domains.c.
++/* T736 display and PCIe PCK600 domains. Delay values: Tina pck600_domains.c.
+  * Power policy sequence: upstream sun55i-pck600.c / ARM PPU specification.
+  * Other PCK domains remain entirely outside this driver's register resources.
+  */
+@@ -30,12 +30,14 @@
+ 	static const char * const names[]={ "t736-de-sys", "t736-vo1" };
+ 	struct display_power *p;
+ 	struct clk *clk;
++	bool pcie = of_device_is_compatible(pdev->dev.of_node, "allwinner,t736-pcie-power");
++	unsigned int count = pcie ? 1 : ARRAY_SIZE(names);
+ 	int i,ret;
+ 	p=devm_kzalloc(&pdev->dev,sizeof(*p),GFP_KERNEL);
+ 	if (!p) return -ENOMEM;
+ 	clk=devm_clk_get_enabled(&pdev->dev,NULL);
+ 	if (IS_ERR(clk)) return PTR_ERR(clk);
+-	for (i=0;i<2;i++) {
++	for (i=0;i<count;i++) {
+ 		struct display_pd *pd=&p->pd[i];
+ 		pd->base=devm_platform_ioremap_resource(pdev,i);
+ 		if (IS_ERR(pd->base)) { ret=PTR_ERR(pd->base); goto remove; }
+@@ -44,15 +46,15 @@
+ 		writel(0x08080808,pd->base+0xc00);
+ 		writel(0x808,pd->base+0xc04);
+ 		writel(8,pd->base+0xc10);
+-		pd->genpd.name=names[i]; pd->genpd.power_on=display_power_on;
++		pd->genpd.name=pcie ? "t736-pcie" : names[i]; pd->genpd.power_on=display_power_on;
+ 		pd->genpd.flags=GENPD_FLAG_ALWAYS_ON;
+ 		ret=display_power_on(&pd->genpd);
+-		if (ret) { dev_err(&pdev->dev,"%s power-on timeout\n",names[i]); goto remove; }
++		if (ret) { dev_err(&pdev->dev,"%s power-on timeout\n",pd->genpd.name); goto remove; }
+ 		ret=pm_genpd_init(&pd->genpd,NULL,false);
+ 		if (ret) goto remove;
+ 		p->domains[i]=&pd->genpd;
+ 	}
+-	p->data.domains=p->domains; p->data.num_domains=2;
++	p->data.domains=p->domains; p->data.num_domains=count;
+ 	ret=of_genpd_add_provider_onecell(pdev->dev.of_node,&p->data);
+ 	if (!ret) return 0;
+ remove:
+@@ -60,7 +62,8 @@
+ 	return ret;
+ }
+ static const struct of_device_id display_power_match[]={
+-	{ .compatible="allwinner,t736-display-power" }, { }
++	{ .compatible="allwinner,t736-display-power" },
++	{ .compatible="allwinner,t736-pcie-power" }, { }
+ };
+ static struct platform_driver display_power_driver={
+ 	.probe=display_power_probe,

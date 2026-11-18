@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-18",
+  "kernel_release": "6.18.63-t736-hw-v31",
+  "upstream_linux_revision": "1cdda838e8475edf89b73ff0cc952005dd0b1fa7",
+  "verified_linux_board_source_files": 317,
+  "verified_pvr_source_files": 16,
+  "wireless_patch_sha256": "6b62ff8fbfa00de59af6fa7318436bda8f6f3e8f1ef1a57b2d38371cc7dd70be",
+  "wireless_fragment_sha256": "cdd6be901424f6e812f4456cd0049664c2f79e350b435e68723952c8df57fba0",
+  "checks": [
+    "git apply --check and patch --dry-run --fuzz=0 on the reconstructed RC1 kernel source",
+    "built SDIO and clock drivers, kernel image, modules, DTB and PowerVR from the candidate tree",
+    "a second build used build_atlasa1_release_kernel.sh --wireless-v31, a verified upstream source archive, Tina SDK and an empty output directory",
+    "kernel configuration, uncompressed Image and DTB match byte-for-byte between builds",
+    "both modules have vermagic 6.18.63-t736-hw-v31 SMP mod_unload aarch64 and matching executable .text",
+    "extracted Debian package contains hci_uart.ko, bluetooth.ko, cfg80211.ko and the candidate DTB",
+    "isolated staging verified the three original RC1 boot files by SHA-256 after candidate initrd generation"
+  ],
+  "identical_artifacts_sha256": {
+    "Image": "d193215b55252278111660619457e007e6eae193441a4a42a4b9f935b31db90d",
+    "t736-gpu-candidate.dtb": "ce4b40574d3a25db03665debb4df7eef57c14ecdf1e5cb06b4fa6d169bf4e12c",
+    "pvrsrvkm.ko:.text": "acee628ed46bd50c24d6ef33a7bdbb28534a501a90af0c502056730fc08f8675"
+  },
+  "staged_trial_sha256": {
+    "linux-image-6.18.63-t736-hw-v31_6.18.63-31_arm64.deb": "9e6714c2480a37760ac7d61b6b15ffb56f492f2920b687a12bc32a5ac5f14ba7",
+    "pvrsrvkm.ko": "7bb02f16ab38441703558983d41833edab3edf76b6893caf4ee2edd143873d75",
+    "vmlinuz": "b2aaa8c22b44deff3701ea296728847d7106fa0cef80161fa58b5e1a3b4fe7d0",
+    "initrd.img": "ccd348b172824feb25b3bea328968e947053f7a1bd3500b3d159565e209bd5c0"
+  },
+  "independent_clean_build_sha256": {
+    "linux-image-6.18.63-t736-hw-v31_6.18.63-31_arm64.deb": "ae3f5a6ead791eccb3422d24265c9ca6be8dc0f959d12b4f09d9cbeb1ddc139d",
+    "pvrsrvkm.ko": "6e1aa0bee78ed752be08bc7a543412531768650c0cf03fd54ae13f02534227f0"
+  },
+  "physical_board_power": {
+    "boot": "first cold boot after FES flash of Ubuntu 26.04 RC1",
+    "spl_log": "BOARD power rc=0 DCDC1 en=ff voltage=17 DC1SW1=17->1f DLDO2=d->d LDO_EN3=40->42",
+    "swout2_enabled": true,
+    "dldo5_enabled_at_spl_exit": false,
+    "source": "T736 core schematic sheets 3 and 7, reference carrier sheets 10 and 22, Tina axp2101-regulator.c AXP8191 table"
+  },
+  "scope": "Build and staging evidence. SDIO function enumeration, module identity, Wi-Fi connectivity and Bluetooth HCI traffic require board runtime measurements."
+}

@@ -1,0 +1,48 @@
+diff --git a/drivers/pci/controller/dwc/pcie-t736-combo1.h b/drivers/pci/controller/dwc/pcie-t736-combo1.h
+--- a/drivers/pci/controller/dwc/pcie-t736-combo1.h
++++ b/drivers/pci/controller/dwc/pcie-t736-combo1.h
+@@ -9,6 +9,12 @@
+ static int t736_combo1_internal_refclk(void __iomem *top, void __iomem *pma)
+ {
+ 	u32 val;
++
++	/* The COMBO1 common and lane reset inputs are independently sampled. */
++	writel(readl(top + 0x100) & ~BIT(0), top + 0x100);
++	writel(readl(top) & ~BIT(0), top);
++	readl(top);
++	usleep_range(1000, 1500);
+ 
+ 	writel(0x01100001, top + 0x4);
+ 
+@@ -136,6 +142,8 @@
+ 
+ 	val = readl(top);
+ 	writel(val | 0x1, top);
++	readl(top);
++	usleep_range(1000, 1500);
+ 	val = readl(top + 0x100);
+ 	writel(val | 0x1, top + 0x100);
+ 
+diff --git a/drivers/pci/controller/dwc/pcie-t736.c b/drivers/pci/controller/dwc/pcie-t736.c
+--- a/drivers/pci/controller/dwc/pcie-t736.c
++++ b/drivers/pci/controller/dwc/pcie-t736.c
+@@ -244,9 +244,16 @@
+ 		update_bits(host->reg[i], setup[i].mask, setup[i].value);
+ 	}
+ 	ret = t736_combo1_internal_refclk(host->combo, host->pma);
+-	if (ret)
+-		dev_err(dev, "COMBO1 internal REFCLK lock timed out (%d)\n", ret);
+-	else {
++	if (ret) {
++		dev_err(dev, "COMBO1 PMA common-ready timeout: ctrl=%08x ref=%08x lane=%08x status=%08x pma44=%04x\n",
++			readl(host->combo), readl(host->combo + 4),
++			readl(host->combo + 0x100), readl(host->combo + 0x900),
++			readw(host->pma + 0x44));
++		for (i = 0; i < ARRAY_SIZE(setup); i++)
++			dev_err(dev, "%s originally %08x, readback %08x; mask %08x, requested %08x\n",
++				setup[i].name, host->saved[i], readl(host->reg[i]),
++				setup[i].mask, setup[i].value);
++	} else {
+ 		dev_info(dev, "COMBO1 internal REFCLK locked\n");
+ 		update_bits(host->app + APP_LTSSM, BIT(0), 0);
+ 		ret = dw_pcie_host_init(&host->pci.pp);

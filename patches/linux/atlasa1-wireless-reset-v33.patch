@@ -1,0 +1,33 @@
+diff --git a/drivers/clk/clk-t736-wireless.c b/drivers/clk/clk-t736-wireless.c
+index b1a155d..c5674a5 100644
+--- a/drivers/clk/clk-t736-wireless.c
++++ b/drivers/clk/clk-t736-wireless.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /* T736 SMHC1 and UART1 clock/reset registers on the AtlasA1 board. */
+ #include <linux/clk-provider.h>
++#include <linux/delay.h>
+ #include <linux/io.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+@@ -43,7 +44,20 @@ static int wireless_reset_deassert(struct reset_controller_dev *rc, unsigned lon
+ 	return wireless_reset_set(rc, id, false);
+ }
+ 
++/* The MMC consumer requests a reset pulse before enabling its bus clock. */
++static int wireless_reset_pulse(struct reset_controller_dev *rc, unsigned long id)
++{
++	int ret;
++
++	ret = wireless_reset_assert(rc, id);
++	if (ret)
++		return ret;
++	udelay(10);
++	return wireless_reset_deassert(rc, id);
++}
++
+ static const struct reset_control_ops wireless_reset_ops = {
++	.reset = wireless_reset_pulse,
+ 	.assert = wireless_reset_assert,
+ 	.deassert = wireless_reset_deassert,
+ };

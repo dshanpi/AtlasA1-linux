@@ -1,0 +1,348 @@
+diff --git a/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi b/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi
+new file mode 100644
+index 0000000..8367e54
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi
+@@ -0,0 +1,108 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* AtlasA1 SDIO1 and Bluetooth UART. The SDIO ID selects the module driver. */
++&{/aliases} {
++	mmc1 = &wifi_sdio;
++	serial1 = &bt_uart;
++};
++
++&{/pinctrl@2000000} {
++	vcc-pg-supply = <&wifi_io>;
++
++	sdio_clk_pin: sdio-clk-pin {
++		pins = "PG0";
++		function = "sdc1";
++		allwinner,pinmux = <2>;
++		drive-strength = <20>;
++		bias-pull-up;
++	};
++	sdio_data_pins: sdio-data-pins {
++		pins = "PG1", "PG2", "PG3", "PG4", "PG5";
++		function = "sdc1";
++		allwinner,pinmux = <2>;
++		drive-strength = <10>;
++		bias-pull-up;
++	};
++	bt_uart_pins: bt-uart-pins {
++		pins = "PG6", "PG7", "PG8", "PG9";
++		function = "uart1";
++		allwinner,pinmux = <2>;
++		drive-strength = <10>;
++		bias-pull-up;
++	};
++};
++
++&{/pinctrl@7025000} {
++	vcc-pm-supply = <&wifi_io>;
++};
++
++/ {
++	/* Firmware programs the shared AXP8191 DCDC1/DLDO5 rails. */
++	wifi_vbat: regulator-wifi-vbat {
++		compatible = "regulator-fixed";
++		regulator-name = "wifi-vbat";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++	wifi_io: regulator-wireless-io {
++		compatible = "regulator-fixed";
++		regulator-name = "wireless-io";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++	wireless_ccu: clock-controller@2002d10 {
++		compatible = "allwinner,t736-wireless-ccu";
++		reg = <0 0x02002d10 0 4>, <0 0x02002d1c 0 4>, <0 0x02002e04 0 4>;
++		/* SMHC1 mux, SMHC1 bus gate, fixed 24 MHz APB-UART. */
++		clocks = <&{/osc24m}>, <&{/dcxo}>, <&{/osc24m}>;
++		#clock-cells = <1>;
++		#reset-cells = <1>;
++	};
++	wifi_power: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&{/pinctrl@7025000} 1 4 1>;
++		post-power-on-delay-ms = <200>;
++		power-off-delay-us = <20000>;
++	};
++	wifi_sdio: mmc@4021000 {
++		compatible = "allwinner,t736-sdio";
++		reg = <0 0x04021000 0 0x1000>;
++		interrupts = <0 162 4>;
++		clocks = <&wireless_ccu 1>, <&wireless_ccu 0>;
++		clock-names = "ahb", "mmc";
++		resets = <&wireless_ccu 0>;
++		reset-names = "ahb";
++		pinctrl-names = "default";
++		pinctrl-0 = <&sdio_clk_pin &sdio_data_pins>;
++		bus-width = <4>;
++		max-frequency = <12000000>;
++		vmmc-supply = <&wifi_vbat>;
++		vqmmc-supply = <&wifi_io>;
++		mmc-pwrseq = <&wifi_power>;
++		non-removable;
++		no-sd;
++		no-mmc;
++		cap-sdio-irq;
++	};
++	bt_uart: serial@2501000 {
++		compatible = "snps,dw-apb-uart";
++		reg = <0 0x02501000 0 0x400>;
++		interrupts = <0 3 4>;
++		reg-shift = <2>;
++		reg-io-width = <4>;
++		clocks = <&{/osc24m}>, <&wireless_ccu 2>;
++		clock-names = "baudclk", "apb_pclk";
++		resets = <&wireless_ccu 1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_uart_pins>;
++		uart-has-rtscts;
++	};
++	bluetooth-power {
++		compatible = "rfkill-gpio";
++		label = "atlasa1-bluetooth";
++		default-blocked;
++		radio-type = "bluetooth";
++		shutdown-gpios = <&{/pinctrl@7025000} 1 0 0>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts b/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts
+index 845d3d0..c8d6ec2 100644
+--- a/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts
++++ b/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dts
+@@ -600,3 +600,4 @@ cluster1 {
+ };
+ 
+ #include "t736-media-v27.dtsi"
++#include "atlasa1-wireless-v31.dtsi"
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 192f996..ae705ab 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -594,3 +594,8 @@ config CLK_T736_GMAC
+ 	bool "T736 GMAC0 initial clock/reset subset"
+ 	depends on ARCH_SUNXI && OF && COMMON_CLK
+ 	select RESET_CONTROLLER
++
++config CLK_T736_WIRELESS
++	bool "T736 SMHC1 and UART1 clocks and resets"
++	depends on ARCH_SUNXI && OF && COMMON_CLK
++	select RESET_CONTROLLER
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index 03d763a..e012ce5 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -178,3 +178,4 @@ obj-$(CONFIG_AW_DRM) += clk-t736-display.o
+ obj-$(CONFIG_AW_DRM) += clk-t736-gpu.o
+ 
+ obj-$(CONFIG_VIDEO_T736_CEDAR_WC) += clk-t736-ve.o
++obj-$(CONFIG_CLK_T736_WIRELESS) += clk-t736-wireless.o
+diff --git a/drivers/clk/clk-t736-wireless.c b/drivers/clk/clk-t736-wireless.c
+new file mode 100644
+index 0000000..b1a155d
+--- /dev/null
++++ b/drivers/clk/clk-t736-wireless.c
+@@ -0,0 +1,123 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* T736 SMHC1 and UART1 clock/reset registers on the AtlasA1 board. */
++#include <linux/clk-provider.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include <linux/spinlock.h>
++
++struct t736_wireless_ccu {
++	struct reset_controller_dev reset;
++	void __iomem *bus[2];
++	struct clk_divider divider;
++	struct clk_gate gate;
++	spinlock_t lock;
++};
++
++static int wireless_reset_set(struct reset_controller_dev *rc, unsigned long id,
++			      bool asserted)
++{
++	struct t736_wireless_ccu *ccu = container_of(rc, struct t736_wireless_ccu, reset);
++	unsigned long flags;
++	u32 value;
++
++	if (id >= ARRAY_SIZE(ccu->bus))
++		return -EINVAL;
++
++	spin_lock_irqsave(&ccu->lock, flags);
++	value = readl(ccu->bus[id]);
++	writel(asserted ? value & ~BIT(16) : value | BIT(16), ccu->bus[id]);
++	spin_unlock_irqrestore(&ccu->lock, flags);
++	return 0;
++}
++
++static int wireless_reset_assert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return wireless_reset_set(rc, id, true);
++}
++
++static int wireless_reset_deassert(struct reset_controller_dev *rc, unsigned long id)
++{
++	return wireless_reset_set(rc, id, false);
++}
++
++static const struct reset_control_ops wireless_reset_ops = {
++	.assert = wireless_reset_assert,
++	.deassert = wireless_reset_deassert,
++};
++
++static int wireless_ccu_probe(struct platform_device *pdev)
++{
++	static const char * const bus_names[] = { "t736-smhc1-bus", "t736-uart1-bus" };
++	const struct clk_parent_data sys24m = { .index = 0 };
++	struct device *dev = &pdev->dev;
++	struct t736_wireless_ccu *ccu;
++	struct clk_hw_onecell_data *clks;
++	void __iomem *module;
++	unsigned int i;
++	int ret;
++
++	ccu = devm_kzalloc(dev, sizeof(*ccu), GFP_KERNEL);
++	clks = devm_kzalloc(dev, struct_size(clks, hws, 3), GFP_KERNEL);
++	if (!ccu || !clks)
++		return -ENOMEM;
++	spin_lock_init(&ccu->lock);
++	module = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(module))
++		return PTR_ERR(module);
++
++	/* Select sys24M and N=1. The programmable M divider supplies
++	 * 800 kHz (identification) to 24 MHz (12 MHz SDR card clock).
++	 */
++	writel(readl(module) & ~(BIT(31) | GENMASK(26, 24) | GENMASK(12, 8)),
++	       module);
++	ccu->divider.reg = module;
++	ccu->divider.width = 5;
++	ccu->divider.lock = &ccu->lock;
++	ccu->gate.reg = module;
++	ccu->gate.bit_idx = 31;
++	ccu->gate.lock = &ccu->lock;
++	clks->num = 3;
++	clks->hws[0] = devm_clk_hw_register_composite_pdata(dev, "t736-smhc1",
++			&sys24m, 1, NULL, NULL, &ccu->divider.hw, &clk_divider_ops,
++			&ccu->gate.hw, &clk_gate_ops, 0);
++	if (IS_ERR(clks->hws[0]))
++		return PTR_ERR(clks->hws[0]);
++
++	for (i = 0; i < ARRAY_SIZE(ccu->bus); i++) {
++		struct clk_parent_data parent = { .index = i + 1 };
++
++		ccu->bus[i] = devm_platform_ioremap_resource(pdev, i + 1);
++		if (IS_ERR(ccu->bus[i]))
++			return PTR_ERR(ccu->bus[i]);
++		clks->hws[i + 1] = devm_clk_hw_register_gate_parent_data(dev,
++				bus_names[i], &parent, 0, ccu->bus[i], 0, 0, &ccu->lock);
++		if (IS_ERR(clks->hws[i + 1]))
++			return PTR_ERR(clks->hws[i + 1]);
++	}
++
++	ccu->reset.owner = THIS_MODULE;
++	ccu->reset.ops = &wireless_reset_ops;
++	ccu->reset.nr_resets = ARRAY_SIZE(ccu->bus);
++	ccu->reset.of_node = dev->of_node;
++	ret = devm_reset_controller_register(dev, &ccu->reset);
++	if (ret)
++		return ret;
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clks);
++}
++
++static const struct of_device_id wireless_ccu_match[] = {
++	{ .compatible = "allwinner,t736-wireless-ccu" }, { }
++};
++
++static struct platform_driver wireless_ccu_driver = {
++	.probe = wireless_ccu_probe,
++	.driver = {
++		.name = "t736-wireless-ccu",
++		.of_match_table = wireless_ccu_match,
++	},
++};
++builtin_platform_driver(wireless_ccu_driver);
+diff --git a/drivers/mmc/host/sunxi-mmc.c b/drivers/mmc/host/sunxi-mmc.c
+index 8dbcff5..d7d2f82 100644
+--- a/drivers/mmc/host/sunxi-mmc.c
++++ b/drivers/mmc/host/sunxi-mmc.c
+@@ -246,6 +246,8 @@ struct sunxi_idma_des {
+ struct sunxi_mmc_cfg {
+ 	u32 idma_des_size_bits;
+ 	u32 idma_des_shift;
++	u32 fifo_threshold;
++	bool v5p3x_timings;
+ 	const struct sunxi_mmc_clk_delay *clk_delays;
+ 
+ 	/* does the IP block support autocalibration? */
+@@ -333,7 +335,7 @@ static int sunxi_mmc_init_host(struct sunxi_mmc_host *host)
+ 	 *
+ 	 * TODO: sun9i has a larger FIFO and supports higher trigger values
+ 	 */
+-	mmc_writel(host, REG_FTRGL, 0x20070008);
++	mmc_writel(host, REG_FTRGL, host->cfg->fifo_threshold ?: 0x20070008);
+ 	/* Maximum timeout value */
+ 	mmc_writel(host, REG_TMOUT, 0xffffffff);
+ 	/* Unmask SDIO interrupt if needed */
+@@ -800,6 +802,10 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
+ 		}
+ 	}
+ 
++	/* In v5p3x mode the card clock has an additional fixed /2. */
++	if (host->cfg->v5p3x_timings)
++		clock *= 2;
++
+ 	rate = clk_round_rate(host->clk_mmc, clock);
+ 	if (rate < 0) {
+ 		dev_err(mmc_dev(mmc), "error rounding clk to %d: %ld\n",
+@@ -825,6 +831,8 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
+ 
+ 	/* update card clock rate to account for internal divider */
+ 	rate /= div;
++	if (host->cfg->v5p3x_timings)
++		rate /= 2;
+ 
+ 	/*
+ 	 * Configure the controller to use the new timing mode if needed.
+@@ -835,6 +843,13 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
+ 	if (host->use_new_timings) {
+ 		/* Don't touch the delay bits */
+ 		rval = mmc_readl(host, REG_SD_NTSR);
++		if (host->cfg->v5p3x_timings) {
++			u32 drive = mmc_readl(host, REG_DRV_DL);
++
++			/* T736 identification and SDR <= 26 MHz use the same phases. */
++			mmc_writel(host, REG_DRV_DL, (drive & ~BIT(17)) | BIT(16));
++			rval &= ~(GENMASK(9, 8) | GENMASK(5, 4));
++		}
+ 		rval |= SDXC_2X_TIMING_MODE;
+ 		mmc_writel(host, REG_SD_NTSR, rval);
+ 	}
+@@ -1207,7 +1222,17 @@ static const struct sunxi_mmc_cfg sun50i_a100_emmc_cfg = {
+ 	.needs_new_timings = true,
+ };
+ 
++static const struct sunxi_mmc_cfg t736_sdio_cfg = {
++	.idma_des_size_bits = 12,
++	.idma_des_shift = 2,
++	.fifo_threshold = 0x200700f8,
++	.v5p3x_timings = true,
++	.mask_data0 = true,
++	.needs_new_timings = true,
++};
++
+ static const struct of_device_id sunxi_mmc_of_match[] = {
++	{ .compatible = "allwinner,t736-sdio", .data = &t736_sdio_cfg },
+ 	{ .compatible = "allwinner,sun4i-a10-mmc", .data = &sun4i_a10_cfg },
+ 	{ .compatible = "allwinner,sun5i-a13-mmc", .data = &sun5i_a13_cfg },
+ 	{ .compatible = "allwinner,sun7i-a20-mmc", .data = &sun7i_a20_cfg },

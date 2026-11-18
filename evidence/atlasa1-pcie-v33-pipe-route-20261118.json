@@ -1,0 +1,42 @@
+{
+  "board": "AtlasA1",
+  "kernel": "6.18.63-t736-hw-v33",
+  "root": "/dev/mmcblk0p4 ext4",
+  "connector": "J58 empty, confirmed by operator",
+  "cold_boot_with_original_driver": {
+    "bound": false,
+    "error": -110,
+    "combo1_control": "0x00000001",
+    "refclk_control": "0x01100001",
+    "lane0_control": "0x00000001",
+    "pma_common_status": "0x00000000",
+    "pma_register_44": "0x001a",
+    "pipe_route_before_config": "0x000000ff",
+    "pipe_route_after_config": "0x000000fd"
+  },
+  "trial_on_the_same_boot": {
+    "method": "Load the v33 compiled PCIe driver as a temporary module against the unbound platform device, with a distinct driver name and a wider PIPE route field. No GPU, USB, PMIC or root-filesystem reconfiguration.",
+    "module_sha256": "9dfba204b2d64b0ca6cef7be6aac2fa8c6015dcc0550d211b4d236a2b14d83c2",
+    "source_patch": "atlasa1-pcie-pipe-map-v34.patch",
+    "source_patch_sha256": "14f415fb91158c88ce68d6e296f2242b81717f8f995e60ba4ef9c3285880c4b2",
+    "route_field": "bits 3:0, value 1 (PCIe0 lane 0)",
+    "pipe_route_after_config": "0x000000f1",
+    "refclk_control_after_ready": "0x11100001",
+    "pma_common_ready": true,
+    "driver_bound": "t736-pcie-pipe-test",
+    "bdf": "0000:00:00.0",
+    "vendor_device": "1f6d:abcd",
+    "class": "0x060400",
+    "iatu": {"outbound": 16, "inbound": 16, "alignment_bytes": 4096},
+    "edma_advertised_channels": {"write": 4, "read": 4},
+    "scoped_rescan": "success",
+    "downstream_devices": 0,
+    "display_manager_service": "active",
+    "pvrsrvkm": "loaded"
+  },
+  "test_limits": [
+    "Gen1 x1 was configured. The empty port's sysfs values do not establish negotiated endpoint speed or lane width.",
+    "Endpoint enumeration, IRQ delivery to an endpoint driver, DMA and application I/O need a populated slot.",
+    "Electrical slot voltage, REFCLK waveform and signal integrity were not measured."
+  ]
+}

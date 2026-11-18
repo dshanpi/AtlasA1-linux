@@ -1,0 +1,29 @@
+{
+  "board": "AtlasA1",
+  "slot": "J58 unpopulated, confirmed by operator",
+  "boot": {
+    "flow": "One-shot U-Boot from eMMC with a separate Image, initrd and DTB",
+    "running_kernel": "6.18.63-t736-hw-v32",
+    "root": "/dev/mmcblk0p4 ext4",
+    "initrd_sha256": "a348a14ebb7eb98f452287b872abe3fea12dcbe6d6df285c0c1e8342f2108c02",
+    "kernel_dtb_and_pvr_build_record": "atlasa1-pcie-v32-build-20261118.json",
+    "default_rc1_kernel_initrd_and_dtb_hashes_match_before_and_after_install": true
+  },
+  "checks": {
+    "pcie_platform_node_present": true,
+    "phy_pma_common_ready": false,
+    "driver_bound": false,
+    "root_port_enumerated": false,
+    "scoped_root_port_rescan": "unavailable because the root port was not registered",
+    "endpoint_operation": "untested",
+    "display_manager_service": "active",
+    "pvrsrvkm_loaded": true,
+    "cedar_device_present": true
+  },
+  "kernel_messages": [
+    "[    1.458810] t736-pcie 6000000.pcie: COMBO1 internal REFCLK lock timed out (-110)",
+    "[    1.464930] t736-pcie 6000000.pcie: probe with driver t736-pcie failed with error -110",
+    "[   11.587549] t736-display-power 7067000.power-controller: sync_state() pending due to 6000000.pcie"
+  ],
+  "interpretation": "The PHY common-ready status bit remained clear through the bounded 200 ms poll before DWC registration. These data do not establish an analog reference-clock frequency or voltage."
+}

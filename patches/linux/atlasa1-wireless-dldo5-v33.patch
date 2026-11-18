@@ -1,0 +1,172 @@
+diff --git a/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi b/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi
+index 8367e54..ed87504 100644
+--- a/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi
++++ b/arch/arm64/boot/dts/allwinner/atlasa1-wireless-v31.dtsi
+@@ -35,8 +35,17 @@
+ 	vcc-pm-supply = <&wifi_io>;
+ };
+ 
++&{/regulator@7083000} {
++	wifi_io: regulator-dldo5 {
++		regulator-name = "axp8191-wireless-io";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++};
++
+ / {
+-	/* Firmware programs the shared AXP8191 DCDC1/DLDO5 rails. */
++	/* SWOUT2 is already enabled by the PMIC at reset on this board. */
+ 	wifi_vbat: regulator-wifi-vbat {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "wifi-vbat";
+@@ -44,13 +53,6 @@
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-always-on;
+ 	};
+-	wifi_io: regulator-wireless-io {
+-		compatible = "regulator-fixed";
+-		regulator-name = "wireless-io";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		regulator-always-on;
+-	};
+ 	wireless_ccu: clock-controller@2002d10 {
+ 		compatible = "allwinner,t736-wireless-ccu";
+ 		reg = <0 0x02002d10 0 4>, <0 0x02002d1c 0 4>, <0 0x02002e04 0 4>;
+diff --git a/drivers/regulator/t736-gpu-supply.c b/drivers/regulator/t736-gpu-supply.c
+index a971697..b4cebee 100644
+--- a/drivers/regulator/t736-gpu-supply.c
++++ b/drivers/regulator/t736-gpu-supply.c
+@@ -154,7 +154,7 @@ ATTRIBUTE_GROUPS(t736_pmic);
+ static int pmic_write_checked(struct t736_gpu_supply *p, u8 reg, u8 value)
+ {
+ 	u8 check;
+-	if (reg != 0x16 && reg != 0x10)
++	if (reg != 0x16 && reg != 0x10 && reg != 0x22 && reg != 0x38)
+ 		return -EPERM;
+ 	if (t736_twi_write8(&p->bus, 0x36, reg, value) ||
+ 	    pmic_read(p, reg, &check))
+@@ -243,6 +243,110 @@ static const struct regulator_desc gpu_supply_desc = {
+ 	.n_linear_ranges = ARRAY_SIZE(gpu_voltage_ranges),
+ 	.enable_time = 1000,
+ };
++/*
++ * AXP8191 DLDO5 supplies the PG and PM pads and WLAN VIO. The stock
++ * board's 1.8 V configuration uses selector 13 (500 mV + 13 * 100 mV).
++ * The enable register also contains ELDO1, the live LPDDR4x VDDQ rail.
++ */
++#define DLDO5_ENABLE_REG 0x22
++#define DLDO5_ENABLE BIT(4)
++#define DLDO5_VOLTAGE_REG 0x38
++#define DLDO5_VSEL GENMASK(4, 0)
++#define DLDO5_1V8 13
++
++static int dldo5_enable_1v8(struct t736_gpu_supply *p)
++{
++	u8 enable, voltage, dcdc_enable, dcdc1;
++	int ret;
++
++	mutex_lock(&p->lock);
++	ret = pmic_read(p, 0x10, &dcdc_enable);
++	if (!ret)
++		ret = pmic_read(p, 0x12, &dcdc1);
++	if (!ret)
++		ret = pmic_read(p, DLDO5_ENABLE_REG, &enable);
++	if (!ret)
++		ret = pmic_read(p, DLDO5_VOLTAGE_REG, &voltage);
++	if (ret)
++		goto out;
++
++	if (!(dcdc_enable & BIT(0)) || (dcdc1 & 0x1f) != 23 ||
++	    (voltage & DLDO5_VSEL) > 29) {
++		ret = -ERANGE;
++		goto out;
++	}
++	if (enable & DLDO5_ENABLE) {
++		ret = (voltage & DLDO5_VSEL) == DLDO5_1V8 ? 0 : -ERANGE;
++		goto out;
++	}
++	if ((voltage & DLDO5_VSEL) != DLDO5_1V8) {
++		ret = pmic_write_checked(p, DLDO5_VOLTAGE_REG,
++					 (voltage & ~DLDO5_VSEL) | DLDO5_1V8);
++		if (ret)
++			goto out;
++	}
++	ret = pmic_write_checked(p, DLDO5_ENABLE_REG, enable | DLDO5_ENABLE);
++	if (!ret) {
++		usleep_range(1000, 1500);
++		dev_info(p->dev, "DLDO5 1800000 uV: voltage %02x->%02x enable %02x->%02x\n",
++			 voltage, (u8)((voltage & ~DLDO5_VSEL) | DLDO5_1V8),
++			 enable, (u8)(enable | DLDO5_ENABLE));
++	}
++out:
++	mutex_unlock(&p->lock);
++	return ret;
++}
++
++static int dldo5_enable(struct regulator_dev *rdev)
++{
++	return dldo5_enable_1v8(rdev_get_drvdata(rdev));
++}
++
++static int dldo5_is_enabled(struct regulator_dev *rdev)
++{
++	struct t736_gpu_supply *p = rdev_get_drvdata(rdev);
++	u8 value;
++	int ret;
++
++	mutex_lock(&p->lock);
++	ret = pmic_read(p, DLDO5_ENABLE_REG, &value);
++	mutex_unlock(&p->lock);
++	return ret ? ret : !!(value & DLDO5_ENABLE);
++}
++
++static const struct regulator_ops dldo5_ops = {
++	.enable = dldo5_enable,
++	.is_enabled = dldo5_is_enabled,
++};
++
++static const struct regulator_desc dldo5_desc = {
++	.name = "t736-axp8191-dldo5",
++	.owner = THIS_MODULE,
++	.type = REGULATOR_VOLTAGE,
++	.ops = &dldo5_ops,
++	.n_voltages = 1,
++	.fixed_uV = 1800000,
++};
++
++static int register_wireless_io(struct t736_gpu_supply *p)
++{
++	struct device_node *node __free(device_node) =
++		of_get_child_by_name(p->dev->of_node, "regulator-dldo5");
++	struct regulator_config conf = { .dev = p->dev, .of_node = node, .driver_data = p };
++	int ret;
++
++	if (!node)
++		return 0;
++
++	conf.init_data = of_get_regulator_init_data(p->dev, node, &dldo5_desc);
++	if (!conf.init_data)
++		return -EINVAL;
++	ret = dldo5_enable_1v8(p);
++	if (ret)
++		return ret;
++	return PTR_ERR_OR_ZERO(devm_regulator_register(p->dev, &dldo5_desc, &conf));
++}
++
+ static int gpu_supply_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -319,6 +423,10 @@ static int gpu_supply_probe(struct platform_device *pdev)
+ 	mutex_unlock(&cpu_supply_owner_lock);
+ 	if (ret)
+ 		return ret;
++	/* The WLAN pad rail has separate consumers from the registered GPU rail. */
++	ret = register_wireless_io(p);
++	if (ret)
++		dev_err(dev, "wireless DLDO5 registration failed: %d\n", ret);
+ 	return 0;
+ }
+ static const struct of_device_id gpu_supply_match[] = {

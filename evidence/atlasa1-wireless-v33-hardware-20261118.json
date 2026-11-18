@@ -1,0 +1,356 @@
+{
+  "date": "2026-11-18",
+  "board": "AtlasA1 / Allwinner T736",
+  "operating_system": "Armbian Ubuntu 26.04 arm64",
+  "boot": "temporary v32 and v33 from eMMC; RC1 boot aliases retained",
+  "v32": {
+    "kernel": "6.18.63-t736-hw-v32",
+    "hosts": [
+      "mmc0"
+    ],
+    "sdio_functions": [],
+    "observed": [
+      "/sys/class/rfkill/rfkill0/name atlasa1-bluetooth soft=1 hard=0",
+      "2501000.serial: ttyS1 at MMIO 0x2501000 (irq = 410, base_baud = 1500000) is a 16550A",
+      "sunxi-mmc 4021000.mmc: Couldn't reset the MMC controller (-524)",
+      "sunxi-mmc 4021000.mmc: probe with driver sunxi-mmc failed with error -524"
+    ],
+    "hci": {
+      "protocol": "H4",
+      "baud": 115200,
+      "flow_control": "RTS/CTS",
+      "observation_window_seconds": 7,
+      "controller_ids": 0,
+      "controller_to_host_hci_events": 0,
+      "records": [
+        "Index list with 0 items",
+        "< HCI Command: Reset (0x03|0x0003) plen 0                    #1 [hci0] 0.634857",
+        "No H4 controller response at 115200"
+      ],
+      "rfkill_before_and_restored": "soft blocked"
+    }
+  },
+  "v33": {
+    "kernel": "6.18.63-t736-hw-v33",
+    "hosts": [
+      "mmc0",
+      "mmc1"
+    ],
+    "sdio_functions": [],
+    "wifi_interfaces": [],
+    "observed": [
+      "signal voltage:\t1 (1.80 V)",
+      "/sys/class/rfkill/rfkill0/name atlasa1-bluetooth soft=1 hard=0",
+      "t736-gpu-supply 7083000.regulator: DLDO5 1800000 uV: voltage 0d->0d enable 42->52",
+      "2501000.serial: ttyS1 at MMIO 0x2501000 (irq = 416, base_baud = 1500000) is a 16550A",
+      "sunxi-mmc 4021000.mmc: initialized, max. request size: 1024 KB, uses new timings mode",
+      "mmc1: Failed to initialize a non-removable card"
+    ],
+    "hci": {
+      "protocol": "H4",
+      "baud": 115200,
+      "flow_control": "RTS/CTS",
+      "observation_window_seconds": 7,
+      "controller_ids": 0,
+      "controller_to_host_hci_events": 0,
+      "records": [
+        "Index list with 0 items",
+        "< HCI Command: Reset (0x03|0x0003) plen 0                    #1 [hci0] 0.742439",
+        "No H4 controller response at 115200"
+      ],
+      "rfkill_before_and_restored": "soft blocked"
+    },
+    "sdio_trials": [
+      {
+        "mode": "200 ms stock delay, WLAN enabled",
+        "requests": [
+          {
+            "op": 52,
+            "arg": "00000c00",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 52,
+            "arg": "80000c08",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          }
+        ],
+        "restored_driver": "/sys/bus/platform/drivers/sunxi-mmc",
+        "root_device_after": "/dev/mmcblk0p4"
+      },
+      {
+        "mode": "dedicated RTC 32 kHz gate enabled for this trial",
+        "requests": [
+          {
+            "op": 52,
+            "arg": "00000c00",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 52,
+            "arg": "80000c08",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000010",
+            "rtc32out": "00000001",
+            "irq": "00000104",
+            "response_0": "00000000"
+          }
+        ],
+        "restored_driver": "/sys/bus/platform/drivers/sunxi-mmc",
+        "root_device_after": "/dev/mmcblk0p4"
+      },
+      {
+        "mode": "BT and WLAN enabled together, additional 1000 ms settling at identification clock",
+        "requests": [
+          {
+            "op": 52,
+            "arg": "00000c00",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 52,
+            "arg": "80000c08",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          },
+          {
+            "op": 5,
+            "arg": "00000000",
+            "actual_hz": 400000,
+            "clkcr": "00010000",
+            "ntsr": "81710000",
+            "pgmux": "22222222",
+            "pgdata": "00000000",
+            "pmmux": "00f1fff1",
+            "pmdata": "00000011",
+            "rtc32out": "00000000",
+            "irq": "00000104",
+            "response_0": "00000000"
+          }
+        ],
+        "restored_driver": "/sys/bus/platform/drivers/sunxi-mmc",
+        "root_device_after": "/dev/mmcblk0p4"
+      }
+    ],
+    "pad_registers": [
+      "atlasa1-sdio-diag 4021000.mmc: pad voltage select/control readback G=0aaaaaaa/00000000/01154540 M=000aaaaa/00000000/00000001"
+    ],
+    "rtc_output_restoration": "atlasa1 SDIO trial restored rtc32out=00000000"
+  },
+  "interpretation": {
+    "irq_00000104": "SMHC command done and response timeout. This was observed on all 18 commands in the three diagnostic runs.",
+    "register_scope": "PM4 high, PM0 high/low and RTC output gate readbacks are SoC register observations. Module-pin voltage, clock amplitude, data transitions and fitted part are unmeasured.",
+    "reference_assembly": "Reference guide defaults to AW869C. The reference BOM lists both UW2 (AW8X9X) and U53 (NF3205Q); installed identity remains unknown.",
+    "next_evidence": [
+      "Identify module marking and fitted position on the actual PCB",
+      "Measure both module supplies and WL_EN after the power sequence",
+      "Observe SDIO CLK and CMD at the module during CMD5 and verify a response or a continuously idle line",
+      "Check the fitted reference-clock links for the identified part",
+      "Bind its driver/firmware after acquiring an SDIO ID; then verify Wi-Fi scan/transfer and Bluetooth HCI/scan/pairing"
+    ],
+    "runtime_status": "SDIO host, controlled power rail and UART/rfkill established. Wi-Fi connectivity and Bluetooth discovery not validated."
+  }
+}

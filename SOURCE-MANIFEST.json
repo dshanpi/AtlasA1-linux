@@ -14,8 +14,71 @@
       "path": "README.md",
       "kind": "generated",
       "source": "generated/AtlasA1-linux/README.md",
-      "size": 1122,
-      "sha256": "897db2e582b057a4f8dd62bea860e6909e656ee0b94b1cde50e075628f442433"
+      "size": 1601,
+      "sha256": "bc41a310d5bddf247f8bb500651f53ab974a0e074221c6ea2e52fb0224d193dd"
+    },
+    {
+      "path": "boards/pcie-v32/README.md",
+      "kind": "source",
+      "source": "mainline/boards/pcie-v32/README.md",
+      "size": 3167,
+      "sha256": "ac274db1f8fb2f83bb7ad9cc532f8054d3306ecbcab2616e152975f2115da824"
+    },
+    {
+      "path": "boards/pcie-v32/hw-v34-inputs.sha256",
+      "kind": "source",
+      "source": "mainline/boards/pcie-v32/hw-v34-inputs.sha256",
+      "size": 852,
+      "sha256": "523cbddae514bfb4a0d232074551d1133e855bb3bb653c807d29997332920274"
+    },
+    {
+      "path": "boards/pcie-v32/pcie.config",
+      "kind": "source",
+      "source": "mainline/boards/pcie-v32/pcie.config",
+      "size": 106,
+      "sha256": "bcd7b9e53fc8b91c98599e3c34f42e06476078d3340d98e7eeb241a8bc7754ef"
+    },
+    {
+      "path": "boards/pcie-v32/verify-slot.sh",
+      "kind": "source",
+      "source": "mainline/boards/pcie-v32/verify-slot.sh",
+      "size": 1990,
+      "sha256": "acee111702b890d6c893a12b1a156efc210a8919e9349df6e0d1478f24c859c5"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/README.md",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/README.md",
+      "size": 2121,
+      "sha256": "7b2122ff3afc9d43a24b40ac36ee1b16054c3ef3316e2ed309f9009bed31f5a2"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diag-only.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diag-only.patch",
+      "size": 3390,
+      "sha256": "19e76e80aba3beed010d1e14cac9634d4f47e85946fe4cf322c7f0ad6f9b14b4"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-32k.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-32k.patch",
+      "size": 1403,
+      "sha256": "23185cb419931cb4e26b329308130a8a9efa368c85ae0e72e72093ff1d8c9139"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
+      "size": 349,
+      "sha256": "c9a3f3a3c3b68961b72348209c24681fae6eb2ca435e1fe311119979553ec783"
+    },
+    {
+      "path": "boards/wireless-v31/kernel.config",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/kernel.config",
+      "size": 312,
+      "sha256": "cdd6be901424f6e812f4456cd0049664c2f79e350b435e68723952c8df57fba0"
     },
     {
       "path": "config/sources.lock.json",
@@ -23,6 +86,13 @@
       "source": "mainline/config/sources.lock.json",
       "size": 1677,
       "sha256": "203076c6a94c523bc07af91fe3ea3269707a6279970ae1c43cef44480f3be1fd"
+    },
+    {
+      "path": "docs/WIRELESS.md",
+      "kind": "source",
+      "source": "mainline/docs/WIRELESS.md",
+      "size": 5882,
+      "sha256": "517e33522280f3503e290de40f41e9ee3a824eba0a639aa4f651c76791199e9d"
     },
     {
       "path": "evidence/atlas-ubuntu26-board-rebuild-20261118.json",
@@ -37,6 +107,62 @@
       "source": "mainline/evidence/atlasa1-clean-source-replay-20261118.json",
       "size": 2663,
       "sha256": "4712a36cd25346a09b322b19cf7954ab61de3aa636495727eb2b7f95473789e2"
+    },
+    {
+      "path": "evidence/atlasa1-hw-v33-build-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-hw-v33-build-20261118.json",
+      "size": 1786,
+      "sha256": "a502c58ffef90b091f8adb035f702d034de0db471ac6181d8f35508848ea5f79"
+    },
+    {
+      "path": "evidence/atlasa1-hw-v34-kernel-replay-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-hw-v34-kernel-replay-20261118.json",
+      "size": 1701,
+      "sha256": "ab9aaa877b2cc2473611cc285c4a1f9ebd64e6970d948a572e2a7bd4bf02350c"
+    },
+    {
+      "path": "evidence/atlasa1-pcie-v32-build-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-pcie-v32-build-20261118.json",
+      "size": 2593,
+      "sha256": "4385a9e69a2432e041819becb250dd3ea489f82a56ad3089d8fa446a4437b4fd"
+    },
+    {
+      "path": "evidence/atlasa1-pcie-v32-empty-slot-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-pcie-v32-empty-slot-20261118.json",
+      "size": 1415,
+      "sha256": "7d17ae7eeb6205d229b411cdfe5319a6b227731301c1719b079a4336294d23fb"
+    },
+    {
+      "path": "evidence/atlasa1-pcie-v33-pipe-route-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-pcie-v33-pipe-route-20261118.json",
+      "size": 1894,
+      "sha256": "03efd7044928ca9965a5879805c0103b6c9dc127c730358bbb4532eafba28440"
+    },
+    {
+      "path": "evidence/atlasa1-pcie-v34-coldboot-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-pcie-v34-coldboot-20261118.json",
+      "size": 1498,
+      "sha256": "2699a04208a5ec5afb049f520cd09f47431a7cd962484e66cf55be53a4c9b418"
+    },
+    {
+      "path": "evidence/atlasa1-wireless-v31-rebuild-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-wireless-v31-rebuild-20261118.json",
+      "size": 2730,
+      "sha256": "3cb918330bec6b2d81e236b8f128f4f4d9e96a28472284add5088d8c7e259186"
+    },
+    {
+      "path": "evidence/atlasa1-wireless-v33-hardware-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/atlasa1-wireless-v33-hardware-20261118.json",
+      "size": 11740,
+      "sha256": "8914dc6e785474d6f83cb1f4bc173c9fd6b54efe2490088417a4cde9641feafa"
     },
     {
       "path": "evidence/media-v30-4k-browser-hardware-20261118.json",
@@ -107,6 +233,48 @@
       "source": "mainline/patches/linux/0009-t736-phy-rx-delay.patch",
       "size": 2113,
       "sha256": "e84ffc21ca63d6d5463fc2f73becc0f74748812a67c679254cae67c2f1d7b720"
+    },
+    {
+      "path": "patches/linux/atlasa1-pcie-combo1-v33.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-pcie-combo1-v33.patch",
+      "size": 1794,
+      "sha256": "8b564fced65fd89b2ba5df5cd8b8b5a60477f977afe63e1578058470acfdbcdd"
+    },
+    {
+      "path": "patches/linux/atlasa1-pcie-pipe-map-v34.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-pcie-pipe-map-v34.patch",
+      "size": 437,
+      "sha256": "14f415fb91158c88ce68d6e296f2242b81717f8f995e60ba4ef9c3285880c4b2"
+    },
+    {
+      "path": "patches/linux/atlasa1-pcie-v32.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-pcie-v32.patch",
+      "size": 19034,
+      "sha256": "458cee9b369fa0cedb91ac37ff0720f84252ba828f94e09405343e3c32af2ad0"
+    },
+    {
+      "path": "patches/linux/atlasa1-wireless-dldo5-v33.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-wireless-dldo5-v33.patch",
+      "size": 5243,
+      "sha256": "3d7c75490c0a1c803ba48e80a65a88a4f12d16743d0e499092d1bc4e2541307b"
+    },
+    {
+      "path": "patches/linux/atlasa1-wireless-reset-v33.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-wireless-reset-v33.patch",
+      "size": 1073,
+      "sha256": "f334845969f7f348c7d96d822e485e4180ad8d14e40f68fb937a136cf9f1499e"
+    },
+    {
+      "path": "patches/linux/atlasa1-wireless-v31.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/atlasa1-wireless-v31.patch",
+      "size": 10984,
+      "sha256": "6b62ff8fbfa00de59af6fa7318436bda8f6f3e8f1ef1a57b2d38371cc7dd70be"
     },
     {
       "path": "patches/linux/media-v17-iommu-api.patch",
@@ -224,8 +392,8 @@
       "path": "tools/build_atlasa1_release_kernel.sh",
       "kind": "source",
       "source": "mainline/tools/build_atlasa1_release_kernel.sh",
-      "size": 2503,
-      "sha256": "5a059959dc13a33c0e10a13312401bba8941b6befdf63997a203452860910b64"
+      "size": 4050,
+      "sha256": "4a479404504db04dbc40ad313b568ba7caed15099ae67933fbff0d80056565c8"
     },
     {
       "path": "tools/build_cached_bounce_storage_kernel.sh",

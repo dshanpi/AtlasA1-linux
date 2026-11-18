@@ -1,0 +1,43 @@
+diff --git a/atlasa1-sdio-diag.c b/atlasa1-sdio-diag.c
+index 9a4f54f..b7a8c57 100644
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -1385,6 +1385,13 @@ error_disable_mmc:
+ 	return ret;
+ }
+ 
++static void restore_fanout(void *data)
++{
++	void __iomem *reg = data;
++	writel(readl(reg) & ~BIT(0), reg);
++	pr_info("atlasa1 SDIO trial restored rtc32out=%08x\n", readl(reg));
++}
++
+ static int sunxi_mmc_probe(struct platform_device *pdev)
+ {
+ 	struct sunxi_mmc_host *host;
+@@ -1405,6 +1412,24 @@ static int sunxi_mmc_probe(struct platform_device *pdev)
+ 	host->rtc = devm_ioremap(&pdev->dev, 0x07090060, 4);
+ 	if (!host->pg || !host->pm || !host->rtc)
+ 		return -ENOMEM;
++	{
++		void __iomem *g = devm_ioremap(&pdev->dev, 0x02000040, 12);
++		void __iomem *m = devm_ioremap(&pdev->dev, 0x07025340, 12);
++		u32 old = readl(host->rtc);
++
++		if (!g || !m)
++			return -ENOMEM;
++		dev_info(host->dev, "pad voltage select/control readback G=%08x/%08x/%08x M=%08x/%08x/%08x\n",
++			 readl(g), readl(g+4), readl(g+8), readl(m), readl(m+4), readl(m+8));
++		if (!(old & BIT(0))) {
++			ret = devm_add_action_or_reset(&pdev->dev, restore_fanout, host->rtc);
++			if (ret)
++				return ret;
++			writel(old | BIT(0), host->rtc);
++			dev_info(host->dev, "roc32k trial rtc32out %08x->%08x\n", old, readl(host->rtc));
++			msleep(50);
++		}
++	}
+ 	spin_lock_init(&host->lock);
+ 
+ 	ret = sunxi_mmc_resource_request(host, pdev);
