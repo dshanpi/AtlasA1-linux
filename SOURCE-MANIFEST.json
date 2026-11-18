@@ -14,8 +14,8 @@
       "path": "README.md",
       "kind": "generated",
       "source": "generated/AtlasA1-linux/README.md",
-      "size": 707,
-      "sha256": "9947ef16257b6bde8f1efaaf29909faafdbe028a16f9350c1b838565153b51e2"
+      "size": 846,
+      "sha256": "48b3f083bbf0d5e7f9ec10a407bf94953b52acc132137ce5aec91453ccd20fad"
     },
     {
       "path": "config/sources.lock.json",
@@ -23,6 +23,13 @@
       "source": "mainline/config/sources.lock.json",
       "size": 1677,
       "sha256": "203076c6a94c523bc07af91fe3ea3269707a6279970ae1c43cef44480f3be1fd"
+    },
+    {
+      "path": "evidence/media-v30-4k-browser-hardware-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/media-v30-4k-browser-hardware-20261118.json",
+      "size": 7063,
+      "sha256": "278eb6e59124524356b91298d75ec0593d256221394b3fae4946d4f7d3666b46"
     },
     {
       "path": "evidence/media-v30-heap-budget-build-20261118.json",
