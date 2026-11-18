@@ -14,8 +14,22 @@
       "path": "README.md",
       "kind": "generated",
       "source": "generated/AtlasA1-linux/README.md",
-      "size": 344,
-      "sha256": "048f0ac8e7030c2ff0e7b4942adb5db3071fcc26f96406301b97bdb16d861423"
+      "size": 707,
+      "sha256": "9947ef16257b6bde8f1efaaf29909faafdbe028a16f9350c1b838565153b51e2"
+    },
+    {
+      "path": "config/sources.lock.json",
+      "kind": "source",
+      "source": "mainline/config/sources.lock.json",
+      "size": 1677,
+      "sha256": "203076c6a94c523bc07af91fe3ea3269707a6279970ae1c43cef44480f3be1fd"
+    },
+    {
+      "path": "evidence/media-v30-heap-budget-build-20261118.json",
+      "kind": "source",
+      "source": "mainline/evidence/media-v30-heap-budget-build-20261118.json",
+      "size": 2157,
+      "sha256": "dc28dc030824175cc80b99889e0ef17f02d7b6093bf7adba8299eb62f08e68cf"
     },
     {
       "path": "patches/linux/0002-t736-main-pio-layout.patch",
@@ -86,6 +100,13 @@
       "source": "mainline/patches/linux/media-v17-pte-address.patch",
       "size": 776,
       "sha256": "695d08b7726f46c9f840ce5c01bc3aca34e2d12dd7b0f00d2c2dddd68d45b255"
+    },
+    {
+      "path": "patches/linux/media-v30-cedar-heap-quota.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/media-v30-cedar-heap-quota.patch",
+      "size": 2426,
+      "sha256": "81d272ad12e93583cac6e53abf4639c74b17be31d8680f4349c029e9259c4549"
     },
     {
       "path": "patches/pvr-bxm-24.2-linux-6.18-fop-unsigned-offset.patch",
@@ -221,6 +242,13 @@
       "sha256": "86e0e9f49fe0b68bf7d00c1d7b2383b74d6a18e54680da3d0a769fa3eaffb096"
     },
     {
+      "path": "tools/build_media_v30_candidate.sh",
+      "kind": "source",
+      "source": "mainline/tools/build_media_v30_candidate.sh",
+      "size": 2910,
+      "sha256": "691e707c90b66aa08185c4ec14b77ca2356924a3cf142659c8a47dd8bd859b89"
+    },
+    {
       "path": "tools/build_minimal_kernel.sh",
       "kind": "source",
       "source": "mainline/tools/build_minimal_kernel.sh",
@@ -287,29 +315,29 @@
       "path": "userpatches/linux-t736-gpu-v15.config",
       "kind": "source",
       "source": "mainline/userpatches/linux-t736-gpu-v15.config",
-      "size": 102776,
-      "sha256": "f9cd373b1607053a75d659b1931b1dd6fe6ca5f36c4963299665e750d65b88ae"
+      "size": 99036,
+      "sha256": "3b0c7f54f9e2dbc4c8cfeecccca5f46c9e1fbb0aeddddddd303b2db7db0e9922"
     },
     {
       "path": "userpatches/linux-t736-hdmi-v12.config",
       "kind": "source",
       "source": "mainline/userpatches/linux-t736-hdmi-v12.config",
-      "size": 102645,
-      "sha256": "574170fcfa66464ad5cfa56fb5496e12a43d2681397748db0ee0c7e2b819bded"
+      "size": 98910,
+      "sha256": "df7750571f40e75fa160a8bcde5f420ee61d88e8db0f96389d9e576b2efa4083"
     },
     {
       "path": "userpatches/linux-t736-hdmi-v13.config",
       "kind": "source",
       "source": "mainline/userpatches/linux-t736-hdmi-v13.config",
-      "size": 102777,
-      "sha256": "c5c5dd137ca0c716da0d911245033d3f12e1c006addb65d1211d0d09fcf3d66a"
+      "size": 99037,
+      "sha256": "38116085857ee631ed578cf58decc5411f7fc017f69745d120ead8ffa4f9b674"
     },
     {
       "path": "userpatches/linux-t736-hdmi-v14.config",
       "kind": "source",
       "source": "mainline/userpatches/linux-t736-hdmi-v14.config",
-      "size": 102777,
-      "sha256": "57ec3cce7602012c172cdc298c7983604e8230b10184d626986e0548ed1b3d92"
+      "size": 99037,
+      "sha256": "627295d4a53b352d96db5b18290dcf2dd9c72598cd0515a75d624593868fd03c"
     },
     {
       "path": "userpatches/linux-t736-mainline-current.config",
