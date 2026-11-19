@@ -1,0 +1,59 @@
+--- a/drivers/misc/t736-cedar-wc.c
++++ b/drivers/misc/t736-cedar-wc.c
+@@ -91,14 +91,15 @@
+ 	wake_up_all(&ve->wait);
+ }
+ 
+-/* Only the allocating device can consume this already mapped DMA allocation.
+- * No dma_map_sg() is used: it could create a second mapping or a bounce buffer.
++/* Keep VE's verified identity mapping. External importers must obtain their
++ * own DMA mapping; VE bus addresses must never be reused for GPU/display DMA.
++ * Experimental sharing path: fd transport and frame fencing are separate.
+  */
+ static int ve_buffer_attach(struct dma_buf *db, struct dma_buf_attachment *a)
+ {
+ 	struct ve_buffer *b = db->priv;
+ 
+-	return a->dev == b->ve->dev ? 0 : -EXDEV;
++	return a->dev == b->ve->dev || a->dev->dma_mask ? 0 : -ENODEV;
+ }
+ 
+ static struct sg_table *ve_buffer_map(struct dma_buf_attachment *a,
+@@ -111,12 +112,12 @@
+ 	unsigned int i;
+ 	int ret;
+ 
+-	if (direction == DMA_NONE || a->dev != b->ve->dev)
++	if (direction == DMA_NONE)
+ 		return ERR_PTR(-EINVAL);
+ 	sgt = kzalloc(sizeof(*sgt), GFP_KERNEL);
+ 	if (!sgt)
+ 		return ERR_PTR(-ENOMEM);
+-	ret = dma_get_sgtable_attrs(a->dev, sgt, b->cpu, b->dma, b->size,
++	ret = dma_get_sgtable_attrs(b->ve->dev, sgt, b->cpu, b->dma, b->size,
+ 				  VE_ALLOC_ATTRS);
+ 	if (ret)
+ 		goto fail;
+@@ -138,6 +139,11 @@
+ 		goto free_sg;
+ 	}
+ 	sgt->nents = sgt->orig_nents;
++	if (a->dev != b->ve->dev) {
++		ret = dma_map_sgtable(a->dev, sgt, direction, DMA_ATTR_SKIP_CPU_SYNC);
++		if (ret)
++			goto free_sg;
++	}
+ 	dma_wmb();
+ 	return sgt;
+ free_sg:
+@@ -150,6 +156,10 @@
+ static void ve_buffer_unmap(struct dma_buf_attachment *a, struct sg_table *sgt,
+ 			    enum dma_data_direction direction)
+ {
++	struct ve_buffer *b = a->dmabuf->priv;
++
++	if (a->dev != b->ve->dev)
++		dma_unmap_sgtable(a->dev, sgt, direction, DMA_ATTR_SKIP_CPU_SYNC);
+ 	/* The original dma_alloc_wc handle remains valid until buffer release. */
+ 	sg_free_table(sgt);
+ 	kfree(sgt);

@@ -1,0 +1,88 @@
+--- a/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c
++++ b/drivers/gpu/drm/t736-bsp/sunxi_drm_crtc.c
+@@ -2106,6 +2106,7 @@
+ 	struct sunxi_crtc_state *scrtc_state = to_sunxi_crtc_state(new_state);
+ 	struct sunxi_de_flush_cfg cfg;
+ 	unsigned long flags;
++	struct drm_pending_vblank_event *immediate_event = NULL;
+ 	void *backend_data;
+ 	bool all_dirty = crtc->state->mode_changed || (crtc->state->active_changed && crtc->state->active);
+ 	SUNXIDRM_TRACE_BEGIN(__func__);
+@@ -2136,6 +2137,26 @@
+ 		scrtc_state->bcsh_changed = false;
+ 	}
+ 
++	/* Publish the pending event before starting RCQ. Otherwise the IRQ
++	 * latching this frame runs before the event is visible, and delivery
++	 * either reuses a stale timestamp or waits one additional refresh.
++	 */
++	spin_lock_irqsave(&crtc->dev->event_lock, flags);
++	if (WARN_ON(scrtc->event)) {
++		drm_crtc_send_vblank_event(crtc, scrtc->event);
++		drm_crtc_vblank_put(crtc);
++		scrtc->event = NULL;
++	}
++	scrtc->should_send_vblank = 0;
++	if (new_state->event) {
++		if (drm_crtc_vblank_get(crtc) == 0)
++			scrtc->event = new_state->event;
++		else
++			immediate_event = new_state->event;
++		new_state->event = NULL;
++	}
++	spin_unlock_irqrestore(&crtc->dev->event_lock, flags);
++
+ 	backend_data = scrtc_state->backend_blob ? scrtc_state->backend_blob->data : NULL;
+ 	sunxi_de_atomic_flush(scrtc->sunxi_de, backend_data, &cfg);
+ 	if (scrtc_state->atomic_flush)
+@@ -2143,33 +2164,11 @@
+ 
+ 	sunxi_wb_commit_done(scrtc);
+ 
+-	/* Each stored event owns one vblank reference.  Take it only after
+-	 * submitting the frame, so a failed get cannot complete an unflushed flip.
+-	 */
+-	spin_lock_irqsave(&crtc->dev->event_lock, flags);
+-	if (new_state->event) {
+-		/* Atomic helpers serialize flips; never leak an unexpected old one.
+-		 * Preserve the ready flag set by this commit's RCQ submission.
+-		 */
+-		if (WARN_ON(scrtc->event)) {
+-			drm_crtc_send_vblank_event(crtc, scrtc->event);
+-			drm_crtc_vblank_put(crtc);
+-			scrtc->event = NULL;
+-		}
+-		if (drm_crtc_vblank_get(crtc) == 0)
+-			scrtc->event = new_state->event;
+-		else
+-			drm_crtc_send_vblank_event(crtc, new_state->event);
+-		new_state->event = NULL;
+-	}
+-	spin_unlock_irqrestore(&crtc->dev->event_lock, flags);
+-
+-	/*
+-	 * Ideally, the page_flip should be called within the vsync interrupt;
+-	 * but if the interrupt is delayed, we perform the page_flip after the rcq_finished
+-	 * to ensure that the fence of the current frame is signaled !
+-	 */
+-	sunxi_crtc_finish_page_flip(crtc->dev, scrtc, false);
++	if (immediate_event) {
++		spin_lock_irqsave(&crtc->dev->event_lock, flags);
++		drm_crtc_send_vblank_event(crtc, immediate_event);
++		spin_unlock_irqrestore(&crtc->dev->event_lock, flags);
++	}
+ 
+ 	if (scrtc->fbdev_flush_pending) {
+ 		scrtc->fbdev_flush_pending = false;
+--- a/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
++++ b/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
+@@ -203,7 +203,8 @@
+ 
+ 	drm_atomic_helper_commit_hw_done(old_state);
+ 
+-	/* drm_atomic_helper_wait_for_vblanks(dev, old_state); */
++	/* Keep the old framebuffer pinned until its replacement is displayed. */
++	drm_atomic_helper_wait_for_flip_done(dev, old_state);
+ 
+ 	drm_atomic_helper_cleanup_planes(dev, old_state);
+ }

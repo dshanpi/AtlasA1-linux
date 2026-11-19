@@ -1,0 +1,11 @@
+--- a/services/system/rogue/rgx_sunxi/sunxi_platform.c
++++ b/services/system/rogue/rgx_sunxi/sunxi_platform.c
+@@ -16,7 +16,7 @@
+ #error "T736 fixed-rate platform requires DVFS disabled"
+ #endif
+ 
+-#define T736_GPU_RATE 400000000U
++#define T736_GPU_RATE 600000000U
+ static struct sunxi_platform *sunxi_data;
+ 
+ static int sunxi_power_on(struct sunxi_platform *p)

@@ -1,0 +1,34 @@
+--- a/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c
++++ b/drivers/gpu/drm/t736-bsp/sunxi_device/hardware/lowlevel_de/sunxi_de.c
+@@ -10,6 +10,7 @@
+  * option) any later version.
+  */
+ #include <linux/version.h>
++#include <linux/module.h>
+ #include <linux/of_device.h>
+ #include <linux/hrtimer.h>
+ #include <linux/dma-mapping.h>
+@@ -692,6 +693,13 @@
+ 	return 0;
+ }
+ 
++/* Bounded diagnostic knob: preserve the vendor polling interval by default.
++ * Completion, timeout and register-ordering semantics remain unchanged.
++ */
++static unsigned int rcq_poll_us = 2000;
++module_param_named(rcq_poll_us, rcq_poll_us, uint, 0644);
++MODULE_PARM_DESC(rcq_poll_us, "RCQ completion poll interval, clamped to 50..2000 us");
++
+ void sunxi_de_atomic_flush(struct sunxi_de_out *hwde, struct de_backend_data *data, struct sunxi_de_flush_cfg *cfg)
+ {
+ 	int disp = hwde->id;
+@@ -750,7 +758,8 @@
+ 		if (use_rcq) {
+ 			SUNXIDRM_TRACE_BEGIN("wait_rcq_finish");
+ 			timeout = read_poll_timeout(check_update_finished, is_finished,
+-					  is_finished, 2000, 50000, false, hwde);
++					  is_finished, clamp_t(unsigned int, READ_ONCE(rcq_poll_us), 50, 2000),
++					  50000, false, hwde);
+ 			SUNXIDRM_TRACE_END(" ");
+ 		} else {
+ 			atomic_set(&hwde->update_finish, DE_UPDATE_PENDING);
