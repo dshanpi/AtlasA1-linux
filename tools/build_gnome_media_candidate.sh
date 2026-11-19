@@ -7,7 +7,9 @@ case "${4-}:$#" in
     --rcq-preempt:4) build=38; rate=400000000 ;;
     --rcq-poll:4) build=39; rate=400000000 ;;
     --cedar-import:4) build=40; rate=400000000 ;;
-    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import]" >&2; exit 2 ;;
+    --prime-scanout:4) build=41; rate=400000000 ;;
+    --display-trace:4) build=42; rate=400000000 ;;
+    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace]" >&2; exit 2 ;;
 esac
 upstream=$(realpath -e "$1")
 tina=$(realpath -e "$2")
@@ -24,11 +26,18 @@ if [[ $build == 37 ]]; then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v37-gpu600-linux.patch"
     patch --batch --forward --fuzz=0 -d "$work/pvr-src" -p1 -i "$patches/v37-gpu600-pvr.patch"
 fi
-if [[ $build == 38 || $build == 39 || $build == 40 ]]; then
+if (( build >= 38 )); then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v38-rcq-poll.patch"
 fi
-if [[ $build == 40 ]]; then
+if (( build >= 40 )); then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v40-cedar-import.patch"
+fi
+if (( build >= 41 )); then
+    patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v41-prime-scanout.patch"
+fi
+if [[ $build == 42 ]]; then
+    patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v42-trace-api.patch"
+    patch --batch --forward --fuzz=0 -d "$work/pvr-src" -p1 -i "$patches/v42-pvr-trace-api.patch"
 fi
 export ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- KBUILD_BUILD_VERSION="$build" LOCALVERSION=
 export SOURCE_DATE_EPOCH=1795046400 KBUILD_BUILD_TIMESTAMP='2026-11-19 00:00:00 UTC'
@@ -42,8 +51,11 @@ if [[ $build == 38 ]]; then
     echo 'WARNING: v38 caused Xorg kernel Oops on hardware; diagnostic rebuild only.' >&2
     "$work/linux/scripts/config" --file "$kernel/.config" --enable PREEMPT_DYNAMIC
 fi
-if [[ $build == 39 || $build == 40 ]]; then
+if (( build >= 39 )); then
     "$work/linux/scripts/config" --file "$kernel/.config" --disable PREEMPT_DYNAMIC --disable PREEMPT --enable PREEMPT_NONE --enable PREEMPT_NONE_BUILD
+fi
+if [[ $build == 42 ]]; then
+    "$work/linux/scripts/config" --file "$kernel/.config" --enable FTRACE --enable FUNCTION_TRACER --enable FUNCTION_GRAPH_TRACER
 fi
 km=(make -C "$work/linux" O="$kernel" -j"${JOBS:-7}")
 "${km[@]}" olddefconfig

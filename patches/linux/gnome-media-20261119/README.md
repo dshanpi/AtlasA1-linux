@@ -23,6 +23,14 @@ They are **not** applied by the default Armbian image recipe.
   separate DMA mappings for GPU/display importers. This is only the kernel
   prerequisite for sharing decoder output; it does not implement frame leases,
   release fences, browser transport or an end-to-end zero-copy player.
+- `v41-prime-scanout.patch`: use DMA-only PRIME import for scanout instead of
+  requiring an exporter CPU vmap. Native dumb allocations remain CPU-mapped.
+  This eliminated the repeated PowerVR `Failed to vmap PRIME buffer` errors,
+  but warm 1080p60 still measured 51.5 presented fps; it is not a 60fps fix.
+- `v42-trace-api.patch` and `v42-pvr-trace-api.patch`: update display/PVR
+  tracepoint string assignment for Linux 6.18. The v42 candidate enables
+  function/event tracing with the same non-preemptible configuration as v41.
+  Tracing is a diagnostic option, not a performance improvement.
 
 Build from pinned upstream Linux and the configured Tina SDK using the normal
 source replay checks, then these explicit candidate deltas:
@@ -32,6 +40,8 @@ bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v36
 bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v37 --gpu600
 bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v39 --rcq-poll
 bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v40 --cedar-import
+bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v41 --prime-scanout
+bash tools/build_gnome_media_candidate.sh /src/linux /src/tina /tmp/gnome-v42 --display-trace
 ```
 
 The output archive uses `usr/lib/modules`, preserving merged-/usr systems.

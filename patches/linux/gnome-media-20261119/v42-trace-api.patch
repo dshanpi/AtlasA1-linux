@@ -1,0 +1,29 @@
+--- a/drivers/gpu/drm/t736-bsp/sunxi_drm_trace.h
++++ b/drivers/gpu/drm/t736-bsp/sunxi_drm_trace.h
+@@ -31,7 +31,7 @@
+ 		),
+ 	TP_fast_assign(
+ 		__entry->pid = pid;
+-		__assign_str(trace_name, name);
++		__assign_str(trace_name);
+ 		__entry->trace_begin = trace_begin;
+ 		),
+ 
+@@ -49,7 +49,7 @@
+ 		),
+ 	TP_fast_assign(
+ 		__entry->pid = pid;
+-		__assign_str(counter_name, name);
++		__assign_str(counter_name);
+ 		__entry->value = value;
+ 		),
+ 	TP_printk("C|%d|%s|%d",
+@@ -68,7 +68,7 @@
+ 		),
+ 	TP_fast_assign(
+ 		__entry->pid = pid;
+-		__assign_str(counter_name, name);
++		__assign_str(counter_name);
+ 		__entry->id = id;
+ 		__entry->value = value;
+ 		),

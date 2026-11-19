@@ -1,0 +1,66 @@
+--- a/services/server/env/linux/rogue_trace_events.h
++++ b/services/server/env/linux/rogue_trace_events.h
+@@ -89,9 +89,9 @@
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(comm, comm);
+-		__assign_str(cmd, cmd);
+-		__assign_str(dm, dm);
++		__assign_str(comm);
++		__assign_str(cmd);
++		__assign_str(dm);
+ 		__entry->gpu_id = gpu_id;
+ 		__entry->ctx_id = ctx_id;
+ 		__entry->offset = offset;
+@@ -140,9 +140,9 @@
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(comm, comm);
+-		__assign_str(cmd, cmd);
+-		__assign_str(dm, dm);
++		__assign_str(comm);
++		__assign_str(cmd);
++		__assign_str(dm);
+ 		__entry->gpu_id = gpu_id;
+ 		__entry->ctx_id = ctx_id;
+ 		__entry->offset = offset;
+@@ -185,7 +185,7 @@
+ 		__entry->ctx_id = ctx_id;
+ 		__entry->int_id = int_id;
+ 		__entry->ext_id = ext_id;
+-		__assign_str(kick_type, kick_type);
++		__assign_str(kick_type);
+ 	),
+ 
+ 	TP_printk("gpu=%lu, ctx_id=%lu int_id=%lu ext_id=%lu kick_type=%s",
+@@ -217,7 +217,7 @@
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(work_type, work_type);
++		__assign_str(work_type);
+ 		__entry->switch_type = switch_type;
+ 		__entry->timestamp = timestamp;
+ 		__entry->gpu_id = gpu_id;
+@@ -258,8 +258,8 @@
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(comm, comm);
+-		__assign_str(dm, dm);
++		__assign_str(comm);
++		__assign_str(dm);
+ 		__entry->gpu_id = gpu_id;
+ 		__entry->ctx_id = ctx_id;
+ 	),
+@@ -558,7 +558,7 @@
+ 	TP_fast_assign(
+ 		__entry->timestamp = timestamp;
+ 		__entry->gpu_id = gpu_id;
+-		__assign_str(task, task);
++		__assign_str(task);
+ 		__entry->fw_event = fw_event;
+ 	),
+ 

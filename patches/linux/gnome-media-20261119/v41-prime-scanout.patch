@@ -1,0 +1,15 @@
+--- a/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
++++ b/drivers/gpu/drm/t736-bsp/sunxi_drm_drv.c
+@@ -433,7 +433,11 @@
+ #if LINUX_VERSION_CODE <= KERNEL_VERSION(6, 1, 0)
+ 	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+ #else
+-	DRM_GEM_DMA_DRIVER_OPS_VMAP,
++	/* Scanout consumes DMA addresses, not CPU virtual mappings.
++	 * PowerVR exports buffers without vmap support. Keep native dumb
++	 * buffers CPU-mappable, but do not require vmap for PRIME imports.
++	 */
++	DRM_GEM_DMA_DRIVER_OPS,
+ #endif
+ };
+ 
