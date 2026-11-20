@@ -1,0 +1,214 @@
+--- a/aic8800_fdrv/rwnx_main.c
++++ b/aic8800_fdrv/rwnx_main.c
+@@ -3277,7 +3277,7 @@
+  *	when adding a group key.
+  */
+ static int rwnx_cfg80211_add_key(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 								 struct wireless_dev *wdev,
+ #else
+ 								 struct net_device *netdev,
+@@ -3288,7 +3288,7 @@
+ 								 u8 key_index, bool pairwise, const u8 *mac_addr,
+ 								 struct key_params *params)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *netdev = wdev->netdev;
+ #endif
+ 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+@@ -3380,7 +3380,7 @@
+  *
+  */
+ static int rwnx_cfg80211_get_key(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 								 struct wireless_dev *wdev,
+ #else
+ 								 struct net_device *netdev,
+@@ -3403,7 +3403,7 @@
+  *	and @key_index, return -ENOENT if the key doesn't exist.
+  */
+ static int rwnx_cfg80211_del_key(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 								 struct wireless_dev *wdev,
+ #else
+ 								 struct net_device *netdev,
+@@ -3413,7 +3413,7 @@
+ #endif
+ 								 u8 key_index, bool pairwise, const u8 *mac_addr)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *netdev = wdev->netdev;
+ #endif
+ 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+@@ -3462,7 +3462,7 @@
+  * @set_default_mgmt_key: set the default management frame key on an interface
+  */
+ static int rwnx_cfg80211_set_default_mgmt_key(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 											  struct wireless_dev *wdev,
+ #else
+ 											  struct net_device *netdev,
+@@ -3493,7 +3493,7 @@
+ 			(sme->crypto.cipher_group == WLAN_CIPHER_SUITE_WEP104) ||
+ 			(sme->crypto.ciphers_pairwise[0] == WLAN_CIPHER_SUITE_WEP40) ||
+ 			(sme->crypto.ciphers_pairwise[0] == WLAN_CIPHER_SUITE_WEP104));
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct wireless_dev *wdev = &rwnx_vif->wdev;
+ #endif
+ 
+@@ -3554,7 +3554,7 @@
+ 		key_params.seq_len = 0;
+ 		key_params.cipher = sme->crypto.cipher_group;
+ 		rwnx_cfg80211_add_key(wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 				wdev,
+ #else
+ 				dev,
+@@ -3779,14 +3779,14 @@
+  * @add_station: Add a new station.
+  */
+ static int rwnx_cfg80211_add_station(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 									 struct wireless_dev *wdev,
+ #else
+ 									 struct net_device *dev,
+ #endif
+ 									 const u8 *mac, struct station_parameters *params)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *dev = wdev->netdev;
+ #endif
+ 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+@@ -3871,7 +3871,7 @@
+ 			#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 0, 0)
+ 			sinfo.filled |= STATION_INFO_ASSOC_REQ_IES;
+ 			#endif
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 			cfg80211_new_sta(&rwnx_vif->wdev, sta->mac_addr, &sinfo, GFP_KERNEL);
+ #else
+ 			cfg80211_new_sta(rwnx_vif->ndev, sta->mac_addr, &sinfo, GFP_KERNEL);
+@@ -3913,7 +3913,7 @@
+  * @del_station: Remove a station
+  */
+ static int rwnx_cfg80211_del_station_compat(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 											struct wireless_dev *wdev,
+ #else
+ 											struct net_device *dev,
+@@ -3925,7 +3925,7 @@
+ #endif
+ )
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *dev = wdev->netdev;
+ #endif
+ 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+@@ -3970,7 +3970,7 @@
+ 				}
+ 			}
+ 		if (rwnx_vif->wdev.iftype == NL80211_IFTYPE_AP || rwnx_vif->wdev.iftype == NL80211_IFTYPE_P2P_GO) {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 				cfg80211_del_sta(&rwnx_vif->wdev, cur->mac_addr, GFP_KERNEL);
+ #else
+ 				cfg80211_del_sta(rwnx_vif->ndev, cur->mac_addr, GFP_KERNEL);
+@@ -4213,14 +4213,14 @@
+  *	cfg80211_check_station_change() to validate the information.
+  */
+ static int rwnx_cfg80211_change_station(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 										struct wireless_dev *wdev,
+ #else
+ 										struct net_device *dev,
+ #endif
+ 										const u8 *mac, struct station_parameters *params)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *dev = wdev->netdev;
+ #endif
+ 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+@@ -4530,7 +4530,7 @@
+ 
+ 	/* delete any remaining STA*/
+ 	while (!list_empty(&rwnx_vif->ap.sta_list)) {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 		rwnx_cfg80211_del_station_compat(wiphy, &rwnx_vif->wdev, NULL);
+ #else
+ 		rwnx_cfg80211_del_station_compat(wiphy, rwnx_vif->ndev, NULL);
+@@ -4893,7 +4893,7 @@
+ 								, struct ieee80211_channel *chan
+ 								, unsigned int duration
+ 								, u64 *cookie
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 								, const u8 *rx_addr
+ #endif
+ )
+@@ -5769,14 +5769,14 @@
+  * @get_station: get station information for the station identified by @mac
+  */
+ static int rwnx_cfg80211_get_station(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 									 struct wireless_dev *wdev,
+ #else
+ 									 struct net_device *dev,
+ #endif
+ 									 const u8 *mac, struct station_info *sinfo)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *dev = wdev->netdev;
+ #endif
+ 	struct rwnx_vif *vif = netdev_priv(dev);
+@@ -5809,14 +5809,14 @@
+  * @dump_station: dump station callback -- resume dump at index @idx
+  */
+ static int rwnx_cfg80211_dump_station(struct wiphy *wiphy,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 									  struct wireless_dev *wdev,
+ #else
+ 									  struct net_device *dev,
+ #endif
+ 									  int idx, u8 *mac, struct station_info *sinfo)
+ {
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 18, 21)
++#if defined(AIC_CFG80211_WDEV_API)
+ 	struct net_device *dev = wdev->netdev;
+ #endif
+ 	struct rwnx_vif *rwnx_vif = netdev_priv(dev);
+--- a/aic8800_fdrv/aicwf_sdio.c
++++ b/aic8800_fdrv/aicwf_sdio.c
+@@ -234,7 +234,14 @@
+ 	int irq_flags;
+ 	int wakeup_enable;
+ 	u32 hostwake_irq_num;
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
++#if !defined(CONFIG_PLATFORM_ALLWINNER)
++	/* Generic SDIO uses its in-band interrupt. Board hostwake is not
++	 * available until a separate GPIO wake description is provided.
++	 */
++	hostwake_irq_num = 0;
++	irq_flags = 0;
++	wakeup_enable = 0;
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
+ 	hostwake_irq_num = sunxi_wlan_get_oob_irq(&irq_flags, &wakeup_enable);
+ #else
+ 	hostwake_irq_num = sunxi_wlan_get_oob_irq();

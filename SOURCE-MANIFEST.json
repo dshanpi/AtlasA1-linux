@@ -53,11 +53,25 @@
       "sha256": "acee111702b890d6c893a12b1a156efc210a8919e9349df6e0d1478f24c859c5"
     },
     {
+      "path": "boards/wireless-v31/diagnostics/AIC8800D80.md",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/AIC8800D80.md",
+      "size": 2503,
+      "sha256": "8e566fb228bba002be3cc3d7b7cc5a006eab4973f7c272e7bf033ebd3dc8658d"
+    },
+    {
       "path": "boards/wireless-v31/diagnostics/README.md",
       "kind": "source",
       "source": "mainline/boards/wireless-v31/diagnostics/README.md",
       "size": 2121,
       "sha256": "7b2122ff3afc9d43a24b40ac36ee1b16054c3ef3316e2ed309f9009bed31f5a2"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/aic8800d80-linux618-candidate.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/aic8800d80-linux618-candidate.patch",
+      "size": 7233,
+      "sha256": "6f76f8fcd8117f82434a4e7e0be6fd3ecaec08df60f49cb50ce4ab30a548adb2"
     },
     {
       "path": "boards/wireless-v31/diagnostics/diag-only.patch",
@@ -105,8 +119,8 @@
       "path": "docs/WIRELESS.md",
       "kind": "source",
       "source": "mainline/docs/WIRELESS.md",
-      "size": 5882,
-      "sha256": "517e33522280f3503e290de40f41e9ee3a824eba0a639aa4f651c76791199e9d"
+      "size": 7034,
+      "sha256": "af053d8d4ae402d7e9e48efe891fa4bef313f697384eb524e9a35d09a66f400d"
     },
     {
       "path": "evidence/atlas-ubuntu26-board-rebuild-20261118.json",
@@ -179,11 +193,67 @@
       "sha256": "8914dc6e785474d6f83cb1f4bc173c9fd6b54efe2490088417a4cde9641feafa"
     },
     {
+      "path": "evidence/gnome-media-20261119/aic8800d80-combined-sdio-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/aic8800d80-combined-sdio-20261120.json",
+      "size": 2628,
+      "sha256": "56a606c7fd9c246d17438e77f5b69632b4348f0c2806c698cc3b5dbf0e108111"
+    },
+    {
       "path": "evidence/gnome-media-20261119/broker-dependency-fix-20261120.txt",
       "kind": "source",
       "source": "mainline/evidence/gnome-media-20261119/broker-dependency-fix-20261120.txt",
       "size": 517,
       "sha256": "ad7754a92b3c8cdc3f477737a2425532a2591feda402835c6fc266a829e44755"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-gpu-and-decode-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-gpu-and-decode-20261120.json",
+      "size": 3948,
+      "sha256": "35e730c2da363bb6d76c127a56025d76e5d4bdaa14c1a7bee70af96e62c11b1c"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-h264-baseline-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-h264-baseline-20261120.json",
+      "size": 28850,
+      "sha256": "3c9c57d63cc29cb8faa014e92bfd6b815f9741ac6f2cefbb726d79d508980c56"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-h264-installed-pvr-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-h264-installed-pvr-20261120.json",
+      "size": 24257,
+      "sha256": "5dc7027d3b4b5fd47e45d320b3a2f1a9db809cfd5b4bdce694efa985cd21df56"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-h264-installed-visual-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-h264-installed-visual-20261120.json",
+      "size": 30625,
+      "sha256": "e6a0d2e509ca3a90a0718012f54534975443f9274b72a43468d9805e79b706a8"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-h264-pvr-angle-gles-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-h264-pvr-angle-gles-20261120.json",
+      "size": 23433,
+      "sha256": "67bc2b6e5ce0e8e1ddf536cc0e07ca0d893d7ebb2a894bc3622c3a9061a280d6"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-hevc4k-installed-pvr-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-hevc4k-installed-pvr-20261120.json",
+      "size": 19496,
+      "sha256": "b7f1e2a1bbccbf489c658a6c2f23ab506912ea09c4a79f6d6303c77829c5ab0f"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/chromium-hevc4k-track-validation-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/chromium-hevc4k-track-validation-20261120.json",
+      "size": 18791,
+      "sha256": "4263da1d6f7e18adc7f386ecda05de22990d52a736bd7001ce71b6f0bc8fb48d"
     },
     {
       "path": "evidence/gnome-media-20261119/default-v42-gnome-20261120.json",
