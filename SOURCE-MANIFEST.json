@@ -21,8 +21,8 @@
       "path": "boards/pcie-v32/README.md",
       "kind": "source",
       "source": "mainline/boards/pcie-v32/README.md",
-      "size": 3167,
-      "sha256": "ac274db1f8fb2f83bb7ad9cc532f8054d3306ecbcab2616e152975f2115da824"
+      "size": 3895,
+      "sha256": "9d702c5a402ab5705f147b2044ba301728d67f0028372a7a2635851e5392a425"
     },
     {
       "path": "boards/pcie-v32/hw-v34-inputs.sha256",
@@ -91,8 +91,8 @@
       "path": "docs/GNOME_MEDIA.md",
       "kind": "source",
       "source": "mainline/docs/GNOME_MEDIA.md",
-      "size": 20521,
-      "sha256": "0c51f10094066ef2a72914a70fbd72f4d5f8bf9b4fbf50ac568f5a53aced373b"
+      "size": 24129,
+      "sha256": "f2af888b6327dee832350edb093252ee9d0be9564b034c54e0004ed1f74f925d"
     },
     {
       "path": "docs/WIRELESS.md",
@@ -172,6 +172,20 @@
       "sha256": "8914dc6e785474d6f83cb1f4bc173c9fd6b54efe2490088417a4cde9641feafa"
     },
     {
+      "path": "evidence/gnome-media-20261119/default-v42-gnome-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/default-v42-gnome-20261120.json",
+      "size": 1837,
+      "sha256": "56a100075c8a28c7213fa76d7908826791ca14aa25f13e00049e04c60fe2a731"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/default-v42-gnome-uart-20261120.log",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/default-v42-gnome-uart-20261120.log",
+      "size": 79934,
+      "sha256": "7e269aed40731ed2554d963229e776c3018a03ec97ad7f4a3b6a153526b8a249"
+    },
+    {
       "path": "evidence/gnome-media-20261119/final-global-vsync-state.json",
       "kind": "source",
       "source": "mainline/evidence/gnome-media-20261119/final-global-vsync-state.json",
@@ -207,11 +221,74 @@
       "sha256": "430bcb2fda50bd3cd561d0246d6e08f1d54cdd6757d7ca1f0b8a4d8d0321dfba"
     },
     {
+      "path": "evidence/gnome-media-20261119/firefox-h26460-clean-auto-seek-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-h26460-clean-auto-seek-20261120.json",
+      "size": 54148,
+      "sha256": "e3358262d3e2aa43ff46977d353cd1edb76520cef9f7d1758de64fab7a731468"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-h26460-installed-auto-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-h26460-installed-auto-20261120.json",
+      "size": 54045,
+      "sha256": "a69593e3ba477f85489d7cae1d7899cddecbc829e77be12b87b1fec234132c1a"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-h26460-panel-regression-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-h26460-panel-regression-20261120.json",
+      "size": 51958,
+      "sha256": "10b2ce8c4f5926bab75efefbf6e4fae5ae071cc8cefc726bc2589f2515e16b43"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-clean-90s-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-clean-90s-20261120.json",
+      "size": 210652,
+      "sha256": "df4a369c24ca18d8cadf295ee67c6c9a0897b26451902891cce2896d031a0055"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-installed-auto-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-installed-auto-20261120.json",
+      "size": 49155,
+      "sha256": "00dabe91a6876bbdc08a28bf1d7fa6c045b52b3ca1eb75068b5f3f39b3bea70e"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-installed-post-reboot-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-installed-post-reboot-20261120.json",
+      "size": 56667,
+      "sha256": "58e772fb16c528a319740f494e23eac6680dca1c425cca6a139ea13112476773"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-panel-first-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-panel-first-20261120.json",
+      "size": 56420,
+      "sha256": "9e98f1ae209c1d0bbffae26f53417ba1d38e6c0c7a4cb15fd40c6f731e3e3de1"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-panel-repeat-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-panel-repeat-20261120.json",
+      "size": 52452,
+      "sha256": "4baced364c44aa294be7a4841618a8b0c17b0f55e93542089cf214c7cc07eab2"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-hevc4k30-panel-switch-seek-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-hevc4k30-panel-switch-seek-20261120.json",
+      "size": 53916,
+      "sha256": "525709bae69654892574449ea1656dadf0706db31a5dfae2ed3713fa65ed13a1"
+    },
+    {
       "path": "evidence/gnome-media-20261119/firefox-panel-candidate-20261120.json",
       "kind": "source",
       "source": "mainline/evidence/gnome-media-20261119/firefox-panel-candidate-20261120.json",
-      "size": 1723,
-      "sha256": "e2f760d483bfa7805d3684588e327dff0e9ab3735c2db4cdb04df9a71431d885"
+      "size": 17237,
+      "sha256": "e7a44eeeaed639d26d0a50fb0cdfa0e2131e2db9f1c0d84f9d509005409e2383"
     },
     {
       "path": "evidence/gnome-media-20261119/firefox160-timing-source-manifest.json",
@@ -1365,8 +1442,8 @@
       "path": "tools/build_gnome_media_candidate.sh",
       "kind": "source",
       "source": "mainline/tools/build_gnome_media_candidate.sh",
-      "size": 5012,
-      "sha256": "a13a8f95524c4e63948ab308bfb51041861a5e4ae382456cde273aa79992dfd8"
+      "size": 6037,
+      "sha256": "34c2c013e71a8f0215b00ae0b13f25c7340df0a96ab18d372e7dc9155c0ce9ce"
     },
     {
       "path": "tools/build_gpu_kernel.sh",

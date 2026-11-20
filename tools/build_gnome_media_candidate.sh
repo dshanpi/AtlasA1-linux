@@ -9,7 +9,8 @@ case "${4-}:$#" in
     --cedar-import:4) build=40; rate=400000000 ;;
     --prime-scanout:4) build=41; rate=400000000 ;;
     --display-trace:4) build=42; rate=400000000 ;;
-    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace]" >&2; exit 2 ;;
+    --pcie-nvme:4) build=43; rate=400000000 ;;
+    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace|--pcie-nvme]" >&2; exit 2 ;;
 esac
 upstream=$(realpath -e "$1")
 tina=$(realpath -e "$2")
@@ -35,7 +36,7 @@ fi
 if (( build >= 41 )); then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v41-prime-scanout.patch"
 fi
-if [[ $build == 42 ]]; then
+if (( build >= 42 )); then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v42-trace-api.patch"
     patch --batch --forward --fuzz=0 -d "$work/pvr-src" -p1 -i "$patches/v42-pvr-trace-api.patch"
 fi
@@ -46,6 +47,20 @@ v="6.18.63-t736-gnome-v$build"
 kernel="$work/kout"
 mkdir "$kernel"
 cp "$work/linux/.config.atlasa1" "$kernel/.config"
+dtb_name=t736-gpu-candidate.dtb
+if [[ $build == 43 ]]; then
+    root=$(dirname "$tools")
+    (cd "$root" && sha256sum --strict -c boards/pcie-v32/hw-v34-inputs.sha256)
+    for entry in atlasa1-wireless-v31.patch atlasa1-pcie-v32.patch \
+                 atlasa1-wireless-dldo5-v33.patch atlasa1-wireless-reset-v33.patch \
+                 atlasa1-pcie-combo1-v33.patch atlasa1-pcie-pipe-map-v34.patch; do
+        patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$root/patches/linux/$entry"
+    done
+    awk '!/^CONFIG_LOCALVERSION=/' "$root/boards/wireless-v31/kernel.config" \
+        "$root/boards/pcie-v32/pcie.config" > "$work/hardware.config"
+    "$work/linux/scripts/kconfig/merge_config.sh" -m -O "$kernel" "$kernel/.config" "$work/hardware.config"
+    dtb_name=t736-pcie-v32.dtb
+fi
 "$work/linux/scripts/config" --file "$kernel/.config" --set-str LOCALVERSION "-t736-gnome-v$build"
 if [[ $build == 38 ]]; then
     echo 'WARNING: v38 caused Xorg kernel Oops on hardware; diagnostic rebuild only.' >&2
@@ -54,18 +69,23 @@ fi
 if (( build >= 39 )); then
     "$work/linux/scripts/config" --file "$kernel/.config" --disable PREEMPT_DYNAMIC --disable PREEMPT --enable PREEMPT_NONE --enable PREEMPT_NONE_BUILD
 fi
-if [[ $build == 42 ]]; then
+if (( build >= 42 )); then
     "$work/linux/scripts/config" --file "$kernel/.config" --enable FTRACE --enable FUNCTION_TRACER --enable FUNCTION_GRAPH_TRACER
 fi
 km=(make -C "$work/linux" O="$kernel" -j"${JOBS:-7}")
 "${km[@]}" olddefconfig
+if [[ $build == 43 ]]; then
+    while IFS= read -r entry; do
+        grep -Fxq "$entry" "$kernel/.config" || { echo "Unresolved Kconfig setting: $entry" >&2; exit 1; }
+    done < "$work/hardware.config"
+fi
 if [[ $build == 38 ]]; then
     grep -qx CONFIG_PREEMPT_DYNAMIC=y "$kernel/.config"
     grep -qx CONFIG_PREEMPT_NONE=y "$kernel/.config"
 fi
-"${km[@]}" Image modules allwinner/t736-gpu-candidate.dtb
+"${km[@]}" Image modules "allwinner/$dtb_name"
 test "$(cat "$kernel/include/config/kernel.release")" = "$v"
-test "$(fdtget -t u "$kernel/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb" /gpu@1800000 clk_rate)" = "$rate"
+test "$(fdtget -t u "$kernel/arch/arm64/boot/dts/allwinner/$dtb_name" /gpu@1800000 clk_rate)" = "$rate"
 pvr="$work/pvr-src"; out="$work/pvr-out"; kbuild="$out/target_aarch64/kbuild"
 cd "$pvr"
 while IFS= read -r -d '' path; do
@@ -90,7 +110,7 @@ depmod -b "$tree" "$v"
 mv "$tree/lib" "$tree/usr/lib"
 install -m644 "$kernel/arch/arm64/boot/Image" "$tree/boot/Image-$v"
 install -m644 "$kernel/.config" "$tree/boot/config-$v"
-install -m644 "$kernel/arch/arm64/boot/dts/allwinner/t736-gpu-candidate.dtb" "$tree/boot/t736-gnome-v$build.dtb"
+install -m644 "$kernel/arch/arm64/boot/dts/allwinner/$dtb_name" "$tree/boot/t736-gnome-v$build.dtb"
 cd "$work"
 tar -C "$tree" -czf "gnome-media-v$build.tar.gz" boot usr
 sha256sum "gnome-media-v$build.tar.gz" "$tree/boot/"* > SHA256SUMS

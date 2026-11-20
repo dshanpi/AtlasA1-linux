@@ -39,3 +39,14 @@ The new DTB is `arch/arm64/boot/dts/allwinner/t736-pcie-v32.dtb` under the outpu
 ## Board checks
 
 `sh verify-slot.sh` identifies the root port and any devices below it. `sudo sh verify-slot.sh --rescan` repeats discovery on that root port. With a populated slot, record the downstream PCI ID, negotiated lane width and speed, bound driver and a successful device operation. With an empty slot, record COMBO1 lock from the kernel log, host probing and the result of a scan without a device. Endpoint I/O, PHY signal quality, wake, low-power states and higher link rates require further tests.
+
+## GNOME 合并候选 v43（2026-11-20）
+
+v42 的 GNOME 内核未编入 PCIe/NVMe。用户装入 M.2 PCIe SSD 后，新增 `build_gnome_media_candidate.sh --pcie-nvme`，将已校验的 v34 PCIe、SDIO/UART 补丁与 v42 显示、PRIME 导入和跟踪修复组合，启用 NVMe，保持 400 MHz GPU 和非抢占配置。该选项初始仍以 Gen1 单通道训练；不能把主控编译成功当作 SSD 枚举、读写或高速率验收。
+
+```sh
+bash tools/build_gnome_media_candidate.sh /path/to/linux-upstream.tar.gz \
+  /path/to/tina /tmp/gnome-pcie-v43 --pcie-nvme
+```
+
+板卡 v42 默认启动与匹配的 PowerVR 模块保留，v43 先使用临时启动验证。SSD 的实际识别与 I/O 结果需另附实板记录。
