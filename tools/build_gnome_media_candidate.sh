@@ -10,7 +10,9 @@ case "${4-}:$#" in
     --prime-scanout:4) build=41; rate=400000000 ;;
     --display-trace:4) build=42; rate=400000000 ;;
     --pcie-nvme:4) build=45; rate=400000000 ;;
-    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace|--pcie-nvme]" >&2; exit 2 ;;
+    --boot-log:4) build=46; rate=400000000 ;;
+    --boot-fast:4) build=47; rate=400000000 ;;
+    *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace|--pcie-nvme|--boot-log|--boot-fast]" >&2; exit 2 ;;
 esac
 upstream=$(realpath -e "$1")
 tina=$(realpath -e "$2")
@@ -39,6 +41,9 @@ fi
 if (( build >= 42 )); then
     patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v42-trace-api.patch"
     patch --batch --forward --fuzz=0 -d "$work/pvr-src" -p1 -i "$patches/v42-pvr-trace-api.patch"
+fi
+if (( build >= 46 )); then
+    patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$patches/v46-mmc-tuning-log.patch"
 fi
 export ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- KBUILD_BUILD_VERSION="$build" LOCALVERSION=
 export SOURCE_DATE_EPOCH=1795046400 KBUILD_BUILD_TIMESTAMP='2026-11-19 00:00:00 UTC'
@@ -74,6 +79,9 @@ if (( build >= 39 )); then
 fi
 if (( build >= 42 )); then
     "$work/linux/scripts/config" --file "$kernel/.config" --enable FTRACE --enable FUNCTION_TRACER --enable FUNCTION_GRAPH_TRACER
+fi
+if (( build >= 47 )); then
+    "$work/linux/scripts/config" --file "$kernel/.config" --set-val CONSOLE_LOGLEVEL_DEFAULT 5
 fi
 km=(make -C "$work/linux" O="$kernel" -j"${JOBS:-7}")
 "${km[@]}" olddefconfig

@@ -207,6 +207,118 @@
       "sha256": "8914dc6e785474d6f83cb1f4bc173c9fd6b54efe2490088417a4cde9641feafa"
     },
     {
+      "path": "evidence/bootfast-20261120/boot-v46-quiet-trial.log",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v46-quiet-trial.log",
+      "size": 10459,
+      "sha256": "876129756e3e6b4eaed17628a653c7019bc52e0d9c290fa16fdca0078facf268"
+    },
+    {
+      "path": "evidence/bootfast-20261120/boot-v46-trial.log",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v46-trial.log",
+      "size": 37377,
+      "sha256": "c171d9571f805062a0e5ecd9c6870133901fa7ca09c3df56160555b01865bb6e"
+    },
+    {
+      "path": "evidence/bootfast-20261120/boot-v46-zstd-trial.log",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v46-zstd-trial.log",
+      "size": 10639,
+      "sha256": "5ae178cfe67fdf42dda241e99769aa90b6848300d466ed051a0983c16c63ddb2"
+    },
+    {
+      "path": "evidence/bootfast-20261120/boot-v47-default-config-trial.log",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v47-default-config-trial.log",
+      "size": 10179,
+      "sha256": "e8ba1de2a8ee96edc9b6309b0356fcbc653ca7466033e685ba066c205fbca092"
+    },
+    {
+      "path": "evidence/bootfast-20261120/boot-v47-default-final.log",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v47-default-final.log",
+      "size": 9271,
+      "sha256": "fb92428b64af096b096247cff1808179c9070a942d6120818e043b28e7f6532e"
+    },
+    {
+      "path": "evidence/bootfast-20261120/boot-v47-default-final.timing.json",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/boot-v47-default-final.timing.json",
+      "size": 893,
+      "sha256": "5c3f1d1161690136707cffdfc5ea3183b537604a3be034f5e28e3464407c6800"
+    },
+    {
+      "path": "evidence/bootfast-20261120/compressed-v45-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/compressed-v45-time.txt",
+      "size": 122,
+      "sha256": "c29b8ffdd988ac2ea7f676496c465db76e08b6ff35309081c9b197c4748d0e8d"
+    },
+    {
+      "path": "evidence/bootfast-20261120/emmc-direct-read-v46.json",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/emmc-direct-read-v46.json",
+      "size": 449,
+      "sha256": "e982251d6e38dd6df499f846221b4c571e07dc4be4250b648ba161952f5de9f6"
+    },
+    {
+      "path": "evidence/bootfast-20261120/measurements.json",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/measurements.json",
+      "size": 2912,
+      "sha256": "f558231599734b145fcacc2baeb604c1ce850ce0eddd97f7d5b1d34d5b501725"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v46-quiet-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v46-quiet-time.txt",
+      "size": 122,
+      "sha256": "06c06dcc7df741208a4c944090578a2c6286b32c7daddd105454553092ba0b29"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v46-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v46-time.txt",
+      "size": 122,
+      "sha256": "b3bd74d2b58995befbc290a75afd1ed496396a84ceb854588c516f83837dd107"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v46-zstd-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v46-zstd-time.txt",
+      "size": 122,
+      "sha256": "5204186731b6acdd4bc025576ba266cb59b7b9511056f1af2d77cb0917386ae5"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v47-default-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v47-default-time.txt",
+      "size": 122,
+      "sha256": "64d49a67876e1313e1ea411f604f6f078d4af35a4a5a22ddd426f5f7493d1ebb"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v47-final-gnome.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v47-final-gnome.txt",
+      "size": 275,
+      "sha256": "da6ee889457db39fb8c7903eeab8cc7896d6520524d66c80c8e194bd9e245371"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v47-final-kernel.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v47-final-kernel.txt",
+      "size": 833,
+      "sha256": "c629a2a3712e9124b21a07c2c523e5ca4ee8ae1b89e242b821f0a274a7d05314"
+    },
+    {
+      "path": "evidence/bootfast-20261120/v47-trial-time.txt",
+      "kind": "source",
+      "source": "mainline/evidence/bootfast-20261120/v47-trial-time.txt",
+      "size": 122,
+      "sha256": "bff940b90a452f59683d93d730281fefb63f5e58e3833c61ce7d7d9a6afc128b"
+    },
+    {
       "path": "evidence/gnome-media-20261119/aic8800d80-combined-sdio-20261120.json",
       "kind": "source",
       "source": "mainline/evidence/gnome-media-20261119/aic8800d80-combined-sdio-20261120.json",
@@ -1498,8 +1610,8 @@
       "path": "patches/linux/gnome-media-20261119/README.md",
       "kind": "source",
       "source": "mainline/patches/linux/gnome-media-20261119/README.md",
-      "size": 3889,
-      "sha256": "39ea6a4d1e5ceb95d947f46e4561794c6db2cc4d177dcc5f9957a7ff9758c064"
+      "size": 5061,
+      "sha256": "ad3cf2eadc0bd705f6739c3a8eb3e63c2fc49e7bdea526d630efd3d6ae22b750"
     },
     {
       "path": "patches/linux/gnome-media-20261119/v36-vblank.patch",
@@ -1556,6 +1668,13 @@
       "source": "mainline/patches/linux/gnome-media-20261119/v42-trace-api.patch",
       "size": 653,
       "sha256": "6bfb42d56ee8c3c719e1236acf491f5d87dc4f503977a922c4f01066eade6e21"
+    },
+    {
+      "path": "patches/linux/gnome-media-20261119/v46-mmc-tuning-log.patch",
+      "kind": "source",
+      "source": "mainline/patches/linux/gnome-media-20261119/v46-mmc-tuning-log.patch",
+      "size": 558,
+      "sha256": "9bbc3907dceccb7276c7b065a5ee1149383b01936feceb697e20b9806d9a4213"
     },
     {
       "path": "patches/linux/media-v17-iommu-api.patch",
@@ -1722,8 +1841,8 @@
       "path": "tools/build_gnome_media_candidate.sh",
       "kind": "source",
       "source": "mainline/tools/build_gnome_media_candidate.sh",
-      "size": 6245,
-      "sha256": "c0ea62a83c19a4a8d899d78d082e3dd43a074d357b7e9bd910287e7a58910f66"
+      "size": 6613,
+      "sha256": "2eb8cac1ee3b4913c21a4b89b55210458d4483fa31a49df3ecd0105e1de9f9c4"
     },
     {
       "path": "tools/build_gpu_kernel.sh",

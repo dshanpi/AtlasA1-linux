@@ -1,0 +1,15 @@
+--- a/drivers/mmc/host/t736_mmc_pio.c
++++ b/drivers/mmc/host/t736_mmc_pio.c
+@@ -821,8 +821,11 @@
+ 		}
+ 	}
+ 	if (data) {
++		/* Bad sampling taps are expected during read-only tuning. Keep the
++		 * first snapshot, but always report errors outside that classifier.
++		 */
+ 		if (ret && (!host->tuning_running || !host->tuning_error_reported ||
+-			    (dma_status & T736_DMA_ERRORS))) {
++			    !t736_tuning_error_recoverable(ret, status, dma_status))) {
+ 			t736_dma_snapshot(host, cmd);
+ 			if (host->tuning_running)
+ 				host->tuning_error_reported = true;
