@@ -50,3 +50,25 @@ bash tools/build_gnome_media_candidate.sh /path/to/linux-upstream.tar.gz \
 ```
 
 板卡 v42 默认启动与匹配的 PowerVR 模块保留，v43 先使用临时启动验证。SSD 的实际识别与 I/O 结果需另附实板记录。
+
+首轮 v43 已枚举 Intel `8086:f1a6`，但 NVMe 管理队列超时。补入覆盖实板 8GiB RAM 的 `dma-ranges` 后，仍观察到根端口 COMMAND 为 0、端点 BAR0 回到未分配值。现场恢复桥使能与 BAR 地址并重新绑定后，识别 `INTEL SSDPEKKW128G8`（119.2GiB），两次 256MiB O_DIRECT 读取为 186/188 MB/s。此成绩依赖现场修复，不算冷启动通过。
+
+v44 阶段的 `--pcie-nvme` 输出包含 DMA 窗口补丁，并新增 `CONFIG_PCIEPORTBUS=y`，让根端口由标准 PCIe port 驱动管理。Gen1 ×1 限制保留，冷启动和后续速度验证另记。[现场读取记录](../../evidence/gnome-media-20261119/nvme-live-read-gen1-20261120.json)
+
+## GNOME v45：屏蔽未验证的 ASPM（2026-11-20）
+
+v44 即使启用 PCIe port service 仍在首次 NVMe 管理命令超时；同一内核仅增加 `pcie_aspm=off` 冷启动后，Intel SSDPEKKW128G8 自动出现 `nvme0n1p1`，512MiB O_DIRECT 只读为 193MB/s。没有写入、挂载或格式化 SSD。
+
+v45 在 T736 主控扫描前屏蔽根端口 L0s/L1 和 ClockPM 能力，并清除相应使能位。限制只作用于本板 COMBO1 固定内部参考时钟路径；不修改其他 PCIe 主控或 NVMe APST。`build_gnome_media_candidate.sh --pcie-nvme` 已纳入 `atlasa1-pcie-aspm-v45.patch`，无需全局启动参数。DMA 窗口与根端口服务修复保留。
+
+临时启动及更新默认别名后的无人干预冷启动均自动枚举 SSD，默认启动后 32 次只读比对通过、两次 512MiB 读取约 201MB/s，GNOME 登录界面与 PowerVR 模块正常。保留 v42 回退脚本 `/var/backups/atlasa1-v45-default-20261120/restore.sh`。GNOME 浏览器 HEVC 4K30 片源缩放到 1080p 连续 90 秒零丢帧；H.264 1080p60 仍有少量丢帧。完整记录见 `evidence/gnome-media-20261119/gnome-pcie-v45-20261120.json`。Gen1 ×1 限制暂时保留；Gen2/Gen3、ASPM 恢复、挂起唤醒及写入性能尚未验收。
+
+### 只读一致性检查
+
+```sh
+sudo python3 boards/pcie-v32/check-nvme-readonly.py --device /dev/nvme0n1 --output /tmp/nvme-readonly.json
+```
+
+工具以 `O_RDONLY|O_DIRECT` 打开 NVMe，使用新分配的页对齐缓冲，分别在预填充与未预填充条件下重复读取，并与 GNU `dd` 交叉比对；不会挂载或写入 SSD。JSON 只保存比对结果，不保存盘内数据。
+
+Ubuntu 26.04 自带 uutils `dd` 0.10.0 的 `iflag=direct` 在本板曾返回少量不一致字节；同次启动的缓存读取、GNU `gnudd` 及独立 `preadv` 均一致。该现象原因尚未定位，不能混用 uutils 的直接 I/O 结果作为介质验收，也不能据此认定 SSD 损坏。保留原始失败及交叉对照记录。

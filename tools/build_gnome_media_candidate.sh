@@ -9,7 +9,7 @@ case "${4-}:$#" in
     --cedar-import:4) build=40; rate=400000000 ;;
     --prime-scanout:4) build=41; rate=400000000 ;;
     --display-trace:4) build=42; rate=400000000 ;;
-    --pcie-nvme:4) build=43; rate=400000000 ;;
+    --pcie-nvme:4) build=45; rate=400000000 ;;
     *) echo "Usage: $0 LINUX_ARCHIVE_OR_GIT_REPO TINA_SDK NEW_OUTPUT [--gpu600|--rcq-preempt|--rcq-poll|--cedar-import|--prime-scanout|--display-trace|--pcie-nvme]" >&2; exit 2 ;;
 esac
 upstream=$(realpath -e "$1")
@@ -48,16 +48,19 @@ kernel="$work/kout"
 mkdir "$kernel"
 cp "$work/linux/.config.atlasa1" "$kernel/.config"
 dtb_name=t736-gpu-candidate.dtb
-if [[ $build == 43 ]]; then
+if (( build >= 43 )); then
     root=$(dirname "$tools")
     (cd "$root" && sha256sum --strict -c boards/pcie-v32/hw-v34-inputs.sha256)
     for entry in atlasa1-wireless-v31.patch atlasa1-pcie-v32.patch \
                  atlasa1-wireless-dldo5-v33.patch atlasa1-wireless-reset-v33.patch \
-                 atlasa1-pcie-combo1-v33.patch atlasa1-pcie-pipe-map-v34.patch; do
+                 atlasa1-pcie-combo1-v33.patch atlasa1-pcie-pipe-map-v34.patch \
+                 atlasa1-pcie-dma-v43.patch atlasa1-pcie-aspm-v45.patch; do
         patch --batch --forward --fuzz=0 -d "$work/linux" -p1 -i "$root/patches/linux/$entry"
     done
     awk '!/^CONFIG_LOCALVERSION=/' "$root/boards/wireless-v31/kernel.config" \
         "$root/boards/pcie-v32/pcie.config" > "$work/hardware.config"
+    # Keep the root port managed after enumeration, including bridge PM.
+    printf 'CONFIG_PCIEPORTBUS=y\n' >> "$work/hardware.config"
     "$work/linux/scripts/kconfig/merge_config.sh" -m -O "$kernel" "$kernel/.config" "$work/hardware.config"
     dtb_name=t736-pcie-v32.dtb
 fi
@@ -74,7 +77,7 @@ if (( build >= 42 )); then
 fi
 km=(make -C "$work/linux" O="$kernel" -j"${JOBS:-7}")
 "${km[@]}" olddefconfig
-if [[ $build == 43 ]]; then
+if (( build >= 43 )); then
     while IFS= read -r entry; do
         grep -Fxq "$entry" "$kernel/.config" || { echo "Unresolved Kconfig setting: $entry" >&2; exit 1; }
     done < "$work/hardware.config"

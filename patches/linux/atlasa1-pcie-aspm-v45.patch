@@ -1,0 +1,30 @@
+--- a/drivers/pci/controller/dwc/pcie-t736.c
++++ b/drivers/pci/controller/dwc/pcie-t736.c
+@@ -144,6 +144,27 @@
+ {
+ 	struct t736_pcie *host = from_pci(to_dw_pcie_from_pp(pp));
+ 	struct device_node *np;
++	struct dw_pcie *pci = &host->pci;
++	u16 cap;
++	u32 val;
++
++	/* COMBO1's fixed internal REFCLK path has no validated ASPM exit
++	 * sequence. Advertising L1 makes the Intel 760p lose its config
++	 * during cold probe. Hide L0s/L1 before PCI core scans the link;
++	 * leave other hosts and NVMe autonomous power states unchanged.
++	 */
++	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
++	if (!cap)
++		return -ENODEV;
++	dw_pcie_dbi_ro_wr_en(pci);
++	val = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
++	val &= ~(PCI_EXP_LNKCAP_ASPMS | PCI_EXP_LNKCAP_CLKPM);
++	dw_pcie_writel_dbi(pci, cap + PCI_EXP_LNKCAP, val);
++	dw_pcie_dbi_ro_wr_dis(pci);
++	val = dw_pcie_readw_dbi(pci, cap + PCI_EXP_LNKCTL);
++	val &= ~(PCI_EXP_LNKCTL_ASPMC | PCI_EXP_LNKCTL_CLKREQ_EN);
++	dw_pcie_writew_dbi(pci, cap + PCI_EXP_LNKCTL, val);
++	dev_info(pci->dev, "ASPM disabled for fixed COMBO1 REFCLK path\n");
+ 
+ 	update_bits(host->app + APP_IRQ_ENABLE, INTX_MASK, 0);
+ 	writel(INTX_MASK, host->app + APP_IRQ_STATUS);
