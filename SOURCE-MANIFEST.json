@@ -91,8 +91,8 @@
       "path": "docs/GNOME_MEDIA.md",
       "kind": "source",
       "source": "mainline/docs/GNOME_MEDIA.md",
-      "size": 19913,
-      "sha256": "9635a8f2de24770b5cb76316f7f58ff2eba05c5444e55c2bae6a1eb90c8b9a52"
+      "size": 20521,
+      "sha256": "0c51f10094066ef2a72914a70fbd72f4d5f8bf9b4fbf50ac568f5a53aced373b"
     },
     {
       "path": "docs/WIRELESS.md",
@@ -205,6 +205,13 @@
       "source": "mainline/evidence/gnome-media-20261119/firefox-1080-wayland.json",
       "size": 26335,
       "sha256": "430bcb2fda50bd3cd561d0246d6e08f1d54cdd6757d7ca1f0b8a4d8d0321dfba"
+    },
+    {
+      "path": "evidence/gnome-media-20261119/firefox-panel-candidate-20261120.json",
+      "kind": "source",
+      "source": "mainline/evidence/gnome-media-20261119/firefox-panel-candidate-20261120.json",
+      "size": 1723,
+      "sha256": "e2f760d483bfa7805d3684588e327dff0e9ab3735c2db4cdb04df9a71431d885"
     },
     {
       "path": "evidence/gnome-media-20261119/firefox160-timing-source-manifest.json",
