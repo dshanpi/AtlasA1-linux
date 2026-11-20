@@ -88,11 +88,25 @@
       "sha256": "23185cb419931cb4e26b329308130a8a9efa368c85ae0e72e72093ff1d8c9139"
     },
     {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-command-phase.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-command-phase.patch",
+      "size": 640,
+      "sha256": "c9f538da3a4cd7f949167e3302686df355e2f05956c82bd2d01e5278f7383790"
+    },
+    {
       "path": "boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
       "kind": "source",
       "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
       "size": 349,
       "sha256": "c9a3f3a3c3b68961b72348209c24681fae6eb2ca435e1fe311119979553ec783"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/run-phase-trial.sh",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/run-phase-trial.sh",
+      "size": 1670,
+      "sha256": "12528968529771767e7333be0265665732f85e5c173ad149c4ab56dcfdffe32f"
     },
     {
       "path": "boards/wireless-v31/kernel.config",
@@ -119,8 +133,8 @@
       "path": "docs/WIRELESS.md",
       "kind": "source",
       "source": "mainline/docs/WIRELESS.md",
-      "size": 7034,
-      "sha256": "af053d8d4ae402d7e9e48efe891fa4bef313f697384eb524e9a35d09a66f400d"
+      "size": 8486,
+      "sha256": "4452812dc35d25ddf3461853852ccc24cb8b9cef51f5a9b4375c5c20557073ce"
     },
     {
       "path": "evidence/atlas-ubuntu26-board-rebuild-20261118.json",

@@ -1,0 +1,21 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -268,6 +268,10 @@
+ 	bool ccu_has_timings_switch;
+ };
+ 
++static unsigned int cmd_phase;
++module_param(cmd_phase, uint, 0444);
++MODULE_PARM_DESC(cmd_phase, "Diagnostic command sample phase 0..3");
++
+ struct sunxi_mmc_host {
+ 	void __iomem *pg, *pm, *rtc;
+ 	struct device *dev;
+@@ -852,6 +856,7 @@
+ 			/* T736 identification and SDR <= 26 MHz use the same phases. */
+ 			mmc_writel(host, REG_DRV_DL, (drive & ~BIT(17)) | BIT(16));
+ 			rval &= ~(GENMASK(9, 8) | GENMASK(5, 4));
++			rval |= (cmd_phase & 3) << 4;
+ 		}
+ 		rval |= SDXC_2X_TIMING_MODE;
+ 		mmc_writel(host, REG_SD_NTSR, rval);
