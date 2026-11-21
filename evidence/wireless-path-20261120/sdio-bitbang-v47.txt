@@ -1,0 +1,37 @@
+6.18.63-t736-gnome-v47
+5e35c6f1b7e829dd97310e54e85cf866f7535d2774266cb8b39075e1a5ce1957  /var/tmp/atlasa1-sdio-bitbang-v47.ko
+COMMAND_SAMPLE_PHASE 0
+gpiochip1: 352 GPIOs, parent: platform/2000000.pinctrl, 2000000.pinctrl:
+ gpio-240 (                    |reset               ) out hi ACTIVE LOW
+ gpio-266 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip0: 64 GPIOs, parent: platform/7025000.pinctrl, 7025000.pinctrl:
+ gpio-6   (                    |regulator-usb1-vbus ) out hi 
+ gpio-32  (                    |shutdown            ) out lo 
+ gpio-36  (                    |reset               ) out lo ACTIVE LOW
+[ 2678.912163] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[ 2793.719785] atlasa1-sdio-diag 4021000.mmc: pad voltage select/control readback G=0aaaaaaa/00000000/01154540 M=000aaaaa/00000000/00000001
+[ 2793.719815] atlasa1-sdio-diag 4021000.mmc: roc32k trial rtc32out 00000000->00000001
+[ 2793.779592] atlasa1-sdio-diag 4021000.mmc: allocated mmc-pwrseq
+[ 2795.013990] atlasa1-sdio-diag 4021000.mmc: initialized, max. request size: 1024 KB, uses new timings mode
+[ 2795.014265] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=00000c00 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2795.014283] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2795.015107] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[ 2795.015172] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=80000c08 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2795.015189] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2795.016008] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[ 2797.054000] atlasa1-sdio-diag 4021000.mmc: GPIO CMD5 idle=00000002 start=-1 response=00 00 00 00 00 00 restored_mux=22222222
+[ 2797.054027] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2797.054040] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2797.054861] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[ 2797.054909] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2797.054925] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2797.055740] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[ 2797.055766] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2797.055777] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2797.056590] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[ 2797.056614] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[ 2797.056624] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[ 2797.057438] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+nvme0n1     119.2G
+└─nvme0n1p1 119.2G

@@ -1,0 +1,29 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -274,6 +274,7 @@
+ 
+ struct sunxi_mmc_host {
+ 	void __iomem *pg, *pm, *rtc, *diag_ccu;
++	bool diag_reset_after_clock;
+ 	struct device *dev;
+ 	struct mmc_host	*mmc;
+ 	struct reset_control *reset;
+@@ -885,8 +886,17 @@
+ 
+ 	/* And we just enabled our clock back */
+ 	mmc->actual_clock = rate;
+-	if (rate == 400000)
++	if (rate == 400000 && !host->diag_reset_after_clock) {
++		u32 old = readl(host->pm + 0x10);
++		host->diag_reset_after_clock = true;
++		writel(old & ~BIT(4), host->pm + 0x10);
++		msleep(100);
++		dev_info(host->dev, "after-clock WLAN reset PM=%08x clkcr=%08x\n",
++			 readl(host->pm + 0x10), mmc_readl(host, REG_CLKCR));
++		writel(old, host->pm + 0x10);
+ 		msleep(1000);
++		dev_info(host->dev, "after-clock WLAN released PM=%08x\n", readl(host->pm + 0x10));
++	}
+ 
+ 	return 0;
+ }

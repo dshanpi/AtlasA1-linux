@@ -1,0 +1,24 @@
+Linux atlasa1 6.18.63-t736-gnome-v47 #1 SMP Sat Nov 21 02:42:14 EST 2026 aarch64 GNU/Linux
+23d69103-d4f8-4647-a546-bd39675cd079
+id=03 dcdc_ctl1=ff dcdc_ctl2=1f dcdc1=17 ldo_ctl3=52 dldo5=0d dcdc1_on=1 sw2_on=1 dldo5_on=1 kind=programmed-configuration
+id=03 enable=ff dcdc2=28 phase=00 feedback=00 dvm=0 remote_feedback=1 setpoint_uv=900000 kind=programmed-setpoint
+clock:		0 Hz
+vdd:		0 (invalid)
+bus mode:	2 (push-pull)
+chip select:	0 (don't care)
+power mode:	0 (off)
+bus width:	0 (1 bits)
+timing spec:	0 (legacy)
+signal voltage:	1 (1.80 V)
+driver type:	0 (driver type B)
+gpiochip1: 352 GPIOs, parent: platform/2000000.pinctrl, 2000000.pinctrl:
+ gpio-240 (                    |reset               ) out hi ACTIVE LOW
+ gpio-266 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip0: 64 GPIOs, parent: platform/7025000.pinctrl, 7025000.pinctrl:
+ gpio-6   (                    |regulator-usb1-vbus ) out hi 
+ gpio-32  (                    |shutdown            ) out hi 
+ gpio-36  (                    |reset               ) out lo ACTIVE LOW
+total 0
+active
+Image-6.18.63-t736-gnome-v47.gz

@@ -1,0 +1,74 @@
+Linux atlasa1 6.18.63-t736-gnome-v47 #1 SMP Sat Nov 21 02:42:14 EST 2026 aarch64 GNU/Linux
+bfbf90c6ae75cd62786c62d3f00713a4e3568eead49468cb3fdfd57d265c98e0  /home/t736/atlasa1-wireless-pad-mode-v47.ko
+de886c4e6953719313598eae27bb153efdd30d5e6d84b708942f2a280a12a32e  /var/tmp/atlasa1-sdio-bitbang-rmw-v47.ko
+id=03 dcdc_ctl1=ff dcdc_ctl2=1f dcdc1=17 ldo_ctl3=52 dldo5=0d dcdc1_on=1 sw2_on=1 dldo5_on=1 kind=programmed-configuration
+id=03 dcdc_ctl1=ff dcdc_ctl2=1f dcdc1=17 ldo_ctl3=52 dldo5=0d dcdc1_on=1 sw2_on=1 dldo5_on=1 kind=programmed-configuration
+[    0.923957] mmc1: Failed to initialize a non-removable card
+[  329.161941] atlas-wireless-pad before PG=0aaaaaaa val=01154540 PM=000aaaaa val=00000001
+[  329.187913] atlas-wireless-pad mode=1 PG=0aaa9aaa val=01154540 PM=000aaaa6 val=00000001
+[  329.469123] mmc1: Failed to initialize a non-removable card
+[  333.495836] atlas-wireless-pad restored PG=0aaaaaaa PM=000aaaaa
+[  333.840957] mmc1: Failed to initialize a non-removable card
+[  362.915518] atlas-wireless-pad before PG=0aaaaaaa val=01154540 PM=000aaaaa val=00000001
+[  362.942624] atlas-wireless-pad mode=3 PG=0aaabaaa val=01154540 PM=000aaaae val=00000001
+[  363.223888] mmc1: Failed to initialize a non-removable card
+[  368.223877] atlas-wireless-pad restored PG=0aaaaaaa PM=000aaaaa
+[  368.575714] mmc1: Failed to initialize a non-removable card
+[  427.991498] atlas-wireless-pad before PG=0aaaaaaa val=01154540 PM=000aaaaa val=00000001
+[  428.012881] atlas-wireless-pad mode=3 PG=0aaabaaa val=01154540 PM=000aaaae val=00000001
+[  428.023132] atlasa1-sdio-diag 4021000.mmc: pad voltage select/control readback G=0aaabaaa/00000000/01154540 M=000aaaae/00000000/00000001
+[  428.023175] atlasa1-sdio-diag 4021000.mmc: roc32k trial rtc32out 00000000->00000001
+[  428.078213] atlasa1-sdio-diag 4021000.mmc: allocated mmc-pwrseq
+[  429.312742] atlasa1-sdio-diag 4021000.mmc: initialized, max. request size: 1024 KB, uses new timings mode
+[  429.314254] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=00000c00 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  429.314293] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  429.315125] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[  429.315181] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=80000c08 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  429.315203] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  429.316029] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[  431.349951] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  431.349990] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  431.350822] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  431.350868] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  431.350889] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  431.351713] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  431.351743] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  431.351764] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  431.352587] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  431.352618] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  431.352638] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  431.353463] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  431.393949] mmc1: Failed to initialize a non-removable card
+[  435.424166] atlas-wireless-pad restored PG=0aaaaaaa PM=000aaaaa
+[  435.745845] mmc1: Failed to initialize a non-removable card
+[  453.676775] atlas-wireless-pad before PG=0aaaaaaa val=01154540 PM=000aaaaa val=00000001
+[  453.704242] atlas-wireless-pad mode=3 PG=0aaabaaa val=01154540 PM=000aaaae val=00000001
+[  453.714032] atlasa1-sdio-diag 4021000.mmc: pad voltage select/control readback G=0aaabaaa/00000000/01154540 M=000aaaae/00000000/00000001
+[  453.714075] atlasa1-sdio-diag 4021000.mmc: roc32k trial rtc32out 00000000->00000001
+[  453.769531] atlasa1-sdio-diag 4021000.mmc: allocated mmc-pwrseq
+[  455.012116] atlasa1-sdio-diag 4021000.mmc: initialized, max. request size: 1024 KB, uses new timings mode
+[  455.013704] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=00000c00 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  455.013743] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  455.014573] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[  455.014627] atlasa1-sdio-diag 4021000.mmc: probe CMD52 arg=80000c08 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  455.014650] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  455.015476] atlasa1-sdio-diag 4021000.mmc: probe CMD52 failed IRQ=00000104 resp0=00000000
+[  457.048403] atlasa1-sdio-diag 4021000.mmc: GPIO clock readback low=00000002 high=00000003 elapsed_ns=3073197
+[  457.048435] atlasa1-sdio-diag 4021000.mmc: GPIO CMD5 idle=00000002 start=-1 response=00 00 00 00 00 00 restored_mux=22222222
+[  457.048456] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  457.048476] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  457.049304] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  457.049349] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  457.049372] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  457.050195] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  457.050226] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  457.050247] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  457.051070] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  457.051100] atlasa1-sdio-diag 4021000.mmc: probe CMD5 arg=00000000 clk=400000 clkcr=00010000 ntsr=81710000 pgmux=22222222 pgdata=00000000 pmmux=00f1fff1 pmdata=00000011 rtc32out=00000001
+[  457.051120] atlasa1-sdio-diag 4021000.mmc: path version=04050530 gctrl=20000010 funs=00010000 csdc=00000003 edsd=00000000 drive=00010000 sample=00002000 sfc=00000006 ccu_module=8000001d ccu_bus=00010001 ccu_store=110103ff ccu_msi=00030001
+[  457.051942] atlasa1-sdio-diag 4021000.mmc: probe CMD5 failed IRQ=00000104 resp0=00000000
+[  457.089324] mmc1: Failed to initialize a non-removable card
+[  461.151913] atlas-wireless-pad restored PG=0aaaaaaa PM=000aaaaa
+../../../bus/platform/drivers/sunxi-mmc
+(null)
+active

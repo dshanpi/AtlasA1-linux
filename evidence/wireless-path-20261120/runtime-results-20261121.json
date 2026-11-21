@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-21",
+  "module": "AW869C",
+  "chip": "AIC8800D80",
+  "wifi_passed": false,
+  "bluetooth_passed": false,
+  "sw2_enabled": true,
+  "pad_modes_tested": [
+    "auto",
+    "manual1v8"
+  ],
+  "default_kernel_restored": true,
+  "evidence_sha256": {
+    "boot-wireless-restore-20261121.log": "2c17109dce2e48a8e75f02d5c03e899240e2263abf04cabfbcbd6ead90c89135",
+    "boot-wireless-snapshot-20261121.log": "93618a695ffbccef112b19f6effecad1b9e8effb9c7262d0df279c6ca4964841",
+    "pad-1v8-20261121.txt": "f9199baccfe63590c5d4e80d581abb8f23931f37ee462daf793af041f229d775",
+    "pad-1v8-bitbang-20261121.txt": "b81eccab342c902166de4f9a118eebf2bba79261f326a278f10a6ed7a2aff076",
+    "pad-1v8-path-20261121.txt": "1ec82cb4f13a6374934b627b6943801701d40c2a3d18819cbcbd00f6c3e8c979",
+    "pad-auto-20261121.txt": "fe3e506c1b5ee69623020c6f044cff3314dddda2b18365188c5fb9d2d127056b",
+    "pmic-snapshot-20261121.txt": "e4e277cab110e3386d668fcef7e1716fbcb5aaf5f13d2bef55572f7b5cd119ef",
+    "restored-default-20261121.txt": "d5ae46fd0bfc1fcb831cfb242d754df26cfa89af1ee90c1682284320893fdfcc"
+  }
+}

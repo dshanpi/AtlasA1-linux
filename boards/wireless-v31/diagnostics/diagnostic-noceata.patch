@@ -1,0 +1,11 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -350,7 +350,7 @@
+ 	/* Debug register? undocumented */
+ 	mmc_writel(host, REG_DBGC, 0xdeb);
+ 	/* Enable CEATA support */
+-	mmc_writel(host, REG_FUNS, SDXC_CEATA_ON);
++	mmc_writel(host, REG_FUNS, 0); /* Tina leaves CE-ATA disabled. */
+ 	/* Set DMA descriptor list base address */
+ 	mmc_writel(host, REG_DLBA, host->sg_dma >> host->cfg->idma_des_shift);
+ 

@@ -1,0 +1,12 @@
+{
+  "aic8800_bsp": {
+    "sha256": "9794aee01ee3922b225cd5f9583b1867036c7b2a8ca6baae9ca51d4f4431d057",
+    "vermagic": "6.18.63-t736-gnome-v47 SMP mod_unload aarch64",
+    "status": "compiled_only_not_loaded"
+  },
+  "aic8800_fdrv": {
+    "sha256": "c1ae9bad76963f5fec5539a64a0ac0cdd0e5c0459786c4bfbd8012d402f90199",
+    "vermagic": "6.18.63-t736-gnome-v47 SMP mod_unload aarch64",
+    "status": "compiled_only_not_loaded"
+  }
+}

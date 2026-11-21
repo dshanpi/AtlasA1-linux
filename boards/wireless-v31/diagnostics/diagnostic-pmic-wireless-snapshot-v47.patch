@@ -1,0 +1,55 @@
+--- a/drivers/regulator/t736-gpu-supply.c
++++ b/drivers/regulator/t736-gpu-supply.c
+@@ -145,8 +145,52 @@
+ }
+ static DEVICE_ATTR_RO(dcdc2_snapshot);
+ 
++/* Reference board: DCDC1 -> SW2 -> RP465 -> VCC-WIFI. DLDO5 supplies
++ * VCC-PG/VCC-PM/VCCIO-WIFI. Read configuration only, never toggle a rail:
++ * SW2 also supplies PCIe and DLDO5 shares its control register with DDR.
++ * This reports PMIC configuration, not voltage measured at the module.
++ */
++static ssize_t wireless_snapshot_show(struct device *dev,
++		struct device_attribute *attr, char *buf)
++{
++	static const u8 regs[] = { 0x0e, 0x10, 0x11, 0x12, 0x22, 0x38 };
++	u8 values[ARRAY_SIZE(regs)] = { 0 };
++	struct t736_gpu_supply *p;
++	unsigned int i;
++	int ret = -ENODEV;
++
++	(void)attr;
++	mutex_lock(&cpu_supply_owner_lock);
++	p = cpu_supply_owner;
++	if (!p || p->dev != dev)
++		goto out_owner;
++	mutex_lock(&p->lock);
++	for (i = 0; i < ARRAY_SIZE(regs); i++) {
++		ret = pmic_read(p, regs[i], &values[i]);
++		if (ret)
++			break;
++		if (i == 0 && values[0] != 3) {
++			ret = -ENODEV;
++			break;
++		}
++	}
++	mutex_unlock(&p->lock);
++out_owner:
++	mutex_unlock(&cpu_supply_owner_lock);
++	if (ret)
++		return ret;
++	return sysfs_emit(buf,
++		"id=%02x dcdc_ctl1=%02x dcdc_ctl2=%02x dcdc1=%02x ldo_ctl3=%02x dldo5=%02x dcdc1_on=%u sw2_on=%u dldo5_on=%u kind=programmed-configuration\n",
++		values[0], values[1], values[2], values[3], values[4], values[5],
++		!!(values[1] & BIT(0)), !!(values[2] & BIT(4)),
++		!!(values[4] & BIT(4)));
++}
++static DEVICE_ATTR_RO(wireless_snapshot);
++
++
+ static struct attribute *t736_pmic_attrs[] = {
+ 	&dev_attr_dcdc2_snapshot.attr,
++	&dev_attr_wireless_snapshot.attr,
+ 	NULL,
+ };
+ ATTRIBUTE_GROUPS(t736_pmic);

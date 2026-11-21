@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-20",
+  "kernel": "6.18.63-t736-gnome-v47",
+  "status": "unresolved_no_sdio_response",
+  "trials": [
+    {
+      "name": "path",
+      "log": "sdio-path-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false
+    },
+    {
+      "name": "noceata",
+      "log": "sdio-noceata-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false
+    },
+    {
+      "name": "dual-reset",
+      "log": "sdio-dual-reset-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false
+    },
+    {
+      "name": "bitbang",
+      "log": "sdio-bitbang-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false
+    },
+    {
+      "name": "afterclock",
+      "log": "sdio-afterclock-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false
+    },
+    {
+      "name": "bitbang-rmw",
+      "log": "sdio-bitbang-rmw-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false,
+      "gpio_low_readback": "00000002",
+      "gpio_high_readback": "00000003",
+      "gpio_query_elapsed_ns": 3081322,
+      "response_start_bit": -1
+    },
+    {
+      "name": "ext32k",
+      "log": "sdio-ext32k-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false,
+      "rtc_control_during": "00004011",
+      "rtc_control_restored": "00004010",
+      "rtc_fanout_restored": "00000000"
+    },
+    {
+      "name": "ext32k-wlanonly",
+      "log": "sdio-ext32k-wlanonly-v47.txt",
+      "command_timeouts": 6,
+      "sdio_enumerated": false,
+      "rtc_control_during": "00004011",
+      "rtc_control_restored": "00004010",
+      "rtc_fanout_restored": "00000000"
+    }
+  ],
+  "gpio_cmd5": {
+    "start_bit_index": -1,
+    "sampled_clocks": 256,
+    "cmd_line_idle": 1,
+    "limitation": "software GPIO test; timing and module-end waveform not measured; not proof of faulty hardware"
+  },
+  "clock_readback": {
+    "smhc1": "8000001d",
+    "bus": "00010001",
+    "store": "110103ff",
+    "msi_lite1": "00030001"
+  },
+  "image_dtb_audit": {
+    "images": [
+      "t736_lpddr4_emmc_debian11_xfce_boot0_preserved.img",
+      "t736_linux_demo_aiot_buildroot_lpddr5_uart0.img"
+    ],
+    "dtb_sha256": "504a05d1ba100c26b663f3729b62bbebeb77eff66cf0752a172a2a8eb649c560",
+    "known_working_image_confirmed_by_user": false,
+    "user_reply": "1: interpreted as Debian11 XFCE image family; exact filename not explicitly named",
+    "rootfs_component_sha256": "f98b44654730ea8629dc04a8cfaca12656ea3804011c15a7f7d6d9502af4d105"
+  },
+  "cleanup": {
+    "driver": "sunxi-mmc",
+    "override": "(null)",
+    "diagnostic_module_loaded": false,
+    "original_bt_soft_block": 0,
+    "restored_bt_soft_block": 0,
+    "display_manager": "active",
+    "failed_units": 0,
+    "nvme_present": true,
+    "ssd_written": false,
+    "shared_3v3_toggled": false,
+    "default_boot_changed": false
+  },
+  "next_evidence": "Physical measurement unavailable. Software-visible clock-source discrepancy was tested and did not resolve SDIO. A working vendor runtime register snapshot or module-end measurements are still needed to discriminate remaining causes.",
+  "measurement_availability": "User cannot take physical measurements at present",
+  "rtc_snapshot": {
+    "control": "00004010",
+    "status": "00000000",
+    "fanout": "00000000",
+    "xo_control": "983fb0f7",
+    "serdes_control": "00000520"
+  }
+}

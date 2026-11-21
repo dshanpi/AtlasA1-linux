@@ -1,0 +1,52 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -273,7 +273,8 @@
+ MODULE_PARM_DESC(cmd_phase, "Diagnostic command sample phase 0..3");
+ 
+ struct sunxi_mmc_host {
+-	void __iomem *pg, *pm, *rtc, *diag_ccu;
++	void __iomem *pg, *pm, *rtc, *diag_ccu, *diag_rtc_ctrl;
++	u32 diag_rtc_parent;
+ 	struct device *dev;
+ 	struct mmc_host	*mmc;
+ 	struct reset_control *reset;
+@@ -1407,6 +1408,14 @@
+ 	pr_info("atlasa1 SDIO trial restored rtc32out=%08x\n", readl(reg));
+ }
+ 
++static void restore_rtc_parent(void *data)
++{
++	struct sunxi_mmc_host *host = data;
++	u32 now = readl(host->diag_rtc_ctrl);
++	writel(0x16aa0000 | ((now & 0xffff & ~BIT(0)) | host->diag_rtc_parent), host->diag_rtc_ctrl);
++	dev_info(host->dev, "RTC source restored %08x\n", readl(host->diag_rtc_ctrl));
++}
++
+ static int sunxi_mmc_probe(struct platform_device *pdev)
+ {
+ 	struct sunxi_mmc_host *host;
+@@ -1445,6 +1454,24 @@
+ 			dev_info(host->dev, "roc32k trial rtc32out %08x->%08x\n", old, readl(host->rtc));
+ 			msleep(50);
+ 		}
++	}
++	host->diag_rtc_ctrl = devm_ioremap(&pdev->dev, 0x07090000, 8);
++	if (!host->diag_rtc_ctrl)
++		return -ENOMEM;
++	{
++		u32 old = readl(host->diag_rtc_ctrl);
++		u32 status = readl(host->diag_rtc_ctrl + 4);
++		/* Match Tina's stable external crystal selection, without changing
++		 * oscillator enables or global auto-switch settings. */
++		if (!(old & BIT(4)) || (status & BIT(4)))
++			return -ENODEV;
++		host->diag_rtc_parent = old & BIT(0);
++		ret = devm_add_action_or_reset(&pdev->dev, restore_rtc_parent, host);
++		if (ret)
++			return ret;
++		writel(0x16aa0000 | (old & 0xffff) | BIT(0), host->diag_rtc_ctrl);
++		dev_info(host->dev, "RTC external-source trial %08x->%08x status=%08x\n", old, readl(host->diag_rtc_ctrl), status);
++		msleep(50);
+ 	}
+ 	spin_lock_init(&host->lock);
+ 

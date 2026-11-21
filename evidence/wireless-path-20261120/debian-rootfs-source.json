@@ -1,0 +1,8 @@
+{
+  "image": "t736_lpddr4_emmc_debian11_xfce_boot0_preserved.img",
+  "component": "rootfs.fex",
+  "offset": 33683456,
+  "size": 2516889680,
+  "sha256": "f98b44654730ea8629dc04a8cfaca12656ea3804011c15a7f7d6d9502af4d105",
+  "matching_extracted_sparse": "debian-original-kernel-rootfs.ext4"
+}

@@ -1,0 +1,23 @@
+Linux atlasa1 6.18.63-t736-gnome-v47 #47 SMP 2026-11-19 00:00:00 UTC aarch64 GNU/Linux
+9dd4a618-d4a8-4868-8903-142ad01d1c97
+ORIGINAL_KERNEL_CONFIRMED
+Image-6.18.63-t736-gnome-v47.gz
+afdd333faf31ade636286e0e9e4b2f6eb069896bd857b45b71bd9d540f965c56  /boot/vmlinuz-6.18.63-t736-armbian
+../../../bus/platform/drivers/sunxi-mmc
+(null)
+PAD_DIAGNOSTIC_UNLOADED
+SDIO_DIAGNOSTIC_UNLOADED
+active
+NAME           SIZE MOUNTPOINTS
+mmcblk0       58.2G 
+├─mmcblk0p1     32M 
+├─mmcblk0p2     16M 
+├─mmcblk0p3     96M 
+├─mmcblk0p4    7.3G /
+├─mmcblk0p5     16M 
+└─mmcblk0p6  554.7M 
+mmcblk0boot0     4M 
+mmcblk0boot1     4M 
+nvme0n1      119.2G 
+└─nvme0n1p1  119.2G 
+total 0

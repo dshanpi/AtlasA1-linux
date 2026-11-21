@@ -63,8 +63,8 @@
       "path": "boards/wireless-v31/diagnostics/README.md",
       "kind": "source",
       "source": "mainline/boards/wireless-v31/diagnostics/README.md",
-      "size": 2121,
-      "sha256": "7b2122ff3afc9d43a24b40ac36ee1b16054c3ef3316e2ed309f9009bed31f5a2"
+      "size": 5399,
+      "sha256": "5ce2c075d5f2165c8d60367f73c6b01a903e7df22ed467a7507ddb4706c62cd7"
     },
     {
       "path": "boards/wireless-v31/diagnostics/aic8800d80-linux618-candidate.patch",
@@ -72,6 +72,27 @@
       "source": "mainline/boards/wireless-v31/diagnostics/aic8800d80-linux618-candidate.patch",
       "size": 7233,
       "sha256": "6f76f8fcd8117f82434a4e7e0be6fd3ecaec08df60f49cb50ce4ab30a548adb2"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/atlasa1-rtc-snapshot.c",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/atlasa1-rtc-snapshot.c",
+      "size": 450,
+      "sha256": "7aaad8d770db62d2dba229ec175a540bc69d05ebbffb72cca7703ebb093674ef"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/atlasa1-sdio-path-v47.c",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/atlasa1-sdio-path-v47.c",
+      "size": 45427,
+      "sha256": "d1fdbdfea28a385b2413e88102cab0ade26db618b0408aac9938b9c76d1a495c"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/atlasa1-wireless-pad-mode.c",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/atlasa1-wireless-pad-mode.c",
+      "size": 1834,
+      "sha256": "2c3bbcf22c1bed841ad0f76e3e658cb343e7bc1cbd8c49c002f66fb3c3706831"
     },
     {
       "path": "boards/wireless-v31/diagnostics/diag-only.patch",
@@ -95,6 +116,13 @@
       "sha256": "c9f538da3a4cd7f949167e3302686df355e2f05956c82bd2d01e5278f7383790"
     },
     {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-external-32k.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-external-32k.patch",
+      "size": 1784,
+      "sha256": "47439009f405584490e9fe59a6287966b01e08f79c1f39d836507f121affb905"
+    },
+    {
       "path": "boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
       "kind": "source",
       "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-extra-settle.patch",
@@ -102,11 +130,81 @@
       "sha256": "c9a3f3a3c3b68961b72348209c24681fae6eb2ca435e1fe311119979553ec783"
     },
     {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-gpio-cmd5.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-gpio-cmd5.patch",
+      "size": 2785,
+      "sha256": "f99c0abe9937268bdcd6aae41e5e871900b642a98bfe941767f9195c597ae21b"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-gpio-rmw-readback.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-gpio-rmw-readback.patch",
+      "size": 2917,
+      "sha256": "2b596d603db206583255b3a1d702b5387d29ce231feedf4107c1770a55488fc8"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-noceata.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-noceata.patch",
+      "size": 408,
+      "sha256": "b2c17c19fc4c39da15c64d9db84f396899ad0eb6070d8f669b5f96e534436c4b"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-path-registers.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-path-registers.patch",
+      "size": 2465,
+      "sha256": "3ba80215ba55a6193c710ec19af1eec08bfefe5ed0036e0fc8186fae32675402"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-pmic-wireless-snapshot-v47.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-pmic-wireless-snapshot-v47.patch",
+      "size": 1695,
+      "sha256": "2c2a2051f31ba5fdffd099139b18094ce9cc8b31965ebf5c27f4fb1a5e3813de"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/diagnostic-reset-after-clock.patch",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/diagnostic-reset-after-clock.patch",
+      "size": 844,
+      "sha256": "1c4047079d699e2d1b8774ea0f76ca97aa2acee13e698b9d2193435ceb142094"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/run-dual-reset-trial.sh",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/run-dual-reset-trial.sh",
+      "size": 1730,
+      "sha256": "3b79aee8b8a3aae85e8ad4bffcc2c399d4112db206d8c0ae7c6b32e1c8468e58"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/run-pad-mode-trial.sh",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/run-pad-mode-trial.sh",
+      "size": 1841,
+      "sha256": "4f6254f8902fa1c9b87ca305194881dc42978ac4df9c02860c97ef4cc7dc1a48"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/run-path-trial.sh",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/run-path-trial.sh",
+      "size": 1655,
+      "sha256": "ca39478b5e912cf8e25d180c5fcb76b11cde7f6ff49a8f4bc6f2ba6655a6f06a"
+    },
+    {
       "path": "boards/wireless-v31/diagnostics/run-phase-trial.sh",
       "kind": "source",
       "source": "mainline/boards/wireless-v31/diagnostics/run-phase-trial.sh",
       "size": 1670,
       "sha256": "12528968529771767e7333be0265665732f85e5c173ad149c4ab56dcfdffe32f"
+    },
+    {
+      "path": "boards/wireless-v31/diagnostics/run-wlan-only-trial.sh",
+      "kind": "source",
+      "source": "mainline/boards/wireless-v31/diagnostics/run-wlan-only-trial.sh",
+      "size": 1730,
+      "sha256": "9fbe77476bc9e57d63a5573cce7094e61095cb04fc5a8f14d46663df3ad8c8dc"
     },
     {
       "path": "boards/wireless-v31/kernel.config",
@@ -133,8 +231,8 @@
       "path": "docs/WIRELESS.md",
       "kind": "source",
       "source": "mainline/docs/WIRELESS.md",
-      "size": 8486,
-      "sha256": "4452812dc35d25ddf3461853852ccc24cb8b9cef51f5a9b4375c5c20557073ce"
+      "size": 13673,
+      "sha256": "bf2edef71484ec081c397503538b1375c51b1f1c3080531f4f30433d817bead9"
     },
     {
       "path": "evidence/atlas-ubuntu26-board-rebuild-20261118.json",
@@ -1493,6 +1591,188 @@
       "source": "mainline/evidence/media-v30-heap-budget-build-20261118.json",
       "size": 2157,
       "sha256": "dc28dc030824175cc80b99889e0ef17f02d7b6093bf7adba8299eb62f08e68cf"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/README.md",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/README.md",
+      "size": 4845,
+      "sha256": "647cefa8ffaec94af074290a8e4714aba597f9c00d70a5ba1e854d1624e0f152"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/RUNTIME-TRIALS-20261121.md",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/RUNTIME-TRIALS-20261121.md",
+      "size": 3627,
+      "sha256": "3496ec26045c104b4d4f2b1e70edbaac2079f428d86e3a01100324f8fdc970b4"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/SCHEMATIC-AUDIT-20261121.md",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/SCHEMATIC-AUDIT-20261121.md",
+      "size": 5561,
+      "sha256": "d4ec5b272fb0b91bf2d2b5b531aed0e04f20e41d185c9154873ff0d1b1782817"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/boot-wireless-restore-20261121.log",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/boot-wireless-restore-20261121.log",
+      "size": 9461,
+      "sha256": "df3e852fc74410c41848ff7453028982bbb95037aa452aa79ba64ea812b8ab26"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/boot-wireless-restore-20261121.timing.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/boot-wireless-restore-20261121.timing.json",
+      "size": 893,
+      "sha256": "ae1b23eb6922b76ec4967eba83e52d508b3f5bd14f19c0edfa980d1e813343df"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/boot-wireless-snapshot-20261121.log",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/boot-wireless-snapshot-20261121.log",
+      "size": 10278,
+      "sha256": "15a9554027c9966842bcd0f799fc85ebdd438eb3553be746deca8335f29a2716"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/boot-wireless-snapshot-20261121.timing.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/boot-wireless-snapshot-20261121.timing.json",
+      "size": 973,
+      "sha256": "2f75d3d14a255ec15d24920d74860ffbf38862082df6554828f658ec77d47314"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/debian-aic8800d80-files.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/debian-aic8800d80-files.txt",
+      "size": 1780,
+      "sha256": "f50a094c2400c0bcafdbd4f4062ffe0a74466a9691505d114aa3cff8ddcbf64d"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/debian-rootfs-source.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/debian-rootfs-source.json",
+      "size": 290,
+      "sha256": "d934513dc39107e2100ace32df203c6f4af0de6d46b32cf43908560e6cc4abae"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/modules-v47.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/modules-v47.json",
+      "size": 428,
+      "sha256": "403e199c909daf29a697015ef30f885086050ac2a7bd4c2c359c4ddd93814c24"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/pad-1v8-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/pad-1v8-20261121.txt",
+      "size": 1301,
+      "sha256": "f9199baccfe63590c5d4e80d581abb8f23931f37ee462daf793af041f229d775"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/pad-1v8-bitbang-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/pad-1v8-bitbang-20261121.txt",
+      "size": 9450,
+      "sha256": "b81eccab342c902166de4f9a118eebf2bba79261f326a278f10a6ed7a2aff076"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/pad-1v8-path-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/pad-1v8-path-20261121.txt",
+      "size": 5277,
+      "sha256": "1ec82cb4f13a6374934b627b6943801701d40c2a3d18819cbcbd00f6c3e8c979"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/pad-auto-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/pad-auto-20261121.txt",
+      "size": 796,
+      "sha256": "fe3e506c1b5ee69623020c6f044cff3314dddda2b18365188c5fb9d2d127056b"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/pmic-snapshot-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/pmic-snapshot-20261121.txt",
+      "size": 1105,
+      "sha256": "e4e277cab110e3386d668fcef7e1716fbcb5aaf5f13d2bef55572f7b5cd119ef"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/restored-default-20261121.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/restored-default-20261121.txt",
+      "size": 686,
+      "sha256": "d5ae46fd0bfc1fcb831cfb242d754df26cfa89af1ee90c1682284320893fdfcc"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/results.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/results.json",
+      "size": 3338,
+      "sha256": "4ea0eb051743b1a172b502e6c817c0910ad5fd2b558ce6c5e233c6868ebcf5f0"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/runtime-results-20261121.json",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/runtime-results-20261121.json",
+      "size": 1094,
+      "sha256": "7f2691a3261359f95dbc22fe7c2de219a2ef1ab3c881db6f4b9c41c50c8f1e70"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-afterclock-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-afterclock-v47.txt",
+      "size": 4411,
+      "sha256": "b1321aa0d067be8e8e1d54a0f73664defc61d90bfffacff949301ecba5196038"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-bitbang-rmw-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-bitbang-rmw-v47.txt",
+      "size": 4472,
+      "sha256": "858ac7726e1cba46b4a855a7edcbdeb44f25e28d5b3bd6914a5bba565ebe781e"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-bitbang-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-bitbang-v47.txt",
+      "size": 4448,
+      "sha256": "970c540e73297543897c4cb4c22c599d97b10cbdc522f7abe02c6ef9dd914b8c"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-dual-reset-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-dual-reset-v47.txt",
+      "size": 4559,
+      "sha256": "4bffe87e4a5e8b8d34dc0101e3302863e227532fbb60990aed8d2afac4e17f82"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-ext32k-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-ext32k-v47.txt",
+      "size": 4426,
+      "sha256": "3c610fa297d58ebadaec37b8a0d78b0f002b4e4f4a7432046d42b2d8106cd56f"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-ext32k-wlanonly-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-ext32k-wlanonly-v47.txt",
+      "size": 4409,
+      "sha256": "84c71e08b70b3732c8188ccf54e6b47cee143b0725e98f31fb4ef9304d6b4b51"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-noceata-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-noceata-v47.txt",
+      "size": 7293,
+      "sha256": "a96e9db3956b5c06180d41189d3b2aca704c18d04efa29209ab752d112f8cb71"
+    },
+    {
+      "path": "evidence/wireless-path-20261120/sdio-path-v47.txt",
+      "kind": "source",
+      "source": "mainline/evidence/wireless-path-20261120/sdio-path-v47.txt",
+      "size": 3739,
+      "sha256": "c0742a48b553dad505537f8f8c021702db6efb04c3798de781b08ba2ce5ae647"
     },
     {
       "path": "patches/linux/0002-t736-main-pio-layout.patch",

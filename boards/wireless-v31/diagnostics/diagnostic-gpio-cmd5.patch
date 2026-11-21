@@ -1,0 +1,105 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -274,6 +274,7 @@
+ 
+ struct sunxi_mmc_host {
+ 	void __iomem *pg, *pm, *rtc, *diag_ccu;
++	bool diag_bitbanged;
+ 	struct device *dev;
+ 	struct mmc_host	*mmc;
+ 	struct reset_control *reset;
+@@ -1031,6 +1032,83 @@
+ 	udelay(300);
+ }
+ 
++
++/* Diagnostic SDIO CMD5 using PG0/PG1 only; never changes any rail. */
++static void diag_gpio_clock(struct sunxi_mmc_host *host)
++{
++	writel(BIT(0), host->pg + 0x18);
++	udelay(3);
++	writel(BIT(0), host->pg + 0x14);
++	udelay(3);
++}
++
++static void diag_gpio_send(struct sunxi_mmc_host *host, u8 opcode)
++{
++	u8 packet[6] = { 0x40 | opcode, 0, 0, 0, 0, 0 };
++	u8 crc = 0;
++	int i, b;
++	for (i = 0; i < 5; i++) {
++		u8 v = packet[i];
++		for (b = 0; b < 8; b++) {
++			crc <<= 1;
++			if ((v ^ crc) & 0x80)
++				crc ^= 0x09;
++			v <<= 1;
++		}
++	}
++	packet[5] = (crc << 1) | 1;
++	for (i = 0; i < 6; i++) {
++		for (b = 7; b >= 0; b--) {
++			writel(BIT(0), host->pg + 0x18);
++			writel(BIT(1), host->pg + ((packet[i] & BIT(b)) ? 0x14 : 0x18));
++			udelay(3);
++			writel(BIT(0), host->pg + 0x14);
++			udelay(3);
++		}
++	}
++}
++
++static void diag_gpio_cmd5(struct sunxi_mmc_host *host)
++{
++	u32 mux = readl(host->pg), data = readl(host->pg + 0x10);
++	u8 response[6] = {0};
++	int i, start = -1;
++	u32 idle;
++
++	/* Set CMD high, CLK low before switching both pins to output. */
++	writel(BIT(0), host->pg + 0x18);
++	writel(BIT(1), host->pg + 0x14);
++	writel((mux & ~0xffU) | 0x11, host->pg);
++	for (i = 0; i < 80; i++)
++		diag_gpio_clock(host);
++	diag_gpio_send(host, 0);
++	writel(BIT(1), host->pg + 0x14);
++	for (i = 0; i < 16; i++)
++		diag_gpio_clock(host);
++	diag_gpio_send(host, 5);
++	writel(BIT(0), host->pg + 0x18);
++	writel((mux & ~0xffU) | 0x01, host->pg); /* CMD input, CLK output */
++	udelay(3);
++	idle = readl(host->pg + 0x10);
++	for (i = 0; i < 256; i++) {
++		u32 bit;
++		writel(BIT(0), host->pg + 0x14);
++		udelay(3);
++		bit = !!(readl(host->pg + 0x10) & BIT(1));
++		if (!bit && start < 0)
++			start = i;
++		if (start >= 0 && i - start < 48)
++			response[(i-start)/8] |= bit << (7-(i-start)%8);
++		writel(BIT(0), host->pg + 0x18);
++		udelay(3);
++	}
++	writel(data & 3, host->pg + 0x14);
++	writel((~data) & 3, host->pg + 0x18);
++	writel(mux, host->pg);
++	dev_info(host->dev, "GPIO CMD5 idle=%08x start=%d response=%*ph restored_mux=%08x\n",
++		 idle, start, 6, response, readl(host->pg));
++}
++
+ static void sunxi_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+ {
+ 	struct sunxi_mmc_host *host = mmc_priv(mmc);
+@@ -1118,6 +1196,10 @@
+ 		sunxi_mmc_start_dma(host, data);
+ 	}
+ 
++	if (cmd->opcode == 5 && !host->diag_bitbanged) {
++		host->diag_bitbanged = true;
++		diag_gpio_cmd5(host);
++	}
+ 	host->mrq = mrq;
+ 	host->wait_dma = wait_dma;
+ 	mmc_writel(host, REG_IMASK, host->sdio_imask | imask);

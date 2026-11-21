@@ -1,0 +1,93 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -1033,12 +1033,18 @@
+ }
+ 
+ 
++static void diag_gpio_update(struct sunxi_mmc_host *host, u32 clear, u32 set)
++{
++	/* Match the Linux GPIO driver's data-register RMW path. */
++	writel((readl(host->pg + 0x10) & ~clear) | set, host->pg + 0x10);
++}
++
+ /* Diagnostic SDIO CMD5 using PG0/PG1 only; never changes any rail. */
+ static void diag_gpio_clock(struct sunxi_mmc_host *host)
+ {
+-	writel(BIT(0), host->pg + 0x18);
++	diag_gpio_update(host, BIT(0), 0);
+ 	udelay(3);
+-	writel(BIT(0), host->pg + 0x14);
++	diag_gpio_update(host, 0, BIT(0));
+ 	udelay(3);
+ }
+ 
+@@ -1059,10 +1065,10 @@
+ 	packet[5] = (crc << 1) | 1;
+ 	for (i = 0; i < 6; i++) {
+ 		for (b = 7; b >= 0; b--) {
+-			writel(BIT(0), host->pg + 0x18);
+-			writel(BIT(1), host->pg + ((packet[i] & BIT(b)) ? 0x14 : 0x18));
++			diag_gpio_update(host, BIT(0), 0);
++			diag_gpio_update(host, BIT(1), (packet[i] & BIT(b)) ? BIT(1) : 0);
+ 			udelay(3);
+-			writel(BIT(0), host->pg + 0x14);
++			diag_gpio_update(host, 0, BIT(0));
+ 			udelay(3);
+ 		}
+ 	}
+@@ -1073,38 +1079,46 @@
+ 	u32 mux = readl(host->pg), data = readl(host->pg + 0x10);
+ 	u8 response[6] = {0};
+ 	int i, start = -1;
+-	u32 idle;
++	u32 idle, low, high;
++	u64 started, elapsed;
+ 
+ 	/* Set CMD high, CLK low before switching both pins to output. */
+-	writel(BIT(0), host->pg + 0x18);
+-	writel(BIT(1), host->pg + 0x14);
++	diag_gpio_update(host, BIT(0), 0);
++	diag_gpio_update(host, 0, BIT(1));
+ 	writel((mux & ~0xffU) | 0x11, host->pg);
++	low = readl(host->pg + 0x10);
++	diag_gpio_update(host, 0, BIT(0));
++	udelay(3);
++	high = readl(host->pg + 0x10);
++	diag_gpio_update(host, BIT(0), 0);
++	started = ktime_get_ns();
+ 	for (i = 0; i < 80; i++)
+ 		diag_gpio_clock(host);
+ 	diag_gpio_send(host, 0);
+-	writel(BIT(1), host->pg + 0x14);
++	diag_gpio_update(host, 0, BIT(1));
+ 	for (i = 0; i < 16; i++)
+ 		diag_gpio_clock(host);
+ 	diag_gpio_send(host, 5);
+-	writel(BIT(0), host->pg + 0x18);
++	diag_gpio_update(host, BIT(0), 0);
+ 	writel((mux & ~0xffU) | 0x01, host->pg); /* CMD input, CLK output */
+ 	udelay(3);
+ 	idle = readl(host->pg + 0x10);
+ 	for (i = 0; i < 256; i++) {
+ 		u32 bit;
+-		writel(BIT(0), host->pg + 0x14);
++		diag_gpio_update(host, 0, BIT(0));
+ 		udelay(3);
+ 		bit = !!(readl(host->pg + 0x10) & BIT(1));
+ 		if (!bit && start < 0)
+ 			start = i;
+ 		if (start >= 0 && i - start < 48)
+ 			response[(i-start)/8] |= bit << (7-(i-start)%8);
+-		writel(BIT(0), host->pg + 0x18);
++		diag_gpio_update(host, BIT(0), 0);
+ 		udelay(3);
+ 	}
+-	writel(data & 3, host->pg + 0x14);
+-	writel((~data) & 3, host->pg + 0x18);
++	elapsed = ktime_get_ns() - started;
++	diag_gpio_update(host, 3, data & 3);
+ 	writel(mux, host->pg);
++	dev_info(host->dev, "GPIO clock readback low=%08x high=%08x elapsed_ns=%llu\n", low, high, elapsed);
+ 	dev_info(host->dev, "GPIO CMD5 idle=%08x start=%d response=%*ph restored_mux=%08x\n",
+ 		 idle, start, 6, response, readl(host->pg));
+ }

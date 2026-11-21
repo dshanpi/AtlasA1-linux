@@ -1,0 +1,52 @@
+--- a/atlasa1-sdio-diag.c
++++ b/atlasa1-sdio-diag.c
+@@ -4,7 +4,7 @@
+  * (C) Copyright 2007-2011 Reuuimlla Technology Co., Ltd.
+  * (C) Copyright 2007-2011 Aaron Maoye <leafy.myeh@reuuimllatech.com>
+  * (C) Copyright 2013-2014 O2S GmbH <www.o2s.ch>
+- * (C) Copyright 2013-2014 David Lanzend枚rfer <david.lanzendoerfer@o2s.ch>
++ * (C) Copyright 2013-2014 David Lanzend鏋歳fer <david.lanzendoerfer@o2s.ch>
+  * (C) Copyright 2013-2014 Hans de Goede <hdegoede@redhat.com>
+  * (C) Copyright 2017 Sootech SA
+  */
+@@ -273,7 +273,7 @@
+ MODULE_PARM_DESC(cmd_phase, "Diagnostic command sample phase 0..3");
+ 
+ struct sunxi_mmc_host {
+-	void __iomem *pg, *pm, *rtc;
++	void __iomem *pg, *pm, *rtc, *diag_ccu;
+ 	struct device *dev;
+ 	struct mmc_host	*mmc;
+ 	struct reset_control *reset;
+@@ -1127,6 +1127,14 @@
+ 			 mmc_readl(host, REG_CLKCR), mmc_readl(host, REG_SD_NTSR),
+ 			 readl(host->pg), readl(host->pg + 0x10), readl(host->pm),
+ 			 readl(host->pm + 0x10), readl(host->rtc));
++	if (cmd->opcode == 5 || cmd->opcode == 52)
++        dev_info(host->dev, "path version=%08x gctrl=%08x funs=%08x csdc=%08x edsd=%08x drive=%08x sample=%08x sfc=%08x ccu_module=%08x ccu_bus=%08x ccu_store=%08x ccu_msi=%08x\n",
++            readl(host->reg_base + 0x300), mmc_readl(host, REG_GCTRL),
++            mmc_readl(host, REG_FUNS), readl(host->reg_base + 0x54),
++            readl(host->reg_base + 0x10c), mmc_readl(host, REG_DRV_DL),
++            readl(host->reg_base + 0x144), readl(host->reg_base + 0x104),
++            readl(host->diag_ccu + 0xd10), readl(host->diag_ccu + 0xd1c),
++            readl(host->diag_ccu + 0x5c0), readl(host->diag_ccu + 0x59c));
+ 	mmc_writel(host, REG_CARG, cmd->arg);
+ 	mmc_writel(host, REG_CMDR, cmd_val);
+ 
+@@ -1417,7 +1425,8 @@
+ 	host->pg = devm_ioremap(&pdev->dev, 0x02000380, 0x34);
+ 	host->pm = devm_ioremap(&pdev->dev, 0x07025030, 0x28);
+ 	host->rtc = devm_ioremap(&pdev->dev, 0x07090060, 4);
+-	if (!host->pg || !host->pm || !host->rtc)
++	host->diag_ccu = devm_ioremap(&pdev->dev, 0x02002000, 0x1000);
++	if (!host->pg || !host->pm || !host->rtc || !host->diag_ccu)
+ 		return -ENOMEM;
+ 	{
+ 		void __iomem *g = devm_ioremap(&pdev->dev, 0x02000040, 12);
+@@ -1608,5 +1617,5 @@
+ 
+ MODULE_DESCRIPTION("Allwinner's SD/MMC Card Controller Driver");
+ MODULE_LICENSE("GPL v2");
+-MODULE_AUTHOR("David Lanzend枚rfer <david.lanzendoerfer@o2s.ch>");
++MODULE_AUTHOR("David Lanzend鏋歳fer <david.lanzendoerfer@o2s.ch>");
+ MODULE_ALIAS("platform:sunxi-mmc");
