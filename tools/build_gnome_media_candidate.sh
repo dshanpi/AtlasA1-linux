@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Experimental GNOME display candidates; never changes the default image recipe.
+# Rebuild GNOME display candidates and the v47 GNOME image profile.
 set -euo pipefail
 case "${4-}:$#" in
     :3) build=36; rate=400000000 ;;
