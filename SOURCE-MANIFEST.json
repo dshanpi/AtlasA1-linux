@@ -21,8 +21,8 @@
       "path": "README.md",
       "kind": "generated",
       "source": "generated/AtlasA1-linux/README.md",
-      "size": 2307,
-      "sha256": "de3334bef24d6ba0668233e981058b4173f17bfceb9055188d7a5722708465b5"
+      "size": 2551,
+      "sha256": "e6b370fda5583f8e87b832fcbf824c2f26f9e1fb32462d60c4c67e778b1bfc31"
     },
     {
       "path": "boards/pcie-v32/README.md",
